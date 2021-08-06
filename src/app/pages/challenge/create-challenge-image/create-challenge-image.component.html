@@ -1,0 +1,19 @@
+<div class=" content">
+<div class="row">
+    <div class="container row">
+        <div class="col-md-12">
+            <h1>Upload Image</h1>
+        </div>
+    </div>
+    
+    <div class="container row">
+        <div class="col-md-6">
+            <input type="file" (change)="onFileChanged($event)">
+    
+        </div>
+        <div class="col-md-6">
+            <button (click)="onUpload()" type="button" mdbBtn color="success" mdbWavesEffect>Upload</button>
+        </div>
+    </div>
+</div> 
+</div>

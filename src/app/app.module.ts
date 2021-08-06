@@ -12,6 +12,9 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
+import { CreateChallengeComponent } from './pages/challenge/create-challenge/create-challenge.component';
+import { CreateChallengeImageComponent } from './pages/challenge/create-challenge-image/create-challenge-image.component';
+import { CheckMyChallengeComponent } from './pages/challenge/check-my-challenge/check-my-challenge.component';
 
 @NgModule({
   imports: [
@@ -24,7 +27,7 @@ import { ComponentsModule } from "./components/components.module";
     AppRoutingModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, AdminLayoutComponent],
+  declarations: [AppComponent, AdminLayoutComponent, CreateChallengeComponent, CreateChallengeImageComponent, CheckMyChallengeComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
