@@ -5,7 +5,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
 import { AdminLayoutRoutes } from "./admin-layout.routing";
-import { ChallengeComponent } from "../../pages/challenge/challenge.component";
+import { HomeComponent } from "../../pages/home/home.component";
 import { IconsComponent } from "../../pages/icons/icons.component";
 import { NotificationsComponent } from "../../pages/notifications/notifications.component";
 import { UserComponent } from "../../pages/user/user.component";
@@ -24,7 +24,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     NgbModule,
   ],
   declarations: [
-    ChallengeComponent,
+    HomeComponent,
     UserComponent,
     TablesComponent,
     IconsComponent,

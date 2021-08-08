@@ -1,0 +1,149 @@
+<div class="addpub">
+    <div class="card" style="width: 25rem;">
+      <div class="card-body">
+        <div *ngIf="pub==true; else elseBlock3">
+          <a>
+            <h5 id="card" class="card-header" (click)="publication()">+ADD PUB</h5>
+          </a>
+        </div>
+        <ng-template #elseBlock3>
+  
+          <div class="form-group col-md-12">
+            <input type="text" class="form-control" placeholder="pub description ">
+          </div>
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile04">
+              <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+            </div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="onPublication()">Add</button>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="publication()">Close</button>
+  
+        </ng-template>
+  
+      </div>
+    </div>
+  </div>
+  
+  <div class="pub">
+  
+    <div class="content">
+      <div class=" row">
+        <div class=" col-lg-8">
+          <div class=" card card-chart">
+            <div class="card-body text-secondary">
+              <button type="button" class="close" aria-label="Close" (click)="onDeletePub">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h5 class=" card-category">
+                <img src="../assets/test.jpg" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
+  
+                Rania BR
+              </h5>
+              <h5 class="card-title">some quick description</h5>
+            </div>
+            <div class=" card-body">
+              <img class="card-img-top" src="../assets/test.jpg" alt="Card image cap">
+              <div *ngIf="click==true; else elseBlock">
+                <div class=" card-header">
+                  <h3 class=" card-title">
+                    <i class=" tim-icons icon-heart-2 text-warn-states" (click)="onLike()"> </i> <small id="like"> {{like}}</small>
+                    <i class=" tim-icons icon-chat-33 text-warn-states" (click)="commenting()"> </i>
+                  </h3>
+                </div>
+              
+              </div>
+              <ng-template #elseBlock>
+                <div class=" card-header">
+                  <h3 class=" card-title">
+                    <i class=" tim-icons icon-heart-2 text-danger-states" (click)="onDislike()"> </i>
+                    <small id="like"> {{like}}</small>
+                    
+                    <i class=" tim-icons icon-chat-33 text-warn-states" (click)="commenting()"> </i>
+                    
+                  </h3>
+                </div>
+              </ng-template>
+              <div *ngIf="com==true; else elseBlock2">
+              </div>
+              <ng-template #elseBlock2>
+                
+                <a class="list-group-item list-group-item-action flex-column align-items-start">
+                  
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                      <img src="../assets/test.jpg" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
+                      Syrine M
+                    </h5>
+                    
+                    <small class="text-muted">3 days ago</small>
+                    
+                  </div>
+                  <small class="text-muted">Doctor</small>
+                  <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <p class="mb-1">Hi ! this is my comment.</p>
+                  <hr>
+                </a>
+                <a class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                      <img src="../assets/test.jpg" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
+                      Test M
+                    </h5>
+                    <small class="text-muted">2 days ago</small>
+                  </div>
+                  <small class="text-muted">Coach</small>
+                  <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <p class="mb-1">Hi ! good job</p>
+                  <hr>
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="form-group col-md-12">
+                      <input type="text" class="form-control" placeholder="add your comment " id="inputCity">
+                      <div class="send">
+                        <button type="button" class="btn btn-secondary btn-sm" (click)="onComment()">Add</button>
+  
+                      </div>
+                    </div>
+                  </div>
+                </a>
+  
+              </ng-template>
+  
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  <style>
+    .pub {
+      padding-left: 200px;
+      padding-top: -100cm;
+    }
+  
+    .send {
+      padding-left: 320px;
+      padding-top: 10px;
+    }
+  
+    .addpub {
+      padding-top: 50px;
+      padding-left: 500px;
+  
+    }
+  #like {
+    font-size: x-small;
+    padding-right: 20px;
+  }
+    #card {
+  
+      padding-left: 150px;
+      padding-bottom: 10px;
+    }
+  </style>
