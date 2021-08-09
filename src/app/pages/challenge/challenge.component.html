@@ -2,50 +2,50 @@
     <h1> Welcome Challenge !!!</h1>
     <div class="row justify-content-between">
         <div class="col-4">
-            <button (click)="gotoCreateChallenge()" type="button" mdbBtn color="primary" mdbWavesEffect>Create
+            <button (click)="gotoCreateChallenge()" type="button" mdbBtn color="primary" mdbWavesEffect>Créer
                 challenge</button>
         </div>
         <div class="col-4">
-            <button (click)="gotoCheckChallenge()" type="button" mdbBtn color="primary" mdbWavesEffect>My
+            <button (click)="gotoCheckChallenge()" type="button" mdbBtn color="primary" mdbWavesEffect>Mes
                 challenges</button>
         </div>
-      </div>
-    
+    </div>
     <div class="row">
-        <div class="col-md-4" *ngFor="let challenge of challenges">
-            <!--Card-->
-            <mdb-card cascade="true" narrower="true">
+        <div *ngIf="condition; else elseBlock">Il n'y a aucun challenge !!!</div>
+        <ng-template #elseBlock>
+            <div class="col-md-4" *ngFor="let challenge of challenges">
+                <!--Card-->
+                <mdb-card cascade="true" narrower="true">
 
-                <!--Card image-->
-                <div class="view view-cascade overlay waves-light" mdbWavesEffect>
-                    <mdb-card-img [src]="challenge.image"></mdb-card-img>
-                    <a>
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-                <!--/Card image-->
+                    <!--Card image-->
+                    <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+                        <mdb-card-img [src]="challenge.image"></mdb-card-img>
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+                    <!--/Card image-->
 
-                <mdb-card-body cascade="true" class="text-center">
-                    <!--Card content-->
-                    <h5 class="pink-text">
-                        <mdb-icon fas icon="utensils"></mdb-icon> Culinary
-                    </h5>
-                    <!--Title-->
-                    <h4 class="card-title">{{challenge.nom}}</h4>
-                    <!--Text-->
+                    <mdb-card-body cascade="true" class="text-center">
+                        <!--Card content-->
+                       
+                        <!--Title-->
+                        <h4 class="card-title">{{challenge.nom}}</h4>
+                        <!--Text-->
 
-                    <mdb-card-text>
-                        {{challenge.objectif}}
-                    </mdb-card-text>
+                        <mdb-card-text>
+                            {{challenge.objectif}}
+                        </mdb-card-text>
 
-                    <a mdbBtn color="unique" class="waves-light" mdbWavesEffect>Button</a>
+                        <a mdbBtn color="unique" class="waves-light" mdbWavesEffect>Participer</a>
+                        <a mdbBtn color="unique" class="waves-light" mdbWavesEffect>Consulter publication</a>
 
-                </mdb-card-body>
-                <!--/.Card content-->
+                    </mdb-card-body>
+                    <!--/.Card content-->
 
-            </mdb-card>
-            <!--/.Card-->
-        </div>
-
+                </mdb-card>
+                <!--/.Card-->
+            </div>
+        </ng-template>
     </div>
 </div>
