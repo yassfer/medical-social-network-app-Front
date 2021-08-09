@@ -17,12 +17,17 @@ export class HomeComponent implements OnInit {
   liking: Liking = new Liking();
   comment: Comment = new Comment();
   public: Publication = new Publication();
+  publ: Publication [];
 
   like:number=5;
   
   constructor(private publicationservice : PublicationService,
     private router: Router) { }
   ngOnInit() {
+    this.publicationservice.getPub().subscribe(data => {
+      this.publ = data;
+    });
+    console.log("-----------"+this.publ);
 
   }
 

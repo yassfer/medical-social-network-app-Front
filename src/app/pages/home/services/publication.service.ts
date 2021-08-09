@@ -16,8 +16,8 @@ export class PublicationService {
 
   constructor(private httpClient: HttpClient) { }
  
-  getPub(): Observable<Object>{
-    return this.httpClient.get(`${this.baseURL}/publication/all`);
+  getPub(): Observable<Publication[]>{
+    return this.httpClient.get<Publication[]>(`${this.baseURL}publication/api/all`);
   }
   createPub(publication: Publication): Observable<Object>{
     return this.httpClient.post(`${this.baseURL}/publication`, publication);
@@ -32,8 +32,8 @@ export class PublicationService {
     return this.httpClient.patch(`${this.baseURL}/publication/${id}`, publication);
   }
 
-  getCom(): Observable<Object>{
-    return this.httpClient.get(`${this.baseURL}/comment/all`);
+  getCom(): Observable<Comment[]>{
+    return this.httpClient.get<Comment[]>(`${this.baseURL}comment/api/all`);
   }
   createCom(comment : Comment): Observable<Object>{
     return this.httpClient.post(`${this.baseURL}/comment/`, comment);
@@ -49,8 +49,8 @@ export class PublicationService {
   }
 
   
-  getLike(): Observable<Object>{
-    return this.httpClient.get(`${this.baseURL}/like/all`);
+  getLike(): Observable<Liking[]>{
+    return this.httpClient.get<Liking[]>(`${this.baseURL}like/api/all`);
   }
   createLike(like : Liking): Observable<Object>{
     return this.httpClient.post(`${this.baseURL}/like`, like);

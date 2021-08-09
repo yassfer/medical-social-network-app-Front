@@ -19,16 +19,13 @@
           </div>
           <button type="button" class="btn btn-secondary btn-sm" (click)="onPublication()">Add</button>
           <button type="button" class="btn btn-secondary btn-sm" (click)="publication()">Close</button>
-  
-        </ng-template>
+          </ng-template>
   
       </div>
     </div>
   </div>
-  
-  <div class="pub">
-  
-    <div class="content">
+    <div class="pub">
+      <div class="content">
       <div class=" row">
         <div class=" col-lg-8">
           <div class=" card card-chart">
@@ -37,9 +34,8 @@
                 <span aria-hidden="true">&times;</span>
               </button>
               <h5 class=" card-category">
-                <img src="../assets/test.jpg" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
-  
-                Rania BR
+                <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
+                 Rania BR
               </h5>
               <h5 class="card-title">some quick description</h5>
             </div>
@@ -78,9 +74,10 @@
                     </h5>
                     
                     <small class="text-muted">3 days ago</small>
-                    
+
                   </div>
-                  <small class="text-muted">Doctor</small>
+                  <small id="profession" class="text-muted">Doctor</small>
+
                   <button type="button" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -146,4 +143,12 @@
       padding-left: 150px;
       padding-bottom: 10px;
     }
+    #profession {
+  margin-top: 0;
+  padding-left: 35px;
+  margin-bottom: 20px;
+}
+#nom {
+  padding-bottom: 0;
+}
   </style>
