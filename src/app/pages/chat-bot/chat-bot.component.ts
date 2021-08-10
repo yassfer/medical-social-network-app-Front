@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Intents } from 'src/app/entities/intents';
 import { ChatBotService } from './chat-bot.service';
+
 @Component({
   selector: 'app-chat-bot',
   templateUrl: './chat-bot.component.html',

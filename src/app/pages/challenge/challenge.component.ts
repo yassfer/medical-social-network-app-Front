@@ -5,7 +5,8 @@ import { Challenge } from 'src/app/entities/Challenge';
 
 @Component({
   selector: "app-dashboard",
-  templateUrl: "challenge.component.html"
+  templateUrl: "challenge.component.html",
+  styleUrls: ['./challenge.component.scss']
 })
 export class ChallengeComponent implements OnInit {
 

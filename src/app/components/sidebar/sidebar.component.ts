@@ -14,6 +14,12 @@ export const ROUTES: RouteInfo[] = [
     class: ""
   },
   {
+    path: "/chat",
+    title: "Chat",
+    icon: "icon-chart-pie-36",
+    class: ""
+  },
+  {
     path: "/icons",
     title: "Icons",
     icon: "icon-atom",

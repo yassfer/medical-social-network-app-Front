@@ -1,17 +1,17 @@
 <div class=" content">
-    <h1> Welcome Challenge !!!</h1>
+    <h1> Welcome to the Challenges !!!</h1>
     <div class="row justify-content-between">
         <div class="col-4">
-            <button (click)="gotoCreateChallenge()" type="button" mdbBtn color="primary" mdbWavesEffect>Créer
+            <button (click)="gotoCreateChallenge()" type="button" mdbBtn color="primary" mdbWavesEffect>Create
                 challenge</button>
         </div>
         <div class="col-4">
-            <button (click)="gotoCheckChallenge()" type="button" mdbBtn color="primary" mdbWavesEffect>Mes
+            <button (click)="gotoCheckChallenge()" type="button" mdbBtn color="primary" mdbWavesEffect>Check my
                 challenges</button>
         </div>
     </div>
     <div class="row">
-        <div *ngIf="condition; else elseBlock">Il n'y a aucun challenge !!!</div>
+        <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
         <ng-template #elseBlock>
             <div class="col-md-4" *ngFor="let challenge of challenges">
                 <!--Card-->
@@ -37,8 +37,8 @@
                             {{challenge.objectif}}
                         </mdb-card-text>
 
-                        <a mdbBtn color="unique" class="waves-light" mdbWavesEffect>Participer</a>
-                        <a mdbBtn color="unique" class="waves-light" mdbWavesEffect>Consulter publication</a>
+                        <a mdbBtn color="unique" class="waves-light" mdbWavesEffect>Participate</a>
+                        <a mdbBtn color="unique" class="waves-light" mdbWavesEffect>Consult publication</a>
 
                     </mdb-card-body>
                     <!--/.Card content-->

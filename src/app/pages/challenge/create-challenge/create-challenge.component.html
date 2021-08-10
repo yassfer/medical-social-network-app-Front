@@ -3,12 +3,12 @@
     <div [hidden]="submitted" style="width: 400px;">
         <form (ngSubmit)="onSubmit()">
             <div class="form-group">
-                <label for="name">Nom</label>
+                <label for="name">Name</label>
                 <input type="text" class="form-control" id="nom" required [(ngModel)]="challenge.nom" name="nom">
             </div>
 
             <div class="form-group">
-                <label for="name">Objectif</label>
+                <label for="name">Object</label>
                 <input type="text" class="form-control" id="objectif" required [(ngModel)]="challenge.objectif"
                     name="objectif">
             </div>

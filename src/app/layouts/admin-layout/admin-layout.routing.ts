@@ -9,7 +9,7 @@ import { TypographyComponent } from "../../pages/typography/typography.component
 import { CreateChallengeComponent } from "src/app/pages/challenge/create-challenge/create-challenge.component";
 import { CreateChallengeImageComponent } from "src/app/pages/challenge/create-challenge-image/create-challenge-image.component";
 import { CheckMyChallengeComponent } from "src/app/pages/challenge/check-my-challenge/check-my-challenge.component"; 
-// import { RtlComponent } from "../../pages/rtl/rtl.component";
+import { ChatBotComponent } from "src/app/pages/chat-bot/chat-bot.component";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "challenge", component: ChallengeComponent },
@@ -21,5 +21,5 @@ export const AdminLayoutRoutes: Routes = [
   { path: "user", component: UserComponent },
   { path: "tables", component: TablesComponent },
   { path: "typography", component: TypographyComponent },
-  // { path: "rtl", component: RtlComponent }
+  { path: "chat", component: ChatBotComponent }
 ];

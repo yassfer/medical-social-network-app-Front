@@ -3,7 +3,7 @@
     <div class="panel-heading">
       <h2>My challenges</h2>
     </div>
-    <div *ngIf="condition; else elseBlock">Il n'y a aucun challenge !!!</div>
+    <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
     <ng-template #elseBlock>
       <div class="panel-body">
         <table class="table table-striped">
@@ -20,8 +20,8 @@
               <td>{{challenge.nom}}</td>
               <td>{{challenge.objectif}}</td>
               <td><img [src]="challenge.image" height=100 width=100 /></td>
-              <td><button (click)="deleteChallenge(challenge.id)" class="btn btn-danger">Supprimer</button>
-                <button class="btn btn-info" style="margin-left: 10px">Consulter publications</button>
+              <td><button (click)="deleteChallenge(challenge.id)" class="btn btn-danger">Delete</button>
+                <button class="btn btn-info" style="margin-left: 10px">Consult publications</button>
               </td>
             </tr>
           </tbody>

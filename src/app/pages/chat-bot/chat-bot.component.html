@@ -1,4 +1,19 @@
 <div class="content">
+    <!--TITLE-->
+    <svg viewBox="0 0 960 200">
+        <symbol id="s-text">
+            <text text-anchor="middle" x="50%" y="40%" style="font-size: 78px !important;">Welcome to our ChatBot</text>
+        </symbol>
+    
+        <g class = "g-ants">
+            <use xlink:href="#s-text" class="text-copy"></use>
+            <use xlink:href="#s-text" class="text-copy"></use>
+            <use xlink:href="#s-text" class="text-copy"></use>
+            <use xlink:href="#s-text" class="text-copy"></use>
+            <use xlink:href="#s-text" class="text-copy"></use>
+        </g>
+    </svg>
+    <!--FIN TITLE-->
     <div class="md-form">
         <input mdbInput type="text" name="text" [(ngModel)]="question" id="question" class="form-control">
         <button (click)="setValue()" class="btn btn-success">Submit</button>
@@ -7,7 +22,7 @@
         <div class="row">
             <div class="column col-lg-8 col-md-12 col-sm-12">
                 <div class="sec-title">
-                    <h2>Response: {{ reponse }}</h2>
+                    <h2>Response:<br>    {{ reponse }}</h2>
                 </div>
             </div>					
         </div>							
@@ -15,81 +30,61 @@
 </div>
 
 <style>
-    .auto-container{
-	position:static;
-	max-width:1200px;
-	padding:0px 15px;
-	margin:0 auto;
+    @import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+html, body{
+  height: 100%;
+  font-weight: 800;
 }
 
-.sec-title{
-	position:relative;
-	margin-bottom:45px;
+body{
+  background: #030321;
+  font-family: Arial;
 }
 
-.sec-title .title{
-	position: relative;
-    color: #84858a;
-    font-size: 16px;
-    letter-spacing: 1px;
-    font-weight: 600;
-    padding-top: 30px;
-    margin-bottom: 10px;
-    text-transform: capitalize;
+svg {
+    display: block;
+    font: 10.5em 'Montserrat';
+    width: 960px;
+    height: 200px;
+    margin: 0 auto;
 }
 
-.sec-title .title:before{
-    position: absolute;
-    content: '';
-    left: 0px;
-    top: 0px;
-    width: 6px;
-    height: 6px;
-    background-color: #f43737;
+.text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
 }
 
-.sec-title h2{
-    position: relative;
-    color: #ffffff;
-    font-weight: 700;
-    line-height: 1.2em;
-    text-transform: capitalize;
-	-webkit-mask-image: linear-gradient(-75deg, rgba(244,55,55,0.6) 50%, #f43737 50%, rgba(0,0,0,1) 70%);
-    -webkit-mask-size: 200%;
-    animation: shine 2s infinite;
+.text-copy:nth-child(1){
+	stroke: #4D163D;
+	animation-delay: -1;
 }
 
-@-webkit-keyframes shine {
-  from {
-    -webkit-mask-position: 150%;
-  }
-  
-  to {
-    -webkit-mask-position: -50%;
-  }
+.text-copy:nth-child(2){
+	stroke: #840037;
+	animation-delay: -2s;
 }
 
-.sec-title.centered{
-	text-align: center;
+.text-copy:nth-child(3){
+	stroke: #BD0034;
+	animation-delay: -3s;
 }
 
-.sec-title.centered .text{
-	max-width:580px;
-	margin:0 auto;
+.text-copy:nth-child(4){
+	stroke: #BD0034;
+	animation-delay: -4s;
 }
 
-.sec-title .title.light::before{
-	background-color:#ffffff;
+.text-copy:nth-child(5){
+	stroke: #FDB731;
+	animation-delay: -5s;
 }
 
-.sec-title.light .title,
-.sec-title.light h2,
-.sec-title.light .text{
-	color:#ffffff;
-}
-
-.sec-title.centered .title:before{
-	left:50%;
-	margin-left:-3px;
+@keyframes stroke-offset{
+	100% {stroke-dashoffset: -35%;}
 }
 </style>
