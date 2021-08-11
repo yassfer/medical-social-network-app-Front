@@ -11,7 +11,7 @@ import { NotificationsComponent } from "../../pages/notifications/notifications.
 import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
 import { TypographyComponent } from "../../pages/typography/typography.component";
-// import { RtlComponent } from "../../pages/rtl/rtl.component";
+import { ModalComponent } from "src/app/pages/icons/modal/modal.component";
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
@@ -26,14 +26,14 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     NgbModule,
     MDBBootstrapModule.forRoot(),
   ],
+  entryComponents: [ ModalComponent ],
   declarations: [
     ChallengeComponent,
     UserComponent,
     TablesComponent,
     IconsComponent,
     TypographyComponent,
-    NotificationsComponent,
-    // RtlComponent
+    NotificationsComponent
   ]
 })
 export class AdminLayoutModule {}

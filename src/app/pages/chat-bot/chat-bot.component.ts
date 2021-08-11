@@ -16,6 +16,7 @@ export class ChatBotComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
   setValue() {
     this.chatBotService
     .getChatResponse(this.question).subscribe(data => {

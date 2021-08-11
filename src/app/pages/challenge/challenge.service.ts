@@ -15,7 +15,7 @@ export class ChallengeService {
   }*/
 
   createChallenge(challenge: Object): Observable<Object> {
-    return this.http.post<number>(`${this.baseUrl}/add/6`, challenge);
+    return this.http.post<number>(`${this.baseUrl}/add/1`, challenge);
   }
 
   /*updateChallenge(id: number, value: any): Observable<Object> {
@@ -31,6 +31,6 @@ export class ChallengeService {
   }
 
   getMyChallengesList(): Observable<any> {
-    return this.http.get<Challenge[]>(`${this.baseUrl}/getMyChallenges/7`);
+    return this.http.get<Challenge[]>(`${this.baseUrl}/getMyChallenges/1`);
   }
 }

@@ -21,10 +21,10 @@ export class CreateChallengeComponent implements OnInit {
   ngOnInit() {
   }
 
-  newEmployee(): void {
+ /* newEmployee(): void {
     this.submitted = false;
     this.challenge = new Challenge();
-  }
+  }*/
 
   save() {
     this.challengeService
