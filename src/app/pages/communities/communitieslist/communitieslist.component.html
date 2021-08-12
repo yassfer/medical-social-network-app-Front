@@ -1,0 +1,54 @@
+
+    <!--<div class="row justify-content-between">-->
+        <div class="col-4">
+            <!--<a class=" boutonCreate" > <a routerLink="/communityadd" mdbBtn color="blue-grey"  mdbWavesEffect>Create
+                community</a></a>
+                <button mdbBtn (click)="communityadd()" type="button" class="waves-light" id="create"   color="blue-grey" mdbWavesEffect>Create
+                    community</button>-->
+        
+        <div class="col-4">
+          <div><button (click)="communityadd()" type="button" mdbBtn color="blue-grey" id="boutoncreate" class="waves-light"mdbWavesEffect>create
+        Community</button> </div>
+        <div><button (click)=" GetCommynityByAdmin()" type="button" mdbBtn color="blue-grey" id="boutonmycommunities" class="waves-light"mdbWavesEffect>My 
+            Communities</button> </div>
+
+        </div>
+  
+  <div >
+    <div *ngFor="let community of communityList">
+        <div class="list" style="width: 18rem;">
+        
+       
+      <mdb-card cascade="true" narrower="true" >
+      
+        <!--Card image-->
+        <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+            <mdb-card-img src="data:image/png;base64,{{community.image}}" class="card-img-top" style="width: 18rem;"></mdb-card-img>
+            <a>
+                <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+        <!--/Card image-->
+      
+        <mdb-card-body cascade="true" class="text-center">
+            <!--Card content-->
+            <!--Title -->
+            <h4 class="card-title">{{community.nom}}</h4>
+            <!--Text -->
+           
+            <mdb-card-text>
+                {{community.domaine}}
+            </mdb-card-text>
+      
+           <button mdbBtn (click) ="communitydetails(community.id)" color="unique"  mdbWavesEffect>Read more</button>
+          
+        </mdb-card-body>
+        <!--/.Card content-->
+      
+      </mdb-card>
+      <!--/.Card-->
+    </div>
+    </div>
+
+    
+</div>
