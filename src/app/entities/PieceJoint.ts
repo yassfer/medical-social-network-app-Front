@@ -3,6 +3,7 @@ export class PieceJoint{
     name: string;
     size: number;
     contentType: string;
-    data: Blob;
-    image: any;
+    data?: File[];
+    image: any = [];
+    image2: any;
 }

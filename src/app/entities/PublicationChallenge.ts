@@ -1,16 +1,15 @@
-import { Liking } from "./liking";
 import { Comments } from "./Comments";
+import { Liking } from "./liking";
 import { PieceJoint } from "./PieceJoint";
 import { User } from "./user";
 
-export class Publication {
+export class PublicationChallenge {
     id : number ;
     content : String;
     dateCreation : Date;
     pieceJoints : PieceJoint[];
     likes : Liking[];
     NbrLike: number;
-    comment :Comments[] ;
     user: User;
-    images: any= []
+    approuve: boolean;
 }

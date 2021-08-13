@@ -1,0 +1,73 @@
+<div class="content">
+  <div>
+    <div class=" row justify-content-center ">
+      <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
+      <ng-template #elseBlock>
+        <div class="col-8 " *ngFor="let publication of publications">
+          <div class=" card card-chart">
+            <div class="card-body text-secondary">
+              <button type="button" class="close" aria-label="Close" (click)="onDeletePub">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h5 class=" card-category">
+                <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
+                {{ publication.user.firstName }}
+              </h5>
+              <h5 class="card-title">{{ publication.content }}</h5>
+            </div>
+            <div class=" card-body">
+              <div class="row">
+                <div class="col" *ngFor="let pieceJoint of publication.pieceJoints">
+                  <div *ngIf="pieceJoint.contentType=='image/jpeg'; else pdfBlock">
+                    <img class="card-img-top" [src]="pieceJoint.image" alt="Card image cap">
+                  </div>
+                  <ng-template #pdfBlock>
+                    <div *ngIf="pieceJoint.contentType=='application/pdf';else videoBloc">
+                      <embed [src]="pieceJoint.image" width=800 height=500 type='application/pdf' />
+                    </div>
+                  </ng-template>
+                  <ng-template #videoBloc>
+                    <video width="100%" style="height: 300px!important" controls>
+                      <source [src]="pieceJoint.image" type="video/mp4">
+                    </video>
+                  </ng-template>
+                </div>
+              </div>
+
+              <div *ngIf="click==true; else elseBlock">
+                <div class=" card-header">
+                  <h3 class=" card-title">
+                    <i class=" tim-icons icon-heart-2 text-warn-states"
+                      (click)="onLike(1, publication.id)"> </i> <small id="like">
+                      {{ publication.NbrLike }}</small>
+                  </h3>
+                </div>
+
+              </div>
+              <ng-template #elseBlock>
+                <div class=" card-header">
+                  <h3 class=" card-title">
+                    <i class=" tim-icons icon-heart-2 text-danger-states" (click)="onDislike()"> </i>
+                    <small id="like"> {{ publication.NbrLike }}</small>
+                  </h3>
+                </div>
+              </ng-template>
+
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+  .file-input {
+    display: none;
+  }
+</style>

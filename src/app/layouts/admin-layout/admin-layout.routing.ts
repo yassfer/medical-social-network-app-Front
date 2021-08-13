@@ -10,13 +10,19 @@ import { CreateChallengeComponent } from "src/app/pages/challenge/create-challen
 import { CreateChallengeImageComponent } from "src/app/pages/challenge/create-challenge-image/create-challenge-image.component";
 import { CheckMyChallengeComponent } from "src/app/pages/challenge/check-my-challenge/check-my-challenge.component"; 
 import { ChatBotComponent } from "src/app/pages/chat-bot/chat-bot.component";
+import { ModalComponent } from "src/app/pages/icons/modal/modal.component";
+import { PublicationChallengeComponent } from "src/app/pages/challenge/publication-challenge/publication-challenge.component";
+import { CreatePublicationChallengeComponent } from "src/app/pages/challenge/create-publication-challenge/create-publication-challenge.component";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "challenge", component: ChallengeComponent },
   { path: "challenge/create", component: CreateChallengeComponent },
   { path: "challenge/create/image", component: CreateChallengeImageComponent },
   { path: "challenge/myChallenges", component: CheckMyChallengeComponent },
+  { path: "challenge/publications", component: PublicationChallengeComponent },
+  { path: "challenge/create/publication", component: CreatePublicationChallengeComponent },
   { path: "icons", component: IconsComponent },
+  { path: "publication/create/image", component: ModalComponent },
   { path: "notifications", component: NotificationsComponent },
   { path: "user", component: UserComponent },
   { path: "tables", component: TablesComponent },

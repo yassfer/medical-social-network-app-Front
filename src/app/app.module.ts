@@ -17,6 +17,8 @@ import { CreateChallengeImageComponent } from './pages/challenge/create-challeng
 import { CheckMyChallengeComponent } from './pages/challenge/check-my-challenge/check-my-challenge.component';
 import { ChatBotComponent } from './pages/chat-bot/chat-bot.component';
 import { ModalComponent } from './pages/icons/modal/modal.component';
+import { PublicationChallengeComponent } from './pages/challenge/publication-challenge/publication-challenge.component';
+import { CreatePublicationChallengeComponent } from './pages/challenge/create-publication-challenge/create-publication-challenge.component';
 
 @NgModule({
   imports: [
@@ -29,7 +31,7 @@ import { ModalComponent } from './pages/icons/modal/modal.component';
     AppRoutingModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, AdminLayoutComponent, CreateChallengeComponent, CreateChallengeImageComponent, CheckMyChallengeComponent, ChatBotComponent, ModalComponent],
+  declarations: [AppComponent, AdminLayoutComponent, CreateChallengeComponent, CreateChallengeImageComponent, CheckMyChallengeComponent, ChatBotComponent, ModalComponent, PublicationChallengeComponent, CreatePublicationChallengeComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

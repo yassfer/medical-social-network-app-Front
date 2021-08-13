@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Comments } from 'src/app/entities/Comments';
 import { Liking } from 'src/app/entities/liking';
+import { PieceJoint } from 'src/app/entities/PieceJoint';
 import { Publication } from 'src/app/entities/publication';
 
 @Injectable({
@@ -24,17 +25,28 @@ export class PublicationService {
   createLike(idUser: number, idPublication: number): Observable<Liking> {
     return this.httpClient.get<Liking>(`${this.baseURL}like/${idUser}/${idPublication}`);
   }
+  createPublication(idUser: number, publication: Publication): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}publication/${idUser}`, publication);
+  }
+
+  uploadImage(idPublication: number, file: FormData): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}uploadPieceJoints/publication/${idPublication}`, file, { observe: 'response' });
+  }
+  
+  getPieceJointById(idPieceJoint: number): Observable<PieceJoint> {
+    return this.httpClient.get<PieceJoint>(`${this.baseURL}pieceJoint/${idPieceJoint}`);
+  }
+  deleteLike(idUser: number, idPublication: number): Observable<Object> {
+    return this.httpClient.delete(`${this.baseURL}/like/user${idUser}/publication/${idPublication}`);
+  }
 
 
-
-
+  //************* */
 
   getPub(): Observable<Publication[]> {
     return this.httpClient.get<Publication[]>(`${this.baseURL}publication/api/all`);
   }
-  createPub(publication: Publication): Observable<Object> {
-    return this.httpClient.post(`${this.baseURL}/publication`, publication);
-  }
+  
   getPubById(id: number): Observable<Publication> {
     return this.httpClient.get<Publication>(`publication/user/${id}`);
   }
@@ -58,6 +70,8 @@ export class PublicationService {
   updateCom(comment: Comments, id: number): Observable<Object> {
     return this.httpClient.patch(`${this.baseURL}/comment/${id}`, comment);
   }
+  
+
 
 
   getLike(): Observable<Liking[]> {
@@ -67,9 +81,7 @@ export class PublicationService {
   getLikeById(id: number): Observable<Liking> {
     return this.httpClient.get<Liking>(`${this.baseURL}/like/${id}`);
   }
-  deleteLike(id: number): Observable<Object> {
-    return this.httpClient.delete(`${this.baseURL}/like/${id}`);
-  }
+  
 
 
 }

@@ -11,10 +11,9 @@ import { NotificationsComponent } from "../../pages/notifications/notifications.
 import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
 import { TypographyComponent } from "../../pages/typography/typography.component";
-import { ModalComponent } from "src/app/pages/icons/modal/modal.component";
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
+import {MatIconModule} from '@angular/material/icon';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
@@ -25,8 +24,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     HttpClientModule,
     NgbModule,
     MDBBootstrapModule.forRoot(),
+    MatIconModule
   ],
-  entryComponents: [ ModalComponent ],
   declarations: [
     ChallengeComponent,
     UserComponent,

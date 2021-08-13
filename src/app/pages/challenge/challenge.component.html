@@ -37,8 +37,8 @@
                             {{challenge.objectif}}
                         </mdb-card-text>
 
-                        <a mdbBtn color="unique" class="waves-light" mdbWavesEffect>Participate</a>
-                        <a mdbBtn color="unique" class="waves-light" mdbWavesEffect>Consult publication</a>
+                        <a mdbBtn color="unique" class="waves-light" mdbWavesEffect [routerLink]="['/challenge/create/publication']" [queryParams]="{idC: challenge.id}">Participate</a>
+                        <a mdbBtn color="unique" class="waves-light" mdbWavesEffect [routerLink]="['/challenge/publications']" [queryParams]="{idC: challenge.id}">Consult publication</a>
 
                     </mdb-card-body>
                     <!--/.Card content-->
