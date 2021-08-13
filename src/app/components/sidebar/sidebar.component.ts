@@ -17,8 +17,8 @@ export const ROUTES: RouteInfo[] = [
     path: "/communities",
     title: "Communities",
     icon: "icon-atom",
-    class: ""
-  },
+  class: ""
+   },
   {
     path: "/notifications",
     title: "Notifications",

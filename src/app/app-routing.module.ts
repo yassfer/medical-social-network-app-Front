@@ -17,7 +17,9 @@ const routes: Routes = [
         {path : 'Communitypage' , component: CommunitypageComponent},
        
        
-  {
+
+{
+  
     path: "",
     redirectTo: "dashboard",
     pathMatch: "full"

@@ -7,6 +7,7 @@ import { FormsModule } from "@angular/forms";
 import { AdminLayoutRoutes } from "./admin-layout.routing";
 import { ChallengeComponent } from "../../pages/challenge/challenge.component";
 import { IconsComponent } from "../../pages/icons/Icons.component";
+
 import { NotificationsComponent } from "../../pages/notifications/notifications.component";
 import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
@@ -14,11 +15,11 @@ import { TypographyComponent } from "../../pages/typography/typography.component
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-
 import { CommunitiesModule } from "src/app/pages/communities/communities.module";
 import { CommunitieslistComponent } from "src/app/pages/communities/communitieslist/communitieslist.component";
 import { CommunityaddComponent } from "src/app/pages/communities/communityadd/communityadd.component";
 import { CommunitydetailsComponent } from "src/app/pages/communities/communitydetails/communitydetails.component";
+
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { CommunitydetailsComponent } from "src/app/pages/communities/communityde
     HttpClientModule,
     NgbModule,
     CommunitiesModule
+
   ],
   declarations: [
     ChallengeComponent,
