@@ -19,6 +19,8 @@ import { ChatBotComponent } from './pages/chat-bot/chat-bot.component';
 import { ModalComponent } from './pages/icons/modal/modal.component';
 import { PublicationChallengeComponent } from './pages/challenge/publication-challenge/publication-challenge.component';
 import { CreatePublicationChallengeComponent } from './pages/challenge/create-publication-challenge/create-publication-challenge.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   imports: [
@@ -31,7 +33,7 @@ import { CreatePublicationChallengeComponent } from './pages/challenge/create-pu
     AppRoutingModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, AdminLayoutComponent, CreateChallengeComponent, CreateChallengeImageComponent, CheckMyChallengeComponent, ChatBotComponent, ModalComponent, PublicationChallengeComponent, CreatePublicationChallengeComponent],
+  declarations: [AppComponent, AdminLayoutComponent, CreateChallengeComponent, CreateChallengeImageComponent, CheckMyChallengeComponent, ChatBotComponent, ModalComponent, PublicationChallengeComponent, CreatePublicationChallengeComponent, LoginComponent, RegisterComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
