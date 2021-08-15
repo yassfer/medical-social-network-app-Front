@@ -1,87 +1,81 @@
-<div class="container">
-  <div class="row justify-content-center ">
-    <div class=" box col-6">
-
-      <!--BEGIN-->
-      <form class="text-center border border-light p-5" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-
-        <p class="h4 mb-4">Sign up</p>
-
-        <div class="form-row mb-4">
-          <div class="col">
-            <input type="text" class="form-control" placeholder="First name" name="firstName"
-              [(ngModel)]="form.firstName" #firstName="ngModel" required />
+<div class="wrapper">
+  <div class="container">
+    <div class="row justify-content-center ">
+      <div class="col-6 box">
+        <!--BEGIN-->
+        <form class="text-center" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <p class="h4 mb-4">Sign up</p>
+          <div class="form-row mb-4">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="First name" name="firstName"
+                [(ngModel)]="form.firstName" #firstName="ngModel" required />
+              <small>
+                <div *ngIf="f.submitted && firstName.invalid">
+                  <div *ngIf="firstName.errors.required">First Name is required</div>
+                </div>
+              </small>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Last name" name="lastName"
+                [(ngModel)]="form.lastName" #lastName="ngModel" required />
+              <small>
+                <div *ngIf="f.submitted && lastName.invalid">
+                  <div *ngIf="lastName.errors.required">Last Name is required</div>
+                </div>
+              </small>
+            </div>
+          </div>
+          <div class="form-row mb-4">
+            <input type="email" class="form-control mb-4" placeholder="E-mail" name="mail" [(ngModel)]="form.mail"
+              #mail="ngModel" required />
             <small>
-              <div *ngIf="f.submitted && firstName.invalid">
-                <div *ngIf="firstName.errors.required">First Name is required</div>
+              <div *ngIf="f.submitted && mail.invalid">
+                <div *ngIf="mail.errors.required">Mail is required</div>
               </div>
             </small>
           </div>
-
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Last name" name="lastName" [(ngModel)]="form.lastName"
-              #lastName="ngModel" required />
+          <div class="form-row mb-4">
+            <input type="text" class="form-control" placeholder="User Name" name="username" [(ngModel)]="form.username"
+              #username="ngModel" required />
             <small>
-              <div *ngIf="f.submitted && lastName.invalid">
-                <div *ngIf="lastName.errors.required">Last Name is required</div>
+              <div *ngIf="f.submitted && username.invalid">
+                <div *ngIf="username.errors.required">Username is required</div>
               </div>
             </small>
           </div>
-        </div>
+          <div class="form-row mb-4">
+            <input type="password" class="form-control" placeholder="Password"
+              aria-describedby="defaultRegisterFormPasswordHelpBlock" name="password" [(ngModel)]="form.password"
+              #password="ngModel" required minlength="6" />
+            <small>
+              <div *ngIf="f.submitted && password.invalid">
+                <div *ngIf="password.errors.required">Password is required</div>
+                <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+              </div>
+            </small>
+          </div>
+          <div class="form-row mb-4">
+            <input type="text" class="form-control" placeholder="Adress" name="address" [(ngModel)]="form.address"
+              #address="ngModel" />
+          </div>
 
-        <div class="form-row mb-4">
-          <input type="email" class="form-control mb-4" placeholder="E-mail" name="mail" [(ngModel)]="form.mail"
-            #mail="ngModel" required />
-          <small>
-            <div *ngIf="f.submitted && mail.invalid">
-              <div *ngIf="mail.errors.required">Mail is required</div>
-            </div>
-          </small>
-        </div>
-        <div class="form-row mb-4">
-          <input type="text" class="form-control" placeholder="UserName" name="username" [(ngModel)]="form.username"
-            #username="ngModel" required />
-          <small>
-            <div *ngIf="f.submitted && username.invalid">
-              <div *ngIf="username.errors.required">Username is required</div>
-            </div>
-          </small>
-        </div>
-        <div class="form-row mb-4">
-          <input type="password" class="form-control" placeholder="Password"
-            aria-describedby="defaultRegisterFormPasswordHelpBlock" name="password" [(ngModel)]="form.password"
-            #password="ngModel" required minlength="6" />
-          <small>
-            <div *ngIf="f.submitted && password.invalid">
-              <div *ngIf="password.errors.required">Password is required</div>
-              <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
-            </div>
-          </small>
-        </div>
-        <div class="form-row mb-4">
-          <input type="text" class="form-control" placeholder="Adress" name="address" [(ngModel)]="form.address"
-            #address="ngModel" />
-        </div>
+          <div class="form-row mb-4">
+            <input type="date" class="form-control" placeholder="BirthDate" name="birthDate"
+              [(ngModel)]="form.birthDate" #birthDate="ngModel" />
+          </div>
 
-        <div class="form-row mb-4">
-          <input type="date" class="form-control" placeholder="BirthDate" name="birthDate" [(ngModel)]="form.birthDate"
-            #birthDate="ngModel" />
-        </div>
+          <div class="form-row mb-4">
+            <input type="text" class="form-control" placeholder="Profession" name="profession"
+              [(ngModel)]="form.profession" #profession="ngModel" />
+          </div>
 
-        <div class="form-row mb-4">
-          <input type="text" class="form-control" placeholder="Profession" name="profession"
-            [(ngModel)]="form.profession" #profession="ngModel" />
-        </div>
-
-        <button class="btn btn-success">Register</button>
-        <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
-          Signup failed!<br />{{errorMessage}}
-        </div>
-      </form>
-      <!--END-->
-
-
+          <button class="btn btn-success">Register</button>
+          <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+            Signup failed!<br />{{errorMessage}}
+          </div>
+        </form>
+        <!--END-->
+      </div>
     </div>
   </div>
-
 </div>
