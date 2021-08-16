@@ -44,6 +44,11 @@ export class CreateCommunityImageComponent implements OnInit {
       }
       );
   }
+
+  Ignorer()
+  {
+    this.goToCommunityList();
+  }
   goToCommunityList()
   {
     this.router.navigate(['communities']);

@@ -29,6 +29,10 @@ export class CommunityaddComponent implements OnInit {
     this.router.navigate(['/communities']);
   }
 
+  changeValue(type : String){
+    this.community.type=type;
+  }
+
   savedata() {
     console.log("tessssst")
     console.log(this.community);

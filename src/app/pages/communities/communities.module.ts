@@ -4,11 +4,13 @@ import { CommunitieslistComponent } from './communitieslist/communitieslist.comp
 import { CommunityaddComponent } from './communityadd/communityadd.component';
 import { FormsModule }   from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule, ModalModule } from 'angular-bootstrap-md';
 import { CommunitydetailsComponent } from './communitydetails/communitydetails.component';
 import { CommunityServiceService } from './community-service.service';
 import { CreateCommunityImageComponent } from './create-community-image/create-community-image.component';
-import { CommunitypageComponent } from './communitypage/communitypage.component';
+import { CommunityupdateComponent } from './communityupdate/communityupdate.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AllCommunitiesComponent } from './all-communities/all-communities.component';
 
 
 @NgModule({
@@ -17,13 +19,16 @@ import { CommunitypageComponent } from './communitypage/communitypage.component'
     CommunityaddComponent,
     CommunitydetailsComponent,
     CreateCommunityImageComponent,
-    CommunitypageComponent
+    CommunityupdateComponent,
+    AllCommunitiesComponent,
   ],
   imports: [
     CommonModule,
     FormsModule ,
     RouterModule,
-    MDBBootstrapModule
+    MDBBootstrapModule,
+    MatDialogModule,
+    ModalModule
 
   ],
   providers : [CommunityServiceService],

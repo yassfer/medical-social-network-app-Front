@@ -61,34 +61,22 @@
   "homepage": "https://demos.creative-tim.com/medical-social-network-app/#/dashboard",
   "private": false,
   "dependencies": {
-<<<<<<< HEAD
-    "@angular/animations": "^12.1.2",
     "@angular/cdk": "^12.2.0",
-=======
     "@angular/animations": "12.1.2",
->>>>>>> 007fc678476e3b5948beb4ba5622cb5d85871aa1
     "@angular/common": "12.1.2",
     "@angular/compiler": "12.1.2",
     "@angular/core": "12.1.2",
     "@angular/forms": "12.1.2",
     "@angular/localize": "^12.1.2",
-<<<<<<< HEAD
     "@angular/material": "^12.2.0",
-=======
->>>>>>> 007fc678476e3b5948beb4ba5622cb5d85871aa1
     "@angular/platform-browser": "12.1.2",
     "@angular/platform-browser-dynamic": "12.1.2",
     "@angular/router": "12.1.2",
     "@ng-bootstrap/ng-bootstrap": "10.0.0",
-<<<<<<< HEAD
     "angular-bootstrap-md": "^11.1.0",
-    "chart.js": "2.9.4",
-    "core-js": "3.15.2",
     "mdbootstrap": "^4.20.0",
-=======
     "chart.js": "2.9.4",
     "core-js": "3.15.2",
->>>>>>> 007fc678476e3b5948beb4ba5622cb5d85871aa1
     "ngx-toastr": "14.0.0",
     "rxjs": "7.2.0",
     "tslib": "2.3.0",
@@ -99,15 +87,9 @@
     "@angular/cli": "12.1.2",
     "@angular/compiler-cli": "12.1.2",
     "@angular/language-service": "12.1.2",
-<<<<<<< HEAD
-    "@types/jasmine": "3.8.1",
-    "@types/jasminewd2": "2.0.10",
-    "@types/node": "16.3.2",
-=======
     "@types/node": "16.3.2",
     "@types/jasmine": "3.8.1",
     "@types/jasminewd2": "2.0.10",
->>>>>>> 007fc678476e3b5948beb4ba5622cb5d85871aa1
     "codelyzer": "6.0.2",
     "jasmine-core": "3.8.0",
     "jasmine-spec-reporter": "7.0.0",

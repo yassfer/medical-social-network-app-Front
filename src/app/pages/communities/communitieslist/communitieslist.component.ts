@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommunityServiceService } from '../community-service.service';
 import { Community } from '../community';
+import {MatDialog} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-communitieslist',
@@ -11,11 +13,13 @@ import { Community } from '../community';
 export class CommunitieslistComponent implements OnInit {
 
   communityList: Community [];
+  community : Community;
   base64Data: any;
   condition: boolean;
+  
   //communityItem : CommunityItem;
 
-  constructor(private communityservice: CommunityServiceService, private router: Router) {
+  constructor(public dialog: MatDialog, private communityservice: CommunityServiceService, private router: Router) {
   }
 
   /*deleteEmployee(id: number){
@@ -26,14 +30,34 @@ export class CommunitieslistComponent implements OnInit {
   communitydetails(id:number){
     this.router.navigate(['/communitydetails', id]);
   }
+  communityupdate(id : number){
+    this.router.navigate(['/communityupdate', id]);
+  }
   communityadd(){
     this.router.navigate(['/communityadd']);
   }
+checktype(id : number){
+
+  this.community = new Community();
+  this.communityservice.getCommunityById(id).subscribe( data => {
+    this.community = data;
+if (this.community.type == "Publique" ){
+  
+ this.communitydetails(id) }
+ else {
+  console.log("**************")
+ //this.openDialog();
+ alert("This community is private you should follow it");
+}})
+}
+
+
+
 
 
   load() {
     
-    this.communityservice.getCommunityList().subscribe(data => {
+    this.communityservice.getCommunityByAdmin().subscribe(data => {
       this.communityList = data;
     
       if (this.communityList.length === 0) {
@@ -47,16 +71,6 @@ export class CommunitieslistComponent implements OnInit {
         console.log(this.communityList[i].Image);
         this.communityList[i].piecejointe = 'data:image/jpeg;base64,' + this.base64Data;
       }*/}}
-    );
-  }
-
-  GetCommynityByAdmin() {
-    this.communityservice.getCommunityByAdmin().subscribe(data => {
-      this.communityList = data;
-      for (let i = 0; i < this.communityList.length; i++) {
-        this.base64Data = this.communityList[i].Image;
-        this.communityList[i].piecejointe = 'data:image/jpeg;base64,' + this.base64Data;
-      }}
     );
   }
 

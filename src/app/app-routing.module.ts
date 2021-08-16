@@ -8,13 +8,11 @@ import { CommunityaddComponent } from "./pages/communities/communityadd/communit
 import { CommunitydetailsComponent } from "./pages/communities/communitydetails/communitydetails.component";
 import { CommunitieslistComponent } from "./pages/communities/communitieslist/communitieslist.component";
 import { CreateCommunityImageComponent } from "./pages/communities/create-community-image/create-community-image.component";
-import { CommunitypageComponent } from "./pages/communities/communitypage/communitypage.component";
+import { CommunityupdateComponent } from "./pages/communities/communityupdate/communityupdate.component";
 
 const routes: Routes = [
   //{path : 'communities', component : CommunitieslistComponent},
-  {path : 'communityadd' , component: CommunityaddComponent},
-        {path : 'communitydetails/:id' , component: CommunitydetailsComponent},
-        {path : 'Communitypage' , component: CommunitypageComponent},
+  
        
        
 

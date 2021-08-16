@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityServiceService } from '../community-service.service';
 import { Community} from '../community';
+import { User } from '../../user/user';
 
 @Component({
   selector: 'app-communitydetails',
@@ -13,15 +14,30 @@ export class CommunitydetailsComponent implements OnInit {
   community : Community;
   id :number;
   base64Data: any;
+  nbrparticipants : number;
+
+
+ participants = new Set();
   constructor(private router: Router,private communityService: CommunityServiceService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.displaycommunity();
+  }
+
+
+  displaycommunity(){
+
     this.id = this.route.snapshot.params['id'];
 
     this.community = new Community();
     this.communityService.getCommunityById(this.id).subscribe( data => {
       this.community = data;
-      console.log(this.community.Image)
+      this.community.participants.forEach(element => {
+        this.participants.add(element);
+this.nbrparticipants=this.participants.size;
+      });
+     
+      console.log(this.participants.size);
     });
   }
   

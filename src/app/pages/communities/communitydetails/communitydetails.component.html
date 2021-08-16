@@ -1,19 +1,156 @@
-<div class="blog-slider">
-    <div class="blog-slider__wrp swiper-wrapper">
-      <div class="blog-slider__item swiper-slide">
-        <div class="blog-slider__img">
-          
-          <img src="data:image/png;base64,{{community?.Image}}"  alt="ERROR">
+<!--<main class="container bootdey">
+    <main class="main-content p-5" role="main">
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <img class="card-img" src="data:image/png;base64,{{community.image}}" alt="Feature Image"
+                        height="250">
+                    <div class="card-user-profile">
+                        <div class="profile-page-left">
+                            <div class="row">
+                                <div class="col-lg-12 mb-4">
+                                    <a class="btn btn-primary btn-block btn-gradient waves-effect waves-light" href="#">
+                                        <span class="gradient">
+                                            <i class="batch-icon batch-icon-user-alt-add-2"></i>
+                                            Follow
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="col-lg-4 col-md-4 m-t-20">
+                                    <h3 class="m-b-0 font-light">5454</h3><small>Following</small>
+                                </div>
+
+
+                            </div>
+                            <hr>
+                            <h5>
+                                <i class="batch-icon batch-icon-users"></i>
+                                Participants
+                            </h5>
+                            <div class="profile-page-block-outer clearfix">
+                                <div class="profile-page-block">
+                                    <div class="profile-picture bg-gradient bg-primary">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" width="44"
+                                            height="44">
+                                    </div>
+                                </div>
+                                <div class="profile-page-block">
+                                    <div class="profile-picture bg-gradient bg-primary">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" width="44"
+                                            height="44">
+                                    </div>
+                                </div>
+                                <div class="profile-page-block">
+                                    <div class="profile-picture bg-gradient bg-primary">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" width="44"
+                                            height="44">
+                                    </div>
+                                </div>
+                                <div class="profile-page-block">
+                                    <div class="profile-picture bg-gradient bg-primary">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar4.png" width="44"
+                                            height="44">
+                                    </div>
+                                </div>
+                                <div class="profile-page-block">
+                                    <div class="profile-picture bg-gradient bg-secondary">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar5.png" width="44"
+                                            height="44">
+                                    </div>
+                                </div>
+                                <div class="profile-page-block">
+                                    <div class="profile-picture bg-gradient bg-primary">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" width="44"
+                                            height="44">
+                                    </div>
+                                </div>
+                                <div class="profile-page-block">
+                                    <div class="profile-picture bg-gradient bg-primary">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" width="44"
+                                            height="44">
+                                    </div>
+                                </div>
+                                <div class="profile-page-block">
+                                    <div class="profile-picture bg-gradient bg-secondary">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" width="44"
+                                            height="44">
+                                    </div>
+                                </div>
+                                <div class="profile-page-block">
+                                    <div class="profile-picture bg-gradient bg-primary">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" width="44"
+                                            height="44">
+                                    </div>
+                                </div>
+                                <div class="profile-page-block">
+                                    <div class="profile-picture bg-gradient bg-secondary">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" width="44"
+                                            height="44">
+                                    </div>
+                                </div>
+                                <div class="profile-page-block">
+                                    <div class="profile-picture bg-gradient bg-secondary">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar4.png" width="44"
+                                            height="44">
+                                    </div>
+                                </div>
+                                <div class="profile-page-block">
+                                    <div class="profile-picture bg-gradient bg-primary">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar5.png" width="44"
+                                            height="44">
+                                    </div>
+                                </div>
+                                <a class="float-right mt-2" href="#">More</a>
+                            </div>
+                            <hr>
+
+                        </div>
+                        <div class="profile-page-center">
+                            <h1 class="card-user-profile-name">{{community.nom}}</h1>
+
+                            <hr>
+                            <ul class="list-unstyled mt-5">
+                                <li class="media">
+
+                                    <div class="media-body">
+                                        <h4>
+                                            About
+                                        </h4>
+                                        This community is {{community.type}}
+                                        <br>
+                                        <br>
+                                        {{community.description}}
+
+
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-          <div class="blog-slider__code">{{community.domaine}}</div>
-          <div class="blog-slider__title">{{community.nom}}</div>
-          <div class="blog-slider__text"></div>
-          <button class="blog-slider__button" (click)="Follow(community.id)">Follow</button>
+    </main>-->
+
+    <div class="col-md-11" id="profilecom">
+        <!-- Column -->
+        <div class="card"> <img class="card-img-top" src="data:image/png;base64,{{community.image}}" alt="Card image cap">
+            <div class="card-body little-profile text-center">
+                <div class="pro-img"><!--<img src="https://i.imgur.com/8RKXAIV.jpg" alt="user">--></div>
+                <h3 class="m-b-0">{{community.nom}}</h3>
+                <p>{{community.domaine}}</p> <a href="javascript:void(0)" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true">Follow</a>
+                <div class="row text-center m-t-20">
+                    <div class="col-lg-4 col-md-4 m-t-20">
+                    </div>
+                   <div class="col-lg-4 col-md-4 m-t-20">
+                        <h3 class="m-b-0 font-light">{{nbrparticipants}}</h3><small>Followers</small>
+                    </div>
+                    <div class="col-lg-4 col-md-4 m-t-20">
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    
-            
 
-
-      

@@ -38,6 +38,7 @@ import { CommunitydetailsComponent } from "src/app/pages/communities/communityde
     IconsComponent,
     TypographyComponent,
     NotificationsComponent,
+    
     // RtlComponent
   ]
 })
