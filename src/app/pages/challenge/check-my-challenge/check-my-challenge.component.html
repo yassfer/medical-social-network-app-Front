@@ -21,7 +21,7 @@
               <td>{{challenge.objectif}}</td>
               <td><img [src]="challenge.image" height=100 width=100 /></td>
               <td><button (click)="deleteChallenge(challenge.id)" class="btn btn-danger">Delete</button>
-                <button class="btn btn-info" style="margin-left: 10px">Consult publications</button>
+                <button type="button" class="btn btn-info" style="margin-left: 10px" [routerLink]="['/challengePublications']" [queryParams]="{idC: challenge.id}">Consult publications</button>
               </td>
             </tr>
           </tbody>

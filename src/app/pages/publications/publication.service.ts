@@ -30,7 +30,10 @@ export class PublicationService {
   }
 
   uploadImage(idPublication: number, file: FormData): Observable<any> {
-    return this.httpClient.post(`${this.baseURL}uploadPieceJoints/publication/${idPublication}`, file, { observe: 'response' });
+    return this.httpClient.post(`${this.baseURL}upload/publication/${idPublication}`, file, { observe: 'response' });
+  }
+  imagesUpload(idPublication: number, file: FormData): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}pieceJoint/uploadPieceJoints/publication/${idPublication}`, file, { observe: 'response' });
   }
   
   getPieceJointById(idPieceJoint: number): Observable<PieceJoint> {

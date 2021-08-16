@@ -20,8 +20,8 @@ export const ROUTES: RouteInfo[] = [
     class: ""
   },
   {
-    path: "/icons",
-    title: "Icons",
+    path: "/publications",
+    title: "publications",
     icon: "icon-atom",
     class: ""
   },

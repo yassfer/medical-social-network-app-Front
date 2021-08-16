@@ -1,5 +1,5 @@
 <div class="content">
-  <div class="addpub">
+  <div class="addpub offset-3">
     <!--ADD PUB-->
     <div class="card" style="width: 25rem;">
       <div class="card-body">
@@ -107,7 +107,7 @@
                   <div class="d-flex w-100 justify-content-between">
                     <div class="form-group col-md-12">
                       <input type="text" class="form-control" placeholder="add your comment " id="content"
-                        [(ngModel)]="comment.content" style="color: black !important; ">
+                        [(ngModel)]="comment.content">
                       <div class="send">
                         <button type="button" class="btn btn-secondary btn-sm"
                           (click)="onComment(publication.user.id, publication.id)">Add</button>

@@ -9,36 +9,31 @@ import { PublicationService } from '../publication.service';
 })
 export class ModalComponent implements OnInit {
   fileName = '';
-  
+  file: any[];
+  files: any[];
+
   constructor(private route: ActivatedRoute, private http: HttpClient,
     public publicationservice: PublicationService, private router: Router) { }
 
   ngOnInit(): void {
   }
-
-  onFileSelected(event) {
+  onFileSelected(event: { target: { files: any[]; }; }){
+    this.file = event.target.files;
+  }
+  onUpload() {
     const idP = this.route.snapshot.paramMap.get('idP');
-    const file: File = event.target.files;
-    const formData = new FormData();
-    const filesList: Array<Object> = [];
-
-   if (file) {
-      /*for (let f of file) {
-        filesList.push({item: f})
-      }*/
-      console.log(file)
-      
-      formData.append("pieceJoints", file as Blob);
-      console.log(formData)
-      const upload$ = this.publicationservice.uploadImage(Number(idP), formData).subscribe(data => {
+      const formData = new FormData();
+      for(var i =0; i< this.file.length ; i++){
+        formData.append("pieceJoints", this.file[i], this.file[i].name);
+      }
+      let f = formData.getAll('pieceJoints');
+      this.publicationservice.imagesUpload(Number(idP), formData).subscribe(data => {
+        console.log(data);
       },
         error => console.log(error));
-
-      this.gotoList();
-    }
+        this.gotoList();
   }
   gotoList() {
     this.router.navigate(['/icons']);
   }
-
 }

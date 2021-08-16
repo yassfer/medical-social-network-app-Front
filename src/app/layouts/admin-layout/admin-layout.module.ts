@@ -6,7 +6,7 @@ import { FormsModule } from "@angular/forms";
 
 import { AdminLayoutRoutes } from "./admin-layout.routing";
 import { ChallengeComponent } from "../../pages/challenge/challenge.component";
-import { IconsComponent } from "../../pages/icons/icons.component";
+import { PublicationComponent } from "../../pages/publications/publication.component";
 import { NotificationsComponent } from "../../pages/notifications/notifications.component";
 import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
@@ -30,7 +30,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     ChallengeComponent,
     UserComponent,
     TablesComponent,
-    IconsComponent,
+    PublicationComponent,
     TypographyComponent,
     NotificationsComponent
   ]

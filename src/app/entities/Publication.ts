@@ -12,5 +12,5 @@ export class Publication {
     NbrLike: number;
     comment :Comments[] ;
     user: User;
-    images: any= []
+    images: any;
 }

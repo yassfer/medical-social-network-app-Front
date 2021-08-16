@@ -13,6 +13,7 @@ export class ChallengeComponent implements OnInit {
   challenges: Challenge[];
   base64Data: any;
   condition: boolean;
+  currentUserId: number = 1;
   constructor(private challengeService: ChallengeService, private router: Router) { }
 
   ngOnInit(): void {
@@ -34,7 +35,14 @@ export class ChallengeComponent implements OnInit {
 
     });
   }
-
+  onParticipateCondition(challenge: Challenge){
+    if(challenge.adminChallenge.id === this.currentUserId){
+      alert("can't participate in your own challenge")
+    }
+    else {
+      this.router.navigate(['/challenge/create/publication'], {queryParams: {idC: challenge.id}});
+    }
+  }
   gotoCreateChallenge() {
     this.router.navigate(['/challenge/create']);
   }

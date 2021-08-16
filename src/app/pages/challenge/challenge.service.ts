@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Challenge } from 'src/app/entities/Challenge';
 import { PublicationChallenge } from 'src/app/entities/PublicationChallenge';
 import { Liking } from 'src/app/entities/liking';
-import { Publication } from 'src/app/entities/publication';
 @Injectable({
   providedIn: 'root'
 })
@@ -41,13 +40,23 @@ export class ChallengeService {
    // Challenge Publication Service
 
    getPublicationByChallengeId(id: number): Observable<any> {
-    return this.http.get<PublicationChallenge[]>(`${this.baseUrl}api/publicationChallenge/challenge/${id}`);
+    return this.http.get<PublicationChallenge[]>(`${this.baseUrl}api/publicationChallenge/notApprouved/${id}`);
   }
+  getApprouvedPublicationByChallengeId(id: number): Observable<any> {
+    return this.http.get<PublicationChallenge[]>(`${this.baseUrl}api/publicationChallenge/approuved/challenge/${id}`);
+  }
+
   createLike(idUser: number, idPublication: number): Observable<Liking> {
     return this.http.get<Liking>(`${this.baseUrl}api/like/likeChallenge/${idUser}/${idPublication}`);
   }
   createPublicationChallenge(challengeId: number, userId: number, publication: PublicationChallenge): Observable<any> {
     return this.http.post(`${this.baseUrl}api/publicationChallenge/${challengeId}/${userId}`, publication);
+  }
+  deletePubChallenge(pubChallengeId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}api/publicationChallenge/${pubChallengeId}`, { responseType: 'text' });
+  }
+  approuvePubChallenge(pubChallengeId: number, userId:number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}api/publicationChallenge/approuve/${pubChallengeId}/${userId}`);
   }
 
 }

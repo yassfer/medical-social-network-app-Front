@@ -4,6 +4,5 @@ export class PieceJoint{
     size: number;
     contentType: string;
     data?: File[];
-    image: any = [];
-    image2: any;
+    image: any;
 }

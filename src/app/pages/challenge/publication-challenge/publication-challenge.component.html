@@ -3,7 +3,7 @@
     <div class=" row justify-content-center ">
       <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
       <ng-template #elseBlock>
-        <div class="col-8 " *ngFor="let publication of publications">
+        <div class="col-8 " *ngFor="let publication of ApprouvedPublications">
           <div class=" card card-chart">
             <div class="card-body text-secondary">
               <button type="button" class="close" aria-label="Close" (click)="onDeletePub">

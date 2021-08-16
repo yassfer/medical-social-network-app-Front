@@ -20,12 +20,6 @@ export class CreateChallengeComponent implements OnInit {
 
   ngOnInit() {
   }
-
- /* newEmployee(): void {
-    this.submitted = false;
-    this.challenge = new Challenge();
-  }*/
-
   save() {
     this.challengeService
       .createChallenge(this.challenge).subscribe(data => {
