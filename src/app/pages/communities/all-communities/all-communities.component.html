@@ -1,0 +1,56 @@
+<div class="choix">
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" (click)="followed()"> Followed</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" (click)="unfollowed()"> Unfollowed</a>
+
+        </li>
+
+    </ul>
+</div>
+
+<div *ngIf="follow==true; else elseBlock">
+    <div *ngFor="let community of communityListFollowed">
+        <div id="listecarte" class="container height-100 d-flex justify-content-center align-items-center">
+            <div class="row" id="liste">
+                <div id="carte" class="card text-center">
+                    <div class="py- p-2">
+                        <div> <img src="data:image/png;base64,{{community.image}}" class="rounded" width="150"
+                                height="150"> </div>
+                        <div class="mt-3 d-flex flex-row justify-content-center">
+                            <h5>{{community.nom}}</h5> <span class="dots"><i class="fa fa-check"></i></span>
+                        </div>
+                        <span>Domaine : {{community.domaine}}</span>
+                        <div class="mt-3"> <button class="btn btn-danger" (click)="ToUnfollow(community.id)">Unfollow</button>
+                            <button class="btn btn-outline-secondary" (click)="communitydetails(community.id)">Open</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #elseBlock>
+        <div *ngFor="let community of communityListUnFollowed">
+            <div id="listecarte" class="container height-100 d-flex justify-content-center align-items-center">
+                <div class="row" id="liste">
+                    <div id="carte" class="card text-center">
+                        <div class="py- p-2">
+                            <div> <img src="data:image/png;base64,{{community.image}}" class="rounded" width="150"
+                                    height="150"> </div>
+                            <div class="mt-3 d-flex flex-row justify-content-center">
+                                <h5>{{community.nom}}</h5> <span class="dots"><i class="fa fa-check"></i></span>
+                            </div> <span>Domaine : {{community.domaine}}</span>
+                            <div class="mt-3"> <button class="btn btn-danger" (click)="Tofollow(community.id)">Follow</button>
+                                <button class="btn btn-outline-secondary" (click)="checktype(community.id)">Open</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</ng-template>

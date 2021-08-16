@@ -1,0 +1,57 @@
+<!--<header>
+    <h2>Create Community </h2>
+  </header>
+  <form (ngSubmit)="OnSubmit()">
+    <ul>
+      <li>
+        <label for="name">Nom</label>
+        <input type="text" name="domaine" id="domaine" [(ngModel)] ="community.nom" required>
+      </li>
+      <li>
+        <label for="domaine">Domaine</label>
+        <input type="text" name="domaine" id="domaine" [(ngModel)] ="community.domaine" required>
+        </li>
+        <li>
+          <label for="Description">Desciption</label>
+          <input type="text" name="domaine" id="domaine" [(ngModel)] ="community.description" required>
+        <label for="Type">Type</label>
+        <input type="radio" value="Privee" name="comtype" (click)="changeValue('Privée')" > Privée
+        <input type="radio" value="Publique" name="comtype" (click)="changeValue('Publique')" > Publique
+      </li>
+    </ul>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+  <div [hidden]="!submitted">
+    <h4>Community created </h4>
+</div>-->
+
+<h1>
+  Create Community
+</h1>
+
+<div>
+  <form (ngSubmit)="OnSubmit()">
+      <ul>
+    <li>  <label>Nom </label>
+    <input type="text" name="nom" class="formStyle" placeholder="{{community.nom}}"  [(ngModel)] ="community.nom"  />
+  </li><li>
+    <label>Domaine</label>
+    <input type="text" name="domaine" class="formStyle" placeholder="{{community.domaine}}"  [(ngModel)] ="community.domaine" />
+  </li>
+  <li>
+    <label>Description</label> 
+    <input type="text" name="description" class="formStyle" placeholder="{{community.description}}"  [(ngModel)] ="community.description"  />
+  </li><li>
+    <label>Type</label></li>
+  
+   
+
+  <li>
+   <input type="radio" name="type"   [checked]="community.type == 'Publique'" (click)="changeValue('Publique')" />Publique
+   <input type="radio" name="type"   [checked]="community.type == 'Privée'" (click)="changeValue('Privée')"  />Privée
+  </li>
+  </ul>
+   
+  <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

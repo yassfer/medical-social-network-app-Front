@@ -16,6 +16,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatIconModule} from '@angular/material/icon';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
+import { CommunitiesModule } from "src/app/pages/communities/communities.module";
 @NgModule({
   imports: [
     CommonModule,
@@ -24,7 +25,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     HttpClientModule,
     NgbModule,
     MDBBootstrapModule.forRoot(),
-    MatIconModule
+    MatIconModule,
+    CommunitiesModule
   ],
   declarations: [
     ChallengeComponent,
