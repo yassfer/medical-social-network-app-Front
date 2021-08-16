@@ -1,0 +1,22 @@
+<div class="content offset-2">
+    <!--ADD CHALLENGE-->
+    <div class="card" style="width: 25rem;">
+        <div class="card-body">
+          <div *ngIf="pub==true; else elseBlock3">
+            <a>
+              <h5 id="card" class="card-header" (click)="publication()">+ADD CHALLENGE</h5>
+            </a>
+          </div>
+          <ng-template #elseBlock3>
+
+            <div class="form-group col-md-12">
+              <input type="text" class="form-control" placeholder="pub description " [(ngModel)]="publicationChallenge.content">
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" (click)="onPublication()">Add</button>
+            <button type="button" class="btn btn-secondary btn-sm" (click)="publication()">Close</button>
+          </ng-template>
+
+        </div>
+      </div>
+      <!--FIN ADD CHALLENGE-->
+</div>
