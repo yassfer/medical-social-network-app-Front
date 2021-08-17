@@ -13,7 +13,7 @@ export class PublicationService {
 
 
 
-  private baseURL = "http://localhost:8080/api/";
+  private baseURL = "http://localhost:8090/api/";
 
   constructor(private httpClient: HttpClient) { }
   getPublicationByUserId(id: number): Observable<any> {
@@ -35,7 +35,7 @@ export class PublicationService {
   imagesUpload(idPublication: number, file: FormData): Observable<any> {
     return this.httpClient.post(`${this.baseURL}pieceJoint/uploadPieceJoints/publication/${idPublication}`, file, { observe: 'response' });
   }
-  
+
   getPieceJointById(idPieceJoint: number): Observable<PieceJoint> {
     return this.httpClient.get<PieceJoint>(`${this.baseURL}pieceJoint/${idPieceJoint}`);
   }
@@ -49,7 +49,7 @@ export class PublicationService {
   getPub(): Observable<Publication[]> {
     return this.httpClient.get<Publication[]>(`${this.baseURL}publication/api/all`);
   }
-  
+
   getPubById(id: number): Observable<Publication> {
     return this.httpClient.get<Publication>(`publication/user/${id}`);
   }
@@ -63,7 +63,7 @@ export class PublicationService {
   getCom(): Observable<Comments[]> {
     return this.httpClient.get<Comments[]>(`${this.baseURL}comment/api/all`);
   }
-  
+
   getComById(id: number): Observable<Comments> {
     return this.httpClient.get<Comments>(`${this.baseURL}/comment/${id}`);
   }
@@ -73,18 +73,18 @@ export class PublicationService {
   updateCom(comment: Comments, id: number): Observable<Object> {
     return this.httpClient.patch(`${this.baseURL}/comment/${id}`, comment);
   }
-  
+
 
 
 
   getLike(): Observable<Liking[]> {
     return this.httpClient.get<Liking[]>(`${this.baseURL}like/api/all`);
   }
-  
+
   getLikeById(id: number): Observable<Liking> {
     return this.httpClient.get<Liking>(`${this.baseURL}/like/${id}`);
   }
-  
+
 
 
 }

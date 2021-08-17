@@ -31,16 +31,18 @@ export class CommunitydetailsComponent implements OnInit {
     this.community = new Community();
     this.communityService.getCommunityById(this.id).subscribe( data => {
       this.community = data;
+      this.nbrparticipants=this.participants.size;
       this.community.participants.forEach(element => {
         this.participants.add(element);
-this.nbrparticipants=this.participants.size;
       });
-     
-      console.log(this.participants.size);
     });
   }
-  
 
+Tofollow(id :number){
+    this.communityService.ToFollow(2,id).subscribe( data => {
+      console.log(data)});
+      window.location.reload();
+}
 
 load() {
     this.communityService.getCommunityList().subscribe(data => {
@@ -61,10 +63,6 @@ load() {
           this.load();
         },
         error => console.log(error));
-  }
-  Follow(id : number){
-    
-    this.router.navigate(['/Communitypage', { idC: id }]);
   }
 
 

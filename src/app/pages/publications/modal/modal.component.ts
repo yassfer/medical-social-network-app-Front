@@ -34,6 +34,6 @@ export class ModalComponent implements OnInit {
         this.gotoList();
   }
   gotoList() {
-    this.router.navigate(['/icons']);
+    this.router.navigate(['/publications']);
   }
 }

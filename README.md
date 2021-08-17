@@ -133,9 +133,9 @@ black-dashboard-angular
 │   │       ├── dashboard
 │   │       │   ├── dashboard.component.html
 │   │       │   └── dashboard.component.ts
-│   │       ├── icons
-│   │       │   ├── icons.component.html
-│   │       │   └── icons.component.ts
+│   │       ├── publications
+│   │       │   ├── publications.component.html
+│   │       │   └── publications.component.ts
 │   │       ├── map
 │   │       │   ├── map.component.html
 │   │       │   └── map.component.ts

@@ -7,7 +7,7 @@ import { Community } from 'src/app/entities/Community';
   providedIn: 'root'
 })
 export class CommunityServiceService {
-  private Url = 'http://localhost:8080/communities'; 
+  private Url = 'http://localhost:8090/communities';
 
   constructor(private http: HttpClient) { }
   deleteCommunity(id: number): Observable<any> {
@@ -15,7 +15,7 @@ export class CommunityServiceService {
   }
   createCommunity(communityItem: Community): Observable<Object> {
     return this.http.post<number>(`${this.Url}/Create/2`, communityItem);}
-  
+
   getCommunityList(): Observable<Community[]> {
       return this.http.get<Community[]>(`${this.Url}/getAll`);
     }

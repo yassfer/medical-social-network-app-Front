@@ -8,7 +8,7 @@ import { Liking } from 'src/app/entities/liking';
   providedIn: 'root'
 })
 export class ChallengeService {
-  private baseUrl = 'http://localhost:8080/';
+  private baseUrl = 'http://localhost:8090/';
 
   constructor(private http: HttpClient) { }
 

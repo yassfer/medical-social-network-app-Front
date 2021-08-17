@@ -1,41 +1,42 @@
 <div class="content">
- <!--<div class="row justify-content-between">-->
-    <div class="col-4">
-        <!--<a class=" boutonCreate" > <a routerLink="/communityadd" mdbBtn color="blue-grey"  mdbWavesEffect>Create
-            community</a></a>
-            <button mdbBtn (click)="communityadd()" type="button" class="waves-light" id="create"   color="blue-grey" mdbWavesEffect>Create
-                community</button>-->
-    
+
     <div class="col-10">
       <div><button (click)="communityadd()" type="button" mdbBtn color="blue-grey" id="boutoncreate" class="waves-light"mdbWavesEffect>create
     Community</button> </div>
-
-    </div>
-   
-
-<div class="community">
+<div class="community mt-3">
     <div class="row">
-        <div class= "col-md-4" *ngFor="let community of communityList">
-            <div id="listecarte" class="container height-100 d-flex justify-content-center align-items-center">
-                <div class="row" id="liste">
-                    <div id="carte" class="card text-center">
-                        <div class="py- p-2">
-                            <div> <img src="data:image/png;base64,{{community.image}}" class="rounded" width="150"
-                                    height="150"> </div>
-                            <div class="mt-3 d-flex flex-row justify-content-center">
-                                <h5>{{community.nom}}</h5> <span class="dots"><i class="fa fa-check"></i></span>
-                            </div>
-                            <span>Domaine : {{community.domaine}}</span>
-                            <div class="mt-3"> <button (click)="communityupdate(community.id)" class="btn btn-outline-secondary"> <i class="fas fa-sync-alt"></i>Update</button>
-                                <button class="btn btn-danger"><i class="fas fa-minus-circle"  (click) ="deleteCommunity(community.id)"></i> Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class= "col-5 offset-1" *ngFor="let community of communityList">
+          <!--Card-->
+          <mdb-card cascade="true" narrower="true">
+            <!--Card image-->
+            <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+              <mdb-card-img src="data:image/png;base64,{{community.image}}"></mdb-card-img>
+              <a>
+                  <div class="mask rgba-white-slight"></div>
+              </a>
             </div>
-         </div>
+            <mdb-card-body cascade="true" class="text-center">
+              <!--Card content-->
+
+              <!--Title-->
+              <h4 class="card-title" (click)="communitydetails(community.id)">{{community.nom}}<span class="dots"><i class="fa fa-check"></i></span></h4>
+              <!--Text-->
+
+              <mdb-card-text>
+                Domaine : {{community.domaine}}
+              </mdb-card-text>
+
+              <div class="mt-3">
+                <button (click)="communityupdate(community.id)" class="btn btn-outline-secondary"> <i class="fas fa-sync-alt"></i>Update</button>
+                <button class="btn btn-danger"><i class="fas fa-minus-circle"  (click) ="deleteCommunity(community.id)"></i> Delete</button>
+            </div>
+
+          </mdb-card-body>
+          <!--/.Card content-->
+
+      </mdb-card>
+      <!--/.Card-->
     </div>
 
 </div>
 </div>
-   

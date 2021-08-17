@@ -6,6 +6,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
+import { AppComponent } from "./app.component";
 
 const routes: Routes = [
   {
@@ -30,7 +31,7 @@ const routes: Routes = [
         loadChildren: () => import ("./layouts/admin-layout/admin-layout.module").then(m => m.AdminLayoutModule)
       }
     ]
-  }/*, 
+  }/*,
   {
     path: "**",
     redirectTo: "dashboard"

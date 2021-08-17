@@ -31,7 +31,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: "challenge/publications", component: PublicationChallengeComponent },
   { path: "challenge/create/publication", component: CreatePublicationChallengeComponent },
   { path: "challengePublications", component: ApprouvePubChallengeComponent },
-  { path: "icons", component: PublicationComponent },
+  { path: "publications", component: PublicationComponent },
   { path: "publication/create/image", component: ModalComponent },
   { path: "notifications", component: NotificationsComponent },
   { path: "user", component: UserComponent },

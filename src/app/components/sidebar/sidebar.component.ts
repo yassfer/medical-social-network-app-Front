@@ -7,6 +7,14 @@ declare interface RouteInfo {
   class: string;
 }
 export const ROUTES: RouteInfo[] = [
+
+  {
+    path: "/user",
+    title: "User Profile",
+    icon: "icon-single-02",
+    class: ""
+  },
+
   {
     path: "/challenge",
     title: "Challenge",
@@ -32,12 +40,6 @@ export const ROUTES: RouteInfo[] = [
     class: ""
   },
 
-  {
-    path: "/user",
-    title: "User Profile",
-    icon: "icon-single-02",
-    class: ""
-  },
   {
     path: "/tables",
     title: "Table List",

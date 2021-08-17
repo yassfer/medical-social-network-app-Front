@@ -10,7 +10,7 @@
                 challenges</button>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
         <ng-template #elseBlock>
             <div class="col-md-4" *ngFor="let challenge of challenges">
@@ -28,7 +28,7 @@
 
                     <mdb-card-body cascade="true" class="text-center">
                         <!--Card content-->
-                       
+
                         <!--Title-->
                         <h4 class="card-title">{{challenge.nom}}</h4>
                         <!--Text-->
