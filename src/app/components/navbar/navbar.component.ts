@@ -193,4 +193,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
      window.removeEventListener("resize", this.updateColor);
   }
+  opencommunities(){
+    this.router.navigate(['/allcommunities']);
+  }
 }

@@ -1,0 +1,136 @@
+<div class="content">
+  <div class="addpub offset-3">
+    <!--ADD PUB-->
+    <div class="card" style="width: 25rem;">
+      <div class="card-body">
+        <div *ngIf="pub==true; else elseBlock3">
+          <a>
+            <h5 id="card" class="card-header" (click)="publication()">+ADD PUB</h5>
+          </a>
+        </div>
+        <ng-template #elseBlock3>
+
+          <div class="form-group col-md-12">
+            <input type="text" class="form-control" placeholder="pub description " [(ngModel)]="Newpublication.content">
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="onPublication()">Add</button>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="publication()">Close</button>
+        </ng-template>
+
+      </div>
+    </div>
+    <!--FIN ADD PUB-->
+
+  </div>
+  <div>
+      <div class=" row justify-content-center ">
+        <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
+        <ng-template #elseBlock>
+          <div class="col-8 " *ngFor="let publication of publications">
+            <div class=" card card-chart">
+              <div class="card-body text-secondary">
+                <button type="button" class="close" aria-label="Close" (click)="onDeletePub">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class=" card-category">
+                  <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="30" width="30"
+                    alt="Cinque Terre">
+                  {{ publication.user.firstName }}
+                </h5>
+                <h5 class="card-title">{{ publication.content }}</h5>
+              </div>
+              <div class=" card-body">
+                <div class="row">
+                  <div class="col" *ngFor="let pieceJoint of publication.pieceJoints">
+                    <div *ngIf="pieceJoint.contentType=='image/jpeg'; else pdfBlock">
+                      <img class="card-img-top" [src]="pieceJoint.image" alt="Card image cap">
+                    </div>
+                    <ng-template #pdfBlock>
+                      <div *ngIf="pieceJoint.contentType=='application/pdf';else videoBloc">
+                        <embed [src]="pieceJoint.image" width=800 height=500 type='application/pdf' />
+                      </div>
+                    </ng-template>
+                    <ng-template #videoBloc>
+                      <video width="100%" style="height: 300px!important" controls>
+                        <source [src]="pieceJoint.image" type="video/mp4">
+                      </video>
+                    </ng-template>
+                  </div>
+                </div>
+
+                <div *ngIf="click==true; else elseBlock">
+                  <div class=" card-header">
+                    <h3 class=" card-title">
+                      <i class=" tim-icons icon-heart-2 text-warn-states"
+                        (click)="onLike(publication.user.id, publication.id)"> </i> <small id="like">
+                        {{ publication.NbrLike }}</small>
+                      <i class=" tim-icons icon-chat-33 text-warn-states" (click)="commenting()"> </i>
+                    </h3>
+                  </div>
+
+                </div>
+                <ng-template #elseBlock>
+                  <div class=" card-header">
+                    <h3 class=" card-title">
+                      <i class=" tim-icons icon-heart-2 text-danger-states" (click)="onDislike(publication.user.id, publication.id)"> </i>
+                      <small id="like"> {{ publication.NbrLike }}</small>
+
+                      <i class=" tim-icons icon-chat-33 text-warn-states" (click)="commenting()"> </i>
+
+                    </h3>
+                  </div>
+                </ng-template>
+                <div *ngIf="com==true; else elseBlock2">
+                </div>
+                <ng-template #elseBlock2>
+
+                  <a class="list-group-item list-group-item-action flex-column align-items-start"
+                    *ngFor="let comment of publication.comments">
+
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">
+                        <img src="../assets/test.jpg" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
+                        {{ comment.user.firstName }}
+                      </h5>
+
+                      <small class="text-muted">{{ comment.date }}</small>
+
+                    </div>
+                    <small id="profession" class="text-muted">{{ comment.user.profession }}</small>
+
+                    <button type="button" class="close" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p class="mb-1">{{ comment.content}}</p>
+                    <hr>
+                  </a>
+                  <div class="d-flex w-100 justify-content-between">
+                    <div class="form-group col-md-12">
+                      <input type="text" class="form-control" placeholder="add your comment " id="content"
+                        [(ngModel)]="comment.content">
+                      <div class="send">
+                        <button type="button" class="btn btn-secondary btn-sm"
+                          (click)="onComment(publication.user.id, publication.id)">Add</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+
+
+      </div>
+    
+  </div>
+
+</div>
+
+<style>
+  .file-input {
+    display: none;
+  }
+</style>

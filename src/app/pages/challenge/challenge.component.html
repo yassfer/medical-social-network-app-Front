@@ -1,4 +1,55 @@
-
 <div class=" content">
+<<<<<<< HEAD
   <h1> Welcome challenge !!!!</h1>
+=======
+    <h1> Welcome to the Challenges !!!</h1>
+    <div class="row justify-content-between">
+        <div class="col-4">
+            <button (click)="gotoCreateChallenge()" type="button" mdbBtn color="primary" mdbWavesEffect>Create
+                challenge</button>
+        </div>
+        <div class="col-4">
+            <button (click)="gotoCheckChallenge()" type="button" mdbBtn color="primary" mdbWavesEffect>Check my
+                challenges</button>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
+        <ng-template #elseBlock>
+            <div class="col-md-4" *ngFor="let challenge of challenges">
+                <!--Card-->
+                <mdb-card cascade="true" narrower="true">
+
+                    <!--Card image-->
+                    <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+                        <mdb-card-img [src]="challenge.image"></mdb-card-img>
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+                    <!--/Card image-->
+
+                    <mdb-card-body cascade="true" class="text-center">
+                        <!--Card content-->
+
+                        <!--Title-->
+                        <h4 class="card-title">{{challenge.nom}}</h4>
+                        <!--Text-->
+
+                        <mdb-card-text>
+                            {{challenge.objectif}}
+                        </mdb-card-text>
+
+                        <button type="button" color="unique" class="btn btn-xs col-5 button-challenge" (click)="onParticipateCondition(challenge)">Participate</button>
+                          <button color="unique" class="btn btn-xs col-5 button-challenge" [routerLink]="['/challenge/publications']" [queryParams]="{idC: challenge.id}">Consult publication</button>
+
+                    </mdb-card-body>
+                    <!--/.Card content-->
+
+                </mdb-card>
+                <!--/.Card-->
+            </div>
+        </ng-template>
+    </div>
+>>>>>>> main
 </div>

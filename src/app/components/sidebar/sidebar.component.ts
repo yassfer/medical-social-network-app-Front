@@ -8,6 +8,7 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
 
+<<<<<<< HEAD
 
   {
     path: "/home",
@@ -15,6 +16,15 @@ export const ROUTES: RouteInfo[] = [
     icon: "icon-chart-pie-36",
     class: ""
   },
+=======
+  {
+    path: "/user",
+    title: "User Profile",
+    icon: "icon-single-02",
+    class: ""
+  },
+
+>>>>>>> main
   {
     path: "/challenge",
     title: "Challenge",
@@ -23,24 +33,24 @@ export const ROUTES: RouteInfo[] = [
   },
 
   {
-    path: "/icons",
-    title: "Icons",
+    path: "/chat",
+    title: "Chat",
+    icon: "icon-chart-pie-36",
+    class: ""
+  },
+  {
+    path: "/publications",
+    title: "publications",
     icon: "icon-atom",
     class: ""
   },
   {
-    path: "/notifications",
-    title: "Notifications",
+    path: "/communities",
+    title: "Communities",
     icon: "icon-bell-55",
     class: ""
   },
 
-  {
-    path: "/user",
-    title: "User Profile",
-    icon: "icon-single-02",
-    class: ""
-  },
   {
     path: "/tables",
     title: "Table List",

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-admin-layout",
@@ -8,7 +9,7 @@ import { Component, OnInit } from "@angular/core";
 export class AdminLayoutComponent implements OnInit {
   public sidebarColor: string = "red";
 
-  constructor() {}
+  constructor(  private router: Router) {}
   changeSidebarColor(color){
     var sidebar = document.getElementsByClassName('sidebar')[0];
     var mainPanel = document.getElementsByClassName('main-panel')[0];
@@ -30,6 +31,9 @@ export class AdminLayoutComponent implements OnInit {
     else if(body.classList.contains('white-content')) {
       body.classList.remove('white-content');
     }
+  }
+   toChatbot1(){
+    this.router.navigate(['/chatbot1']);
   }
   ngOnInit() {}
 }
