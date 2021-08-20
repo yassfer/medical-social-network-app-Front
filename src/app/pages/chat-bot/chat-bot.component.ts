@@ -7,7 +7,7 @@ import { ChatBotService } from './chat-bot.service';
   templateUrl: './chat-bot.component.html',
   styleUrls: ['./chat-bot.component.scss']
 })
-export class ChatBotComponent implements OnInit {
+export class ChatBot1Component implements OnInit {
 
   question: string;
   reponse: string;

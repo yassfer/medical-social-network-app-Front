@@ -9,7 +9,7 @@ import { TypographyComponent } from "../../pages/typography/typography.component
 import { CreateChallengeComponent } from "src/app/pages/challenge/create-challenge/create-challenge.component";
 import { CreateChallengeImageComponent } from "src/app/pages/challenge/create-challenge-image/create-challenge-image.component";
 import { CheckMyChallengeComponent } from "src/app/pages/challenge/check-my-challenge/check-my-challenge.component";
-import { ChatBotComponent } from "src/app/pages/chat-bot/chat-bot.component";
+import { ChatBot1Component } from "src/app/pages/chat-bot/chat-bot.component";
 import { ModalComponent } from "src/app/pages/publications/modal/modal.component";
 import { PublicationChallengeComponent } from "src/app/pages/challenge/publication-challenge/publication-challenge.component";
 import { CreatePublicationChallengeComponent } from "src/app/pages/challenge/create-publication-challenge/create-publication-challenge.component";
@@ -21,6 +21,8 @@ import { CommunityupdateComponent } from "src/app/pages/communities/communityupd
 import { CommunityaddComponent } from "src/app/pages/communities/communityadd/communityadd.component";
 import { CommunitydetailsComponent } from "src/app/pages/communities/communitydetails/communitydetails.component";
 import { AllCommunitiesComponent } from "src/app/pages/communities/all-communities/all-communities.component";
+import { ChatComponent } from "src/app/pages/chat/chat.component";
+import { ChatbotComponent } from "src/app/pages/chatbot/chatbot/chatbot.component";
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -37,7 +39,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: "user", component: UserComponent },
   { path: "tables", component: TablesComponent },
   { path: "typography", component: TypographyComponent },
-  { path: "chat", component: ChatBotComponent },
   //Communities
   { path: "communities", component: CommunitieslistComponent },
   { path: 'communityadd', component: CommunityaddComponent },
@@ -45,4 +46,10 @@ export const AdminLayoutRoutes: Routes = [
   { path: "communityupdate/:id", component: CommunityupdateComponent },
   { path: 'CreateImage', component: CreateCommunityImageComponent },
   { path: 'allcommunities', component: AllCommunitiesComponent },
+  //chat tps reel
+  { path: 'chat', component: ChatComponent },
+  //chatbot
+  { path: "chatbot", component: ChatbotComponent },
+  { path: "chatbot1", component: ChatBot1Component },
+
 ];

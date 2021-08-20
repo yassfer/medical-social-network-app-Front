@@ -1,0 +1,21 @@
+
+<div id="chat" class="container">
+
+    <div class="main-title">
+     
+        <span>username</span>
+
+    </div>
+    <div #messageBox class="chat-area" id="message-box">
+    </div>
+    <div class="line"></div>
+    <div class="input-div">
+        <input #message class="input-message" name="message" type="text" id="message"
+            placeholder="Type your message ..." />
+        <button class="input-send" (click)="send()">
+            <svg style="width:24px;height:24px">
+                <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
+            </svg>
+        </button>
+    </div>
+</div>
