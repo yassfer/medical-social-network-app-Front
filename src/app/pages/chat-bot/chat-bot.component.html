@@ -1,90 +1,59 @@
 <div class="content">
-    <!--TITLE-->
-    <svg viewBox="0 0 960 200">
-        <symbol id="s-text">
-            <text text-anchor="middle" x="50%" y="40%" style="font-size: 78px !important;">Welcome to our ChatBot</text>
-        </symbol>
-    
-        <g class = "g-ants">
-            <use xlink:href="#s-text" class="text-copy"></use>
-            <use xlink:href="#s-text" class="text-copy"></use>
-            <use xlink:href="#s-text" class="text-copy"></use>
-            <use xlink:href="#s-text" class="text-copy"></use>
-            <use xlink:href="#s-text" class="text-copy"></use>
-        </g>
-    </svg>
-    <!--FIN TITLE-->
-    <div class="md-form">
-        <input mdbInput type="text" name="text" [(ngModel)]="question" id="question" class="form-control">
-        <button (click)="setValue()" class="btn btn-success">Submit</button>
-    </div>
-    <div class="auto-container">
-        <div class="row">
-            <div class="column col-lg-8 col-md-12 col-sm-12">
-                <div class="sec-title">
-                    <h2>Response:<br>    {{ reponse }}</h2>
-                </div>
-            </div>					
-        </div>							
-    </div>
+  <h1>Either way you're gonna be satisfied</h1>
+  <div class="row justify-content-around">
+      <div class="col-5" (click)="openHealthBot()">
+          <div class="box">
+              <img src="https://cdn2.iconfinder.com/data/icons/chatter-robot/192/15_Robot_bubble_chat_bot_message_support_virtual_assistant_health_doctor_hospital-512.png"
+                  width="100px" height="100px">
+              <h3 class="mt-3 mb-3">Healthobot</h3>
+              <p>I am a first aid chatbot and i am happy to help.
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
+              </p>
+          </div>
+      </div>
+
+      <div class="col-5">
+          <div class="box">
+              <img src="https://cdn3.iconfinder.com/data/icons/healthcare-37/64/bot-512.png" width="100px"
+                  height="100px">
+              <h3 class="mt-3 mb-3">FirsAidbot</h3>
+              <p>I am a first aid chatbot and i am happy to help.
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
+              </p>
+          </div>
+      </div>
+
+  </div>
+
+  <div class="row justify-content-around">
+      <div class="col-5">
+          <div class="box">
+              <img src="https://cdn2.iconfinder.com/data/icons/robot-29/100/cooking-robot-2-robot-food-service-ai-chef-cook-kitchen-stove-cooking-pot-big-soup-ladle-512.png"
+                  width="100px" height="100px">
+              <h3 class="mt-3 mb-3">DietBot</h3>
+              <p>I am a first aid chatbot and i am happy to help.
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
+              </p>
+          </div>
+      </div>
+
+      <div class="col-5" (click)="openWorkoutBot()">
+          <div class="box">
+              <img src="https://cdn3.iconfinder.com/data/icons/healthcare-37/64/bot-512.png" width="100px"
+                  height="100px">
+              <h3 class="mt-3 mb-3">WorkoutBot</h3>
+              <p>I am a first aid chatbot and i am happy to help.
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
+              </p>
+          </div>
+      </div>
+  </div>
+  <!--
+<app-health-bot></app-health-bot>
+  -->
+
 </div>
-
-<style>
-    @import url(https://fonts.googleapis.com/css?family=Montserrat);
-
-html, body{
-  height: 100%;
-  font-weight: 800;
-}
-
-body{
-  background: #030321;
-  font-family: Arial;
-}
-
-svg {
-    display: block;
-    font: 10.5em 'Montserrat';
-    width: 960px;
-    height: 200px;
-    margin: 0 auto;
-}
-
-.text-copy {
-    fill: none;
-    stroke: white;
-    stroke-dasharray: 6% 29%;
-    stroke-width: 5px;
-    stroke-dashoffset: 0%;
-    animation: stroke-offset 5.5s infinite linear;
-}
-
-.text-copy:nth-child(1){
-	stroke: #4D163D;
-	animation-delay: -1;
-}
-
-.text-copy:nth-child(2){
-	stroke: #840037;
-	animation-delay: -2s;
-}
-
-.text-copy:nth-child(3){
-	stroke: #BD0034;
-	animation-delay: -3s;
-}
-
-.text-copy:nth-child(4){
-	stroke: #BD0034;
-	animation-delay: -4s;
-}
-
-.text-copy:nth-child(5){
-	stroke: #FDB731;
-	animation-delay: -5s;
-}
-
-@keyframes stroke-offset{
-	100% {stroke-dashoffset: -35%;}
-}
-</style>

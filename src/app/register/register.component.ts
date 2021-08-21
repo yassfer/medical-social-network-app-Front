@@ -14,14 +14,14 @@ export class RegisterComponent implements OnInit {
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
- 
+
   constructor(private authService: AuthService, private router: Router) { }
- 
+
   ngOnInit() { }
- 
+
   onSubmit() {
     console.log(this.form);
- 
+
     this.signupInfo = new SignUpInfo(
       this.form.firstName,
         this.form.lastName,
@@ -30,9 +30,10 @@ export class RegisterComponent implements OnInit {
         this.form.password,
         this.form.birthDate,
         this.form.address,
-        this.form.profession
+        this.form.profession,
+        this.form.recommander
       );
- 
+
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
         console.log(data);

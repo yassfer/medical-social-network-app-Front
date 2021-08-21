@@ -1,8 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from '../entities/User';
+import { JwtResponse } from './jwt-response';
 import { AuthLoginInfo } from './login-info';
 import { SignUpInfo } from './signup-info';
+import { TokenStorageService } from './token-storage.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,12 +16,52 @@ const httpOptions = {
 })
 export class AuthService {
 
+  public currentUser: User;
+  private username: string ;
+  private authorities: string[];
+  private currentUserId: number;
+
   private loginUrl = 'http://localhost:8090/api/auth/signin';
   private signupUrl = 'http://localhost:8090/api/auth/signup';
+  private userUrl = 'http://localhost:8090/api/users';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {
+    this.username = tokenStorage.getUsername();
+    this.authorities = tokenStorage.getAuthorities();
+
   }
 
+  public get currentUserValue(): User {
+    this.http.get<User>(`${this.userUrl}/getUser/${this.username}`).subscribe(data =>{
+      this.currentUser = data;
+    });
+    return this.currentUser;
+  }
+
+  //GET ID CYRRENT USER
+  public get currentUserIdValue(): number {
+    console.log("userName: "+this.username)
+    this.http.get<number>(`${this.userUrl}/getUserId/${this.username}`).subscribe(data =>{
+      //console.log(data);
+      this.currentUserId = data;
+      console.log(this.currentUserId);
+      return this.currentUserId;
+    });
+    //console.log(this.currentUserId);
+    return 0;
+  }
+
+  public get authoritie(): String {
+    return this.authorities[0];
+  }
+
+  public isAuthenticated(): boolean {
+    if(this.tokenStorage.getToken()){
+      return true;
+    }else{
+      return false;
+    }
+  }
   attemptAuth(credentials: AuthLoginInfo): Observable<any> {
     return this.http.post(this.loginUrl, credentials, httpOptions);
   }
@@ -26,4 +69,10 @@ export class AuthService {
   signUp(info: SignUpInfo): Observable<any> {
     return this.http.post(this.signupUrl, info, httpOptions);
   }
+
+  logout() {
+    // remove user from local storage to log user out
+    this.tokenStorage.logout();
+    //this.currentUserSubject.next(null);
+}
 }

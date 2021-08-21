@@ -1,12 +1,12 @@
 <div class="wrapper">
-  <div class="container">
-    <div class="row justify-content-center ">
-      <div class="col-6 box">
+  <div class="background">
+    <div class="box">
+      <img class="mb-4" src="../../assets/img/user-icon.png" width="70px" height="70px">
         <!--BEGIN-->
         <form class="text-center" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-          <p class="h4 mb-4">Sign up</p>
-          <div class="form-row mb-4">
-            <div class="col">
+          <div class="row justify-content-around">
+          <div class="col">
+            <div class="form-group mb-4">
               <input type="text" class="form-control" placeholder="First name" name="firstName"
                 [(ngModel)]="form.firstName" #firstName="ngModel" required />
               <small>
@@ -15,7 +15,7 @@
                 </div>
               </small>
             </div>
-            <div class="col">
+            <div class="form-group mb-4">
               <input type="text" class="form-control" placeholder="Last name" name="lastName"
                 [(ngModel)]="form.lastName" #lastName="ngModel" required />
               <small>
@@ -24,8 +24,7 @@
                 </div>
               </small>
             </div>
-          </div>
-          <div class="form-row mb-4">
+          <div class="form-group mb-4">
             <input type="email" class="form-control mb-4" placeholder="E-mail" name="mail" [(ngModel)]="form.mail"
               #mail="ngModel" required />
             <small>
@@ -34,7 +33,7 @@
               </div>
             </small>
           </div>
-          <div class="form-row mb-4">
+          <div class="form-group mb-4">
             <input type="text" class="form-control" placeholder="User Name" name="username" [(ngModel)]="form.username"
               #username="ngModel" required />
             <small>
@@ -43,7 +42,9 @@
               </div>
             </small>
           </div>
-          <div class="form-row mb-4">
+          </div>
+          <div class="col">
+          <div class="form-group mb-4">
             <input type="password" class="form-control" placeholder="Password"
               aria-describedby="defaultRegisterFormPasswordHelpBlock" name="password" [(ngModel)]="form.password"
               #password="ngModel" required minlength="6" />
@@ -54,28 +55,38 @@
               </div>
             </small>
           </div>
-          <div class="form-row mb-4">
+          <div class="form-group mb-4">
             <input type="text" class="form-control" placeholder="Adress" name="address" [(ngModel)]="form.address"
               #address="ngModel" />
           </div>
 
-          <div class="form-row mb-4">
+          <div class="form-group mb-4">
             <input type="date" class="form-control" placeholder="BirthDate" name="birthDate"
               [(ngModel)]="form.birthDate" #birthDate="ngModel" />
           </div>
 
-          <div class="form-row mb-4">
+          <div class="form-group mb-4">
             <input type="text" class="form-control" placeholder="Profession" name="profession"
               [(ngModel)]="form.profession" #profession="ngModel" />
           </div>
 
-          <button class="btn btn-success">Register</button>
+          <div class="form-group mb-4">
+            <input type="text" class="form-control" placeholder="recommander" name="recommander"
+              [(ngModel)]="form.recommander" #recommander="ngModel" />
+          </div>
+
+          </div>
+          <button class="btn btn-lg btn-block">Register</button>
           <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
             Signup failed!<br />{{errorMessage}}
           </div>
+          </div>
         </form>
         <!--END-->
-      </div>
+        <div class="login">
+          <p>Already have an account?</p>
+          <a routerLink="/auth/login" class="login-button mt-4">Login</a>
+        </div>
     </div>
-  </div>
+      </div>
 </div>

@@ -1,0 +1,51 @@
+.navbar{
+  height: 90px;
+  background: none;
+}
+
+.navbarList{
+  margin-left: 300px;
+}
+
+.item{
+  width: 70px;
+  padding: 3px 10px;
+}
+
+.input-search{
+  width: 320px !important;
+  height: 35px;
+  border: none;
+  border-radius: 25px;
+  background-color: #4a5f9617;
+}
+
+
+.card-text{
+  font-size: 11px;
+}
+
+
+.chat-img{
+margin-top: 10px;
+}
+
+.all-msg{
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 40px;
+}
+
+h5, p {
+  color: inherit;
+}
+
+.btn{
+  font-size: 12px;
+  font-weight: none;
+}
+

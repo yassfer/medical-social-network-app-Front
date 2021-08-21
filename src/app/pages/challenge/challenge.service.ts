@@ -14,7 +14,7 @@ export class ChallengeService {
 
   // Challenge Service
   createChallenge(challenge: Object): Observable<Object> {
-    return this.http.post<number>(`${this.baseUrl}challange/add/1`, challenge);
+    return this.http.post<number>(`${this.baseUrl}challange/add`, challenge);
   }
 
   deleteChallenge(id: number): Observable<any> {
@@ -26,7 +26,7 @@ export class ChallengeService {
   }
 
   getMyChallengesList(): Observable<any> {
-    return this.http.get<Challenge[]>(`${this.baseUrl}challange/getMyChallenges/1`);
+    return this.http.get<Challenge[]>(`${this.baseUrl}challange/getMyChallenges`);
   }
 
   /*updateChallenge(id: number, value: any): Observable<Object> {
@@ -44,6 +44,10 @@ export class ChallengeService {
   }
   getApprouvedPublicationByChallengeId(id: number): Observable<any> {
     return this.http.get<PublicationChallenge[]>(`${this.baseUrl}api/publicationChallenge/approuved/challenge/${id}`);
+  }
+
+  imagesUploadWithoutPubId(file: FormData): Observable<any> {
+    return this.http.post(`${this.baseUrl}api/pieceJoint/uploadPieceJoints`, file, { observe: 'response' });
   }
 
   createLike(idUser: number, idPublication: number): Observable<Liking> {

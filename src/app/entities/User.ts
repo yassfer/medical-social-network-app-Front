@@ -10,4 +10,6 @@ export class User {
     image :Blob;
     profession:String;
     professionnalisme:String;
+    recommander: User;
+    score: number;
 }

@@ -21,28 +21,39 @@ import { CommunityupdateComponent } from "src/app/pages/communities/communityupd
 import { CommunityaddComponent } from "src/app/pages/communities/communityadd/communityadd.component";
 import { CommunitydetailsComponent } from "src/app/pages/communities/communitydetails/communitydetails.component";
 import { AllCommunitiesComponent } from "src/app/pages/communities/all-communities/all-communities.component";
+import { WelcomeChatbotComponent } from "src/app/pages/welcome-chatbot/welcome-chatbot.component";
+import { UserProfileComponent } from "src/app/pages/user-profile/user-profile.component";
+import { AuthGuard } from "src/app/auth/auth.guard";
+import { HealthBotComponent } from "src/app/pages/chat-bot/health-bot/health-bot.component";
+import { WorkoutBotComponent } from "src/app/pages/chat-bot/workout-bot/workout-bot.component";
+import { AboutUsComponent } from "src/app/pages/about-us/about-us.component";
 
 
 export const AdminLayoutRoutes: Routes = [
-  { path: "challenge", component: ChallengeComponent },
-  { path: "challenge/create", component: CreateChallengeComponent },
-  { path: "challenge/create/image", component: CreateChallengeImageComponent },
-  { path: "challenge/myChallenges", component: CheckMyChallengeComponent },
-  { path: "challenge/publications", component: PublicationChallengeComponent },
-  { path: "challenge/create/publication", component: CreatePublicationChallengeComponent },
-  { path: "challengePublications", component: ApprouvePubChallengeComponent },
-  { path: "publications", component: PublicationComponent },
-  { path: "publication/create/image", component: ModalComponent },
-  { path: "notifications", component: NotificationsComponent },
-  { path: "user", component: UserComponent },
-  { path: "tables", component: TablesComponent },
-  { path: "typography", component: TypographyComponent },
-  { path: "chat", component: ChatBotComponent },
+  { path: "challenge", component: ChallengeComponent, canActivate: [AuthGuard]},
+  { path: "challenge/create", component: CreateChallengeComponent, canActivate: [AuthGuard] },
+  { path: "challenge/create/image", component: CreateChallengeImageComponent, canActivate: [AuthGuard] },
+  { path: "challenge/myChallenges", component: CheckMyChallengeComponent, canActivate: [AuthGuard] },
+  { path: "challenge/publications", component: PublicationChallengeComponent, canActivate: [AuthGuard] },
+  { path: "challenge/create/publication", component: CreatePublicationChallengeComponent, canActivate: [AuthGuard] },
+  { path: "challengePublications", component: ApprouvePubChallengeComponent, canActivate: [AuthGuard] },
+  { path: "publications", component: PublicationComponent, canActivate: [AuthGuard] },
+  { path: "publication/create/image", component: ModalComponent, canActivate: [AuthGuard] },
+  { path: "notifications", component: NotificationsComponent, canActivate: [AuthGuard] },
+  { path: "user", component: UserComponent, canActivate: [AuthGuard] },
+  { path: "tables", component: TablesComponent, canActivate: [AuthGuard] },
+  { path: "typography", component: TypographyComponent, canActivate: [AuthGuard] },
+  { path: "chatbot", component: ChatBotComponent, canActivate: [AuthGuard] },
+  { path: "welcome-chatbot", component: WelcomeChatbotComponent, canActivate: [AuthGuard] },
+  { path: "user-profile", component: UserProfileComponent, canActivate: [AuthGuard] },
+  { path: "healthBot", component: HealthBotComponent, canActivate: [AuthGuard] },
+  { path: "workoutBot", component: WorkoutBotComponent, canActivate: [AuthGuard] },
+  { path: "about-us", component: AboutUsComponent, canActivate: [AuthGuard] },
   //Communities
-  { path: "communities", component: CommunitieslistComponent },
-  { path: 'communityadd', component: CommunityaddComponent },
-  { path: 'communitydetails/:id', component: CommunitydetailsComponent },
-  { path: "communityupdate/:id", component: CommunityupdateComponent },
-  { path: 'CreateImage', component: CreateCommunityImageComponent },
-  { path: 'allcommunities', component: AllCommunitiesComponent },
+  { path: "communities", component: CommunitieslistComponent, canActivate: [AuthGuard] },
+  { path: 'communityadd', component: CommunityaddComponent, canActivate: [AuthGuard] },
+  { path: 'communitydetails/:id', component: CommunitydetailsComponent, canActivate: [AuthGuard] },
+  { path: "communityupdate/:id", component: CommunityupdateComponent, canActivate: [AuthGuard] },
+  { path: 'CreateImage', component: CreateCommunityImageComponent, canActivate: [AuthGuard] },
+  { path: 'allcommunities', component: AllCommunitiesComponent, canActivate: [AuthGuard] },
 ];

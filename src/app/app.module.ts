@@ -22,6 +22,12 @@ import { CreatePublicationChallengeComponent } from './pages/challenge/create-pu
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ApprouvePubChallengeComponent } from './pages/challenge/approuve-pub-challenge/approuve-pub-challenge.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { WelcomeChatbotComponent } from './pages/welcome-chatbot/welcome-chatbot.component';
+import { HealthBotComponent } from './pages/chat-bot/health-bot/health-bot.component';
+import { WorkoutBotComponent } from './pages/chat-bot/workout-bot/workout-bot.component';
+import { httpInterceptorProviders } from "./auth/auth-interceptor";
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 
 @NgModule({
   imports: [
@@ -34,8 +40,8 @@ import { ApprouvePubChallengeComponent } from './pages/challenge/approuve-pub-ch
     AppRoutingModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, AdminLayoutComponent, CreateChallengeComponent, CreateChallengeImageComponent, CheckMyChallengeComponent, ChatBotComponent, ModalComponent, PublicationChallengeComponent, CreatePublicationChallengeComponent, LoginComponent, RegisterComponent, ApprouvePubChallengeComponent],
-  providers: [],
+  declarations: [AppComponent, AdminLayoutComponent, CreateChallengeComponent, CreateChallengeImageComponent, CheckMyChallengeComponent, ChatBotComponent, ModalComponent, PublicationChallengeComponent, CreatePublicationChallengeComponent, LoginComponent, RegisterComponent, ApprouvePubChallengeComponent, UserProfileComponent, WelcomeChatbotComponent, HealthBotComponent, WorkoutBotComponent, AboutUsComponent],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

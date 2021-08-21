@@ -61,13 +61,14 @@
 .navbar-nav {
   display: flex;
   flex-direction: column; // cannot use `inherit` to get the `.navbar`s value
-  padding-left: 0;
+  padding-left: 70px;
   margin-bottom: 0;
   list-style: none;
 
   .nav-link {
-    padding-right: 0;
-    padding-left: 0;
+    padding-right: 7;
+    padding-left: 7;
+    width: 100px;
   }
 
   .dropdown-menu {
@@ -297,3 +298,4 @@
     }
   }
 }
+

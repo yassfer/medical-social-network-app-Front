@@ -36,6 +36,14 @@ export class PublicationService {
     return this.httpClient.post(`${this.baseURL}pieceJoint/uploadPieceJoints/publication/${idPublication}`, file, { observe: 'response' });
   }
 
+  imagesUploadWithoutPubId(file: FormData): Observable<any> {
+    return this.httpClient.post<PieceJoint[]>(`${this.baseURL}pieceJoint/uploadPieceJoints`, file, { observe: 'response' });
+  }
+
+  updatePieceJoint(pubId: number, pieceJoints: PieceJoint[]): Observable<any> {
+    return this.httpClient.patch(`${this.baseURL}pieceJoint/publication/${pubId}`, pieceJoints);
+  }
+
   getPieceJointById(idPieceJoint: number): Observable<PieceJoint> {
     return this.httpClient.get<PieceJoint>(`${this.baseURL}pieceJoint/${idPieceJoint}`);
   }

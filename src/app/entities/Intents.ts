@@ -1,3 +1,4 @@
 export class Intents {
-    responses: string;
+  responses: string;
+  remarques: string;
 }

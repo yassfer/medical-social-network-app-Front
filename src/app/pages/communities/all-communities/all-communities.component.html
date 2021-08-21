@@ -27,7 +27,7 @@
           <!--Card content-->
 
           <!--Title-->
-          <h4 class="card-title"><a (click)="communityDetail(community.id)">{{community.nom}}<span class="dots"><i class="fa fa-check"></i></span></a></h4>
+          <h4 class="card-title">{{community.nom}}<span class="dots"><i class="fa fa-check"></i></span></h4>
           <!--Text-->
 
           <mdb-card-text>
@@ -36,7 +36,7 @@
 
           <div class="mt-3">
             <button class="btn btn-danger" (click)="ToUnfollow(community.id)">Unfollow</button>
-            <button class="btn btn-outline-secondary" (click)="communitydetails(community.id)">Open</button>
+            <button class="btn btn-outline-secondary">Open</button>
           </div>
 
       </mdb-card-body>

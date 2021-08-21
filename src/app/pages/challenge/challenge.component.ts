@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
 import { ChallengeService } from './challenge.service';
 import { Challenge } from 'src/app/entities/Challenge';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-dashboard",
@@ -14,11 +15,65 @@ export class ChallengeComponent implements OnInit {
   base64Data: any;
   condition: boolean;
   currentUserId: number = 1;
-  constructor(private challengeService: ChallengeService, private router: Router) { }
+  closeResult = '';
+  challenge: Challenge = new Challenge();
+  submitted = false;
+  idChallenge: any;
+
+
+  constructor(private challengeService: ChallengeService, private router: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.reloadData();
   }
+
+  /////start modal
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+
+  /////end modal
+
+
+  ///create challenge
+  save() {
+    this.challengeService
+      .createChallenge(this.challenge).subscribe(data => {
+        console.log(data);
+        this.idChallenge = data;
+        this.challenge = new Challenge();
+        this.gotoUploadImage(this.idChallenge);
+      },
+        error => console.log(error));
+  }
+
+  gotoUploadImage(id: number) {
+    console.log("id::" + id)
+    this.router.navigate(['/challenge/create/image', { idC: id }]);
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    this.save();
+  }
+
+  ///end create challenge
 
   reloadData() {
     this.challengeService.getChallengesList().subscribe(data => {

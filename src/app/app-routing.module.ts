@@ -7,6 +7,7 @@ import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.compon
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { AppComponent } from "./app.component";
+import { AuthGuard } from "./auth/auth.guard";
 
 const routes: Routes = [
   {
@@ -30,7 +31,8 @@ const routes: Routes = [
         path: "",
         loadChildren: () => import ("./layouts/admin-layout/admin-layout.module").then(m => m.AdminLayoutModule)
       }
-    ]
+    ],
+    canActivate: [AuthGuard]
   }/*,
   {
     path: "**",

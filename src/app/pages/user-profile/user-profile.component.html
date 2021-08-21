@@ -1,0 +1,404 @@
+<div class="profile">
+  <div class="profile-content">
+    <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle user-img" height="150px" width="150" alt="Cinque Terre">
+    <div class="card card-info">
+      <div class="row info card-body justify-content-around">
+        <div class="col-3">
+          <i class="tim-icons icon-single-02"></i>
+          <h5><span style="color: #47d3dd;">410</span>&nbsp; followers</h5>
+        </div>
+        <div class="col-3">
+          <i class="tim-icons icon-trophy"></i>
+          <h5><span style="color: #47d3dd;">50</span>&nbsp; score</h5>
+        </div>
+        <div class="col-3">
+          <i class="tim-icons icon-badge"></i>
+          <h5><span style="color: #47d3dd;">20</span>&nbsp; badge</h5>
+        </div>
+      </div>
+      <button type="button" class="btn btn-md follow-button btn-block">Folllow</button>
+    </div>
+
+  </div>
+
+<!--user infoooo-->
+  <div class="content">
+    <div class="row justify-content-around">
+      <div class="col-4 user-info card">
+        <div class="about-user">
+          <p><span>Profession</span>&nbsp; user profession</p>
+          <p><span>Date of birth</span>&nbsp; 02-08-1998</p>
+          <p><span>Email</span>&nbsp; cyrine@gmail.com</p>
+          <p><span>Adresse</span>&nbsp; Sousse Sahloul</p>
+        </div>
+        <hr class="hr-user">
+        <!--user friends-->
+        <div class="friends">
+          <h5>Friends</h5>
+          <div class="row row-friends justify-content-center">
+            <div class="col-3">
+              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>Cyrine Maaloul</h6>
+              <small id="friend">profession</small>
+            </div>
+
+            <div class="col-3">
+              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>Cyrine Maaloul</h6>
+              <small id="friend">profession</small>
+            </div>
+
+            <div class="col-3">
+              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>Cyrine Maaloul</h6>
+              <small id="friend">profession</small>
+            </div>
+          </div>
+
+
+          <div class="row row-friends justify-content-center">
+            <div class="col-3">
+              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>Cyrine Maaloul</h6>
+              <small id="friend">profession</small>
+            </div>
+
+            <div class="col-3">
+              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>Cyrine Maaloul</h6>
+              <small id="friend">profession</small>
+            </div>
+
+            <div class="col-3">
+              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>Cyrine Maaloul</h6>
+              <small id="friend">profession</small>
+            </div>
+          </div>
+
+        </div>
+
+        <!--end user friends-->
+        <hr class="hr-user">
+
+        <!--user followed communities-->
+        <div class="communities">
+          <h5>Followed Communities</h5>
+          <div class="row row-communities justify-content-center">
+            <div class="col-3">
+              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>Diabete</h6>
+            </div>
+
+            <div class="col-3">
+              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>Diabete</h6>
+            </div>
+
+            <div class="col-3">
+              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>Diabete</h6>
+            </div>
+          </div>
+
+
+          <div class="row row-communities justify-content-center">
+            <div class="col-3">
+              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>Diabete</h6>
+            </div>
+
+            <div class="col-3">
+              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>Diabete</h6>
+            </div>
+
+            <div class="col-3">
+              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>Diabete</h6>
+            </div>
+          </div>
+
+        </div>
+        <!--end user followed communities-->
+      </div>
+
+
+      <!--end user infoooo-->
+
+      <!--User Publications-->
+
+      <div class="col-6">
+          <div class="addpub">
+            <div class="card">
+              <div class="card-body">
+                  <div class=" card-category row">
+                    <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
+                    <div class="col-10 mt-1">
+                      <h5>Cyrine Maaloul</h5>
+                    </div>
+                  </div>
+                  <div class="md-form">
+                    <textarea id="form7" placeholder="Share some what you are thinking" [(ngModel)]="Newpublication.content" class="md-textarea form-control" rows="4"></textarea>
+                    <div class="mt-2">
+                      <i class="tim-icons icon-attach-87 mr-3" (click)="open(content)"></i>
+                      <i class="tim-icons icon-image-02 mr-3" (click)="open(content)"></i>
+                      <i class="tim-icons icon-video-66" (click)="open(content)"></i>
+                      <ng-template #content let-modal>
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="modal-basic-title">Start Uploading</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="content">
+                            <form enctype="multipart/form-data" class="row">
+                              <div class="file-field md-form col-5">
+                                <div mdbBtn rounded="true" gradient="aqua" size="md" mdbWavesEffect>
+                                  <input type="file" (change)="onFileSelected($event)" multiple="multiple" #fileUpload>
+                                </div>
+                              </div>
+                              <button class="col-2 button-upload ml-auto" type="button" (click)="onUpload()">Upload</button>
+                            </form>
+                          </div>
+                        </div>
+                        <div class="modal-footer justify-content-center align-center">
+                          <button type="button" class="button-upload" (click)="modal.close('Save click')">Save</button>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-sm btn-add" (click)="onPublication()">Add</button>
+
+              </div>
+            </div>
+
+
+            <!--testttt-->
+
+              <div class=" card card-chart">
+                <div class="card-body text-secondary">
+                  <button type="button" class="close" aria-label="Close" (click)="onDeletePub">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <div class=" card-category row">
+                    <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
+                    <div class="col-10">
+                      <h5>Cyrine Maaloul</h5>
+                      <h6 style="margin-top: -15px;">user profession</h6>
+                    </div>
+                  </div>
+                  <h5 class="card-title mt-3">
+                    It is a long established fact that a reader will be distracted by
+                    the readable content of a page when looking at its layout.
+                    The point of using Lorem Ipsum is that it has a more-or-less normal distribution
+                  </h5>
+                  <h6>22-10-2021 à 23h14</h6>
+                </div>
+                <div class=" card-body">
+                  <div class="row">
+                    <div class="col">
+                      <div>
+                        <img class="card-img-top" src="../../../assets/test.jpg" alt="Card image cap">
+                      </div>
+                      <!--<ng-template #pdfBlock>
+                        <div *ngIf="pieceJoint.contentType=='application/pdf';else videoBloc">
+                          <embed [src]="pieceJoint.image" width=800 height=500 type='application/pdf' />
+                        </div>
+                      </ng-template>-->
+                    </div>
+                  </div>
+
+                  <div *ngIf="click==true; else elseBlock">
+                    <div class=" card-header">
+                      <h3 class=" card-title">
+                        <i class=" tim-icons icon-heart-2 text-warn-states" (click)="onLike(publication.user.id, publication.id)"></i>
+                        <small id="like" class="mr-4">5</small>
+                        <i class=" tim-icons icon-chat-33 text-warn-states" (click)="commenting()"></i>
+                        <small id="like">11</small>
+                      </h3>
+                    </div>
+
+                  </div>
+
+                  <ng-template #elseBlock>
+                    <div class=" card-header">
+                      <h3 class=" card-title">
+                        <i class=" tim-icons icon-heart-2 text-danger-states"></i>
+                        <small id="like">5</small>
+                        <i class=" tim-icons icon-chat-33 text-warn-states"></i>
+                        <small id="like">11</small>
+                      </h3>
+                    </div>
+                  </ng-template>
+
+
+                  <div *ngIf="com==true; else elseBlock2"></div>
+
+                  <ng-template #elseBlock2>
+
+                      <div class="d-flex w-100 justify-content-between mt-4">
+                        <div class="row">
+                          <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-4" height="40" alt="Cinque Terre">
+                          <div class="col-8">
+                            <h5>Cyrine Maaloul</h5>
+                            <h6 style="margin-top: -15px;">user profession</h6>
+                          </div>
+                        </div>
+                        <small class="text-muted">22-10-2021 à 23h14</small>
+                      </div>
+
+                      <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <p class="mb-1 comment">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                      <hr>
+
+                    <!--add comment-->
+                    <div class="d-flex w-100 justify-content-between">
+                      <div class="form-group col-md-12">
+                        <input type="text" class="form-control" placeholder="add your comment" id="content"
+                          [(ngModel)]="comment.content">
+                        <div class="send">
+                          <button type="button" class="btn btn-secondary btn-sm"
+                            (click)="onComment(publication.user.id, publication.id)">Add</button>
+                        </div>
+                      </div>
+                    </div>
+                    <!--end add comment-->
+
+                  </ng-template>
+                </div>
+              </div>
+            <!--end test-->
+
+            <!--ADD PUB-->
+           <!-- <div class="card" style="width: 25rem;">
+              <div class="card-body">
+                <div *ngIf="pub==true; else elseBlock3">
+                  <a>
+                    <h5 id="card" class="card-header" (click)="publication()">+ADD PUB</h5>
+                  </a>
+                </div>
+                <ng-template #elseBlock3>
+
+                  <div class="form-group col-md-12">
+                    <input type="text" class="form-control" placeholder="pub description " [(ngModel)]="Newpublication.content">
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-sm" (click)="onPublication()">Add</button>
+                  <button type="button" class="btn btn-secondary btn-sm" (click)="publication()">Close</button>
+                </ng-template>
+
+              </div>
+            </div>-->
+            <!--FIN ADD PUB-->
+
+          </div>
+          <div>
+              <div class=" row justify-content-center ">
+                <ng-template *ngIf="!condition">
+                  <div class="col-8 " *ngFor="let publication of publications">
+                    <div class=" card card-chart">
+                      <div class="card-body text-secondary">
+                        <button type="button" class="close" aria-label="Close" (click)="onDeletePub">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class=" card-category">
+                          <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
+                          {{ publication.user.firstName }}
+                        </h5>
+                        <h5 class="card-title">{{ publication.content }}</h5>
+                      </div>
+                      <div class=" card-body">
+                        <div class="row">
+                          <div class="col" *ngFor="let pieceJoint of publication.pieceJoints">
+                            <div *ngIf="pieceJoint.contentType=='image/jpeg'; else pdfBlock">
+                              <img class="card-img-top" [src]="pieceJoint.image" alt="Card image cap">
+                            </div>
+                            <ng-template #pdfBlock>
+                              <div *ngIf="pieceJoint.contentType=='application/pdf';else videoBloc">
+                                <embed [src]="pieceJoint.image" width=800 height=500 type='application/pdf' />
+                              </div>
+                            </ng-template>
+                            <ng-template #videoBloc>
+                              <video width="100%" style="height: 300px!important" controls>
+                                <source [src]="pieceJoint.image" type="video/mp4">
+                              </video>
+                            </ng-template>
+                          </div>
+                        </div>
+
+                        <div *ngIf="click==true; else elseBlock">
+                          <div class=" card-header">
+                            <h3 class=" card-title">
+                              <i class=" tim-icons icon-heart-2 text-warn-states"
+                                (click)="onLike(publication.user.id, publication.id)"> </i> <small id="like">
+                                {{ publication.NbrLike }}</small>
+                              <i class=" tim-icons icon-chat-33 text-warn-states" (click)="commenting()"> </i>
+                            </h3>
+                          </div>
+
+                        </div>
+                        <ng-template #elseBlock>
+                          <div class=" card-header">
+                            <h3 class=" card-title">
+                              <i class=" tim-icons icon-heart-2 text-danger-states" (click)="onDislike(publication.user.id, publication.id)"> </i>
+                              <small id="like"> {{ publication.NbrLike }}</small>
+
+                              <i class=" tim-icons icon-chat-33 text-warn-states" (click)="commenting()"> </i>
+
+                            </h3>
+                          </div>
+                        </ng-template>
+                        <div *ngIf="com==true; else elseBlock2">
+                        </div>
+                        <ng-template #elseBlock2>
+
+                          <a class="list-group-item list-group-item-action flex-column align-items-start"
+                            *ngFor="let comment of publication.comments">
+
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">
+                                <img src="../assets/test.jpg" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
+                                {{ comment.user.firstName }}
+                              </h5>
+
+                              <small class="text-muted">{{ comment.date }}</small>
+
+                            </div>
+                            <small id="profession" class="text-muted">{{ comment.user.profession }}</small>
+
+                            <button type="button" class="close" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            <p class="mb-1">{{ comment.content}}</p>
+                            <hr>
+                          </a>
+                          <div class="d-flex w-100 justify-content-between">
+                            <div class="form-group col-md-12">
+                              <input type="text" class="form-control" placeholder="add your comment " id="content"
+                                [(ngModel)]="comment.content">
+                              <div class="send">
+                                <button type="button" class="btn btn-secondary btn-sm"
+                                  (click)="onComment(publication.user.id, publication.id)">Add</button>
+
+                              </div>
+                            </div>
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+
+              </div>
+
+          </div>
+
+        </div>
+  </div>
+  <!--End User Publications-->
+
+
+</div>

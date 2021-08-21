@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Intents } from 'src/app/entities/intents';
-import { ChatBotService } from './chat-bot.service';
+import { HealthBotComponent } from './health-bot/health-bot.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat-bot',
@@ -9,23 +9,18 @@ import { ChatBotService } from './chat-bot.service';
 })
 export class ChatBotComponent implements OnInit {
 
-  question: string;
-  reponse: string;
-  intents: Intents = new Intents();
-  constructor(private chatBotService: ChatBotService) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
-  
-  setValue() {
-    this.chatBotService
-    .getChatResponse(this.question).subscribe(data => {
-      console.log(data)
-      this.intents = data;
-      this.reponse = this.intents.responses;
-      console.log(this.reponse)
-    },
-    error => console.log(error))
+
+  openHealthBot(){
+    //this.healthBotComponent.callChat()
+    this.router.navigate(["/healthBot"])
+  }
+
+  openWorkoutBot(){
+    this.router.navigate(["/workoutBot"])
   }
 
 }

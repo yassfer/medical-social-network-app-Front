@@ -17,6 +17,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { CommunitiesModule } from "src/app/pages/communities/communities.module";
+import { HealthBotComponent } from "src/app/pages/chat-bot/health-bot/health-bot.component";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { CommunitiesModule } from "src/app/pages/communities/communities.module"
     PublicationComponent,
     TypographyComponent,
     NotificationsComponent
-  ]
+  ],
+  providers: [HealthBotComponent]
 })
 export class AdminLayoutModule {}

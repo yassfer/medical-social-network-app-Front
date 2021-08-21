@@ -1,5 +1,4 @@
-<div class="content">
-    <div>
+<!--<div class="content">
       <div class="row justify-content-center ">
         <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
         <ng-template #elseBlock>
@@ -33,28 +32,77 @@
                     </ng-template>
                   </div>
                 </div>
-  
+
                 <div class="row">
                   <button (click)="approuvePublicationChallenge(publication.id)" class="btn col-5">Approuve</button>
                   <button (click)="deletePublicationChallenge(publication.id)" class="btn btn-info col-5">Delete</button>
                 </div>
-  
+
               </div>
             </div>
           </div>
         </ng-template>
-  
-  
-  
+
+
+
       </div>
-  
+
+  </div>-->
+
+
+<!--test-->
+  <div class="content">
+    <div class="row justify-content-around">
+      <div class="col-6">
+        <div class=" card card-chart">
+          <div class="card-body text-secondary">
+            <button type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class=" card-category row">
+              <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="50" alt="Cinque Terre">
+              <div class="col-10">
+                <h5>Cyrine Maaloul</h5>
+                <h6 style="margin-top: -15px;">user profession</h6>
+              </div>
+            </div>
+
+              <h4 class="card-title mt-4"><b>Challenge Name</b></h4>
+              <h5 class="card-title mt-3"><b>Challenge Objectif</b></h5>
+
+            <h5 class="card-title mt-3">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout.
+              The point of using Lorem Ipsum is that it has a more-or-less normal distribution
+            </h5>
+            <h6>22-10-2021 à 23h14</h6>
+          </div>
+          <div class=" card-body">
+            <div class="row">
+              <div class="col">
+                <div>
+                  <img class="card-img-top" src="../../../assets/test.jpg" alt="Card image cap">
+                </div>
+                <!--<ng-template #pdfBlock>
+                  <div *ngIf="pieceJoint.contentType=='application/pdf';else videoBloc">
+                    <embed [src]="pieceJoint.image" width=800 height=500 type='application/pdf' />
+                  </div>
+                </ng-template>-->
+              </div>
+            </div>
+
+            <!--<div class="row">
+              <button (click)="approuvePublicationChallenge(publication.id)" class="btn col-5">Approuve</button>
+              <button (click)="deletePublicationChallenge(publication.id)" class="btn btn-info col-5">Delete</button>
+            </div>-->
+
+            <div class="row justify-content-around mt-4">
+              <button class="btn col-4">Approuve</button>
+              <button class="btn col-4">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  
   </div>
-  
-  <style>
-    .file-input {
-      display: none;
-    }
-  </style>
-  
+<!--end test-->

@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { User } from "src/app/entities/User";
+import { SidebarService } from "./sidebar.service";
 
 declare interface RouteInfo {
   path: string;
@@ -9,7 +11,14 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
 
   {
-    path: "/user",
+    path: "/publications",
+    title: "Home",
+    icon: "icon-bank",
+    class: ""
+  },
+
+  {
+    path: "/user-profile",
     title: "User Profile",
     icon: "icon-single-02",
     class: ""
@@ -18,38 +27,38 @@ export const ROUTES: RouteInfo[] = [
   {
     path: "/challenge",
     title: "Challenge",
-    icon: "icon-chart-pie-36",
+    icon: "icon-trophy",
     class: ""
   },
   {
     path: "/chat",
     title: "Chat",
-    icon: "icon-chart-pie-36",
+    icon: "icon-chat-33",
     class: ""
   },
   {
-    path: "/publications",
-    title: "publications",
-    icon: "icon-atom",
+    path: "/welcome-chatbot",
+    title: "Chatbots",
+    icon: "icon-satisfied",
     class: ""
   },
   {
     path: "/communities",
     title: "Communities",
-    icon: "icon-bell-55",
+    icon: "icon-world",
     class: ""
   },
 
   {
-    path: "/tables",
-    title: "Table List",
-    icon: "icon-puzzle-10",
+    path: "/donation",
+    title: "Donations",
+    icon: "icon-sound-wave",
     class: ""
   },
   {
-    path: "/typography",
-    title: "Typography",
-    icon: "icon-align-center",
+    path: "/publicité",
+    title: "Publicités",
+    icon: "icon-bag-16",
     class: ""
   }
 ];
@@ -61,16 +70,29 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
+  currentUserId: number = 2;
+  user: User = new User();
 
-  constructor() {}
+  constructor(private sidebarService: SidebarService) {}
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+    //this.getUser(4);
   }
+
   isMobileMenu() {
     if (window.innerWidth > 991) {
       return false;
     }
     return true;
+  }
+
+  getUser(id: number) {
+    this.sidebarService.getCurrentUser(id).subscribe(data => {
+      console.log(data);
+      //this.user = data;
+      //console.log(this.user);
+    },
+      error => console.log(error))
   }
 }
