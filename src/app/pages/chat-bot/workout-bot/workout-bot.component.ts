@@ -17,7 +17,8 @@ export class WorkoutBotComponent implements OnInit {
   running = false;
   intents: Intents = new Intents();
   reponse: string;
-  reponse2: string;
+  remarques: string;
+  advices: string;
   selectedFile: File;
   problem: string;
 
@@ -25,7 +26,6 @@ export class WorkoutBotComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 
   send() {
     if (this.running == true) return;
@@ -96,42 +96,27 @@ export class WorkoutBotComponent implements OnInit {
     }
   }
 
-  /*public onFileChanged(event) {
-    //Select File
-    this.selectedFile = event.target.files[0];
-    this.chatBotService
-    .parseTable(this.selectedFile, this.problem).subscribe(data => {
-      console.log(data);
-      //this.intents = data;
-      this.reponse2 = "Okaaay" //this.intents.remarques;
-      console.log(this.reponse2)
-    },
-    error => console.log(error))
-    setTimeout(()=>{
-      this.addResponseMsg(this.reponse2)
-    },1000)
-    this.running = true;
-  }*/
-
   public onFileChanged(event) {
     this.selectedFile = event.target.files[0];
   }
 
-  //Gets called when the user clicks on submit to upload the image
   onUpload() {
-    console.log(this.selectedFile);
-
+    const uploadImageData = new FormData();
+    uploadImageData.append('file', this.selectedFile);
     this.chatBotService
-    .parseTable(this.selectedFile, this.problem).subscribe(data => {
+    .getWorkouSecondResponse(this.problem, uploadImageData).subscribe(data => {
       console.log(data);
-      //this.intents = data;
-      this.reponse2 = "Okaaay" //this.intents.remarques;
-      console.log(this.reponse2)
+      this.intents = data;
+      this.remarques = this.intents.remarques;
+      this.advices =this.intents.advices;
+      console.log("rema:: "+this.remarques)
+      console.log("adv:: "+this.advices)
     },
     error => console.log(error))
     setTimeout(()=>{
-      this.addResponseMsg(this.reponse2)
-    },1000)
+      this.addResponseMsg(this.remarques)
+      this.addResponseMsg(this.advices)
+    },9000)
     this.running = true;
   }
 }

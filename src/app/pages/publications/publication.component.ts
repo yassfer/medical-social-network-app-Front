@@ -9,7 +9,6 @@ import { Comments } from "src/app/entities/Comments";
 import { PublicationService } from "../publications/publication.service";
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { PieceJoint } from "src/app/entities/PieceJoint";
-import { AuthService } from "src/app/auth/auth.service";
 import { TokenStorageService } from "src/app/auth/token-storage.service";
 
 @Component({
@@ -33,6 +32,7 @@ export class PublicationComponent implements OnInit {
   publications: Publication[];
   closeResult = '';
   file: any[];
+  currentUser: User;
 
 
   constructor(private publicationservice: PublicationService,
@@ -43,8 +43,8 @@ export class PublicationComponent implements OnInit {
 
 
   ngOnInit() {
-    this.reloadData(this.idCurrentUser);
-    console.log("ffff:: "+this.idCurrentUser);
+    this.getUser(this.idCurrentUser);
+    this.reloadData();
   }
 
 
@@ -71,40 +71,14 @@ export class PublicationComponent implements OnInit {
 
   /////end modal
 
-
-  reloadData(id: number) {
-    this.publicationservice.getPublicationByUserId(id).subscribe(data => {
-      if (data.length === 0) {
-        this.condition = true;
-      } else {
-        this.condition = false;
-        this.publications = data;
-
-        for (let i = 0; i < this.publications.length; i++) {
-          console.log(this.publications[i].user.id)
-          for (let j = 0; j < this.publications[i].pieceJoints.length; j++) {
-            if (this.publications[i].pieceJoints[j].contentType === "image/jpeg") {
-              this.base64Data = this.publications[i].pieceJoints[j].data;
-              this.publications[i].pieceJoints[j].image= 'data:image/jpeg;base64,' + this.base64Data ;
-              console.log(this.publications[i].pieceJoints[j].image);
-            }
-            if (this.publications[i].pieceJoints[j].contentType === "video/mp4") {
-              this.base64Data = this.publications[i].pieceJoints[j].data;
-              this.publications[i].pieceJoints[j].image = this.domSanitizer.bypassSecurityTrustUrl('data:video/mp4;base64, ' + this.base64Data);
-            }
-            if (this.publications[i].pieceJoints[j].contentType === "application/pdf") {
-              this.base64Data = this.publications[i].pieceJoints[j].data;
-              this.publications[i].pieceJoints[j].image= this.domSanitizer.bypassSecurityTrustResourceUrl('data:application/pdf;base64, ' + this.base64Data);
-            }
-          }
-          this.publications[i].NbrLike = this.publications[i].likes.length;
-          this.user = this.publications[i].user;
-        }
-      }
-    }
-    );
+  getUser(idCurrentUser: number) {
+    this.publicationservice.getUserById(idCurrentUser).subscribe(data => {
+      this.currentUser = data;
+     /* this.base64Data = this.currentUser.image;
+      this.currentUser.imageProfile = 'data:image/jpeg;base64,' + this.base64Data;*/
+    },
+      error => console.log(error));
   }
-
   /*gotoUploadImage() {
     this.router.navigate(['/publication/create/image']);
   }*/
@@ -112,7 +86,8 @@ export class PublicationComponent implements OnInit {
     this.publicationservice.deletePub(id).subscribe(data => {
       console.log(data);
     },
-      error => console.log(error))
+      error => console.log(error));
+      window.location.reload();
   }
   onComment(idUser: number, idPub: number) {
     console.log(this.comment)
@@ -123,15 +98,15 @@ export class PublicationComponent implements OnInit {
       window.location.reload();
   }
 
-  onDeleteCommment() {
-    this.publicationservice.deleteCom(this.comment.id).subscribe(data => {
+  onDeleteCommment(id:number) {
+    this.publicationservice.deleteCom(id).subscribe(data => {
       console.log(data);
     },
       error => console.log(error));
+      window.location.reload();
   }
 
   onLike(idUser: number, idPub: number) {
-    console.log(idUser)
     this.click = !this.click;
     this.publicationservice.createLike(idUser, idPub).subscribe(data => {
       console.log(data);
@@ -146,12 +121,53 @@ export class PublicationComponent implements OnInit {
       console.log(data);
     },
       error => console.log(error));
+      window.location.reload();
   }
   commenting() {
     this.com = !this.com;
   }
 
 
+  getPublications(){
+    this.publicationservice.getPub().subscribe(data => {
+
+      this.publications = data;
+      console.log(data);
+      console.log(this.publications);
+    },
+      error => console.log(error));
+}
+
+reloadData() {
+  this.publicationservice.getPub().subscribe(data => {
+    if (data.length === 0) {
+      this.condition = true;
+    } else {
+      this.condition = false;
+      this.publications = data;
+
+      for (let i = 0; i < this.publications.length; i++) {
+        for (let j = 0; j < this.publications[i].pieceJoints.length; j++) {
+          if (this.publications[i].pieceJoints[j].contentType === "image/jpeg") {
+            this.base64Data = this.publications[i].pieceJoints[j].data;
+            this.publications[i].pieceJoints[j].image= 'data:image/jpeg;base64,' + this.base64Data ;
+          }
+          if (this.publications[i].pieceJoints[j].contentType === "video/mp4") {
+            this.base64Data = this.publications[i].pieceJoints[j].data;
+            this.publications[i].pieceJoints[j].image = this.domSanitizer.bypassSecurityTrustUrl('data:video/mp4;base64, ' + this.base64Data);
+          }
+          if (this.publications[i].pieceJoints[j].contentType === "application/pdf") {
+            this.base64Data = this.publications[i].pieceJoints[j].data;
+            this.publications[i].pieceJoints[j].image= this.domSanitizer.bypassSecurityTrustResourceUrl('data:application/pdf;base64, ' + this.base64Data);
+          }
+        }
+        this.publications[i].NbrLike = this.publications[i].likes.length;
+        this.user = this.publications[i].user;
+      }
+    }
+  }
+  );
+}
 
   //////////////////upload files
   onFileSelected(event: { target: { files: any[]; }; }){
@@ -170,13 +186,9 @@ export class PublicationComponent implements OnInit {
         error => {
           console.log(error);
         });
-        this.gotoList();
+
   }
 
-
-  gotoList() {
-    this.router.navigate(['/publications']);
-  }
 
   updatePieceJoint(pubId: number, pieceJoints: PieceJoint[]) {
     console.log(pieceJoints);
@@ -193,7 +205,13 @@ export class PublicationComponent implements OnInit {
       console.log("onee: "+this.pieceJoints)
       this.updatePieceJoint(this.publica.id, this.pieceJoints);
     });
+
+    window.location.reload();
+
   }
+
+
+
 
 
 }

@@ -5,6 +5,7 @@ import { Comments } from 'src/app/entities/Comments';
 import { Liking } from 'src/app/entities/liking';
 import { PieceJoint } from 'src/app/entities/PieceJoint';
 import { Publication } from 'src/app/entities/publication';
+import { User } from 'src/app/entities/User';
 
 @Injectable({
   providedIn: 'root'
@@ -40,32 +41,33 @@ export class PublicationService {
     return this.httpClient.post<PieceJoint[]>(`${this.baseURL}pieceJoint/uploadPieceJoints`, file, { observe: 'response' });
   }
 
+
   updatePieceJoint(pubId: number, pieceJoints: PieceJoint[]): Observable<any> {
-    return this.httpClient.patch(`${this.baseURL}pieceJoint/publication/${pubId}`, pieceJoints);
+    return this.httpClient.patch(`${this.baseURL}pieceJoint/publication/${pubId}`, pieceJoints, { responseType: 'text' });
   }
 
   getPieceJointById(idPieceJoint: number): Observable<PieceJoint> {
     return this.httpClient.get<PieceJoint>(`${this.baseURL}pieceJoint/${idPieceJoint}`);
   }
   deleteLike(idUser: number, idPublication: number): Observable<Object> {
-    return this.httpClient.delete(`${this.baseURL}/like/user${idUser}/publication/${idPublication}`);
+    return this.httpClient.delete(`${this.baseURL}like/user${idUser}/publication/${idPublication}`);
   }
 
 
   //************* */
 
-  getPub(): Observable<Publication[]> {
-    return this.httpClient.get<Publication[]>(`${this.baseURL}publication/api/all`);
+  getPub(): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseURL}publication/all`);
   }
 
   getPubById(id: number): Observable<Publication> {
     return this.httpClient.get<Publication>(`publication/user/${id}`);
   }
-  deletePub(id: number): Observable<Object> {
-    return this.httpClient.delete(`${this.baseURL}/publication/${id}`);
+  deletePub(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.baseURL}publication/${id}`);
   }
   updatePub(publication: Publication, id: number): Observable<Object> {
-    return this.httpClient.patch(`${this.baseURL}/publication/${id}`, publication);
+    return this.httpClient.patch(`${this.baseURL}publication/${id}`, publication);
   }
 
   getCom(): Observable<Comments[]> {
@@ -73,13 +75,13 @@ export class PublicationService {
   }
 
   getComById(id: number): Observable<Comments> {
-    return this.httpClient.get<Comments>(`${this.baseURL}/comment/${id}`);
+    return this.httpClient.get<Comments>(`${this.baseURL}comment/${id}`);
   }
   deleteCom(id: number): Observable<Object> {
-    return this.httpClient.delete(`${this.baseURL}/comment/${id}`);
+    return this.httpClient.delete(`${this.baseURL}comment/${id}`);
   }
   updateCom(comment: Comments, id: number): Observable<Object> {
-    return this.httpClient.patch(`${this.baseURL}/comment/${id}`, comment);
+    return this.httpClient.patch(`${this.baseURL}comment/${id}`, comment);
   }
 
 
@@ -90,7 +92,13 @@ export class PublicationService {
   }
 
   getLikeById(id: number): Observable<Liking> {
-    return this.httpClient.get<Liking>(`${this.baseURL}/like/${id}`);
+    return this.httpClient.get<Liking>(`${this.baseURL}like/${id}`);
+  }
+
+  /*********/
+
+  getUserById(id: number): Observable<User> {
+    return this.httpClient.get<User>(`${this.baseURL}users/${id}`);
   }
 
 

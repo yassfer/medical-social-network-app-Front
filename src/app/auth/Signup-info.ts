@@ -1,6 +1,5 @@
 export class SignUpInfo {
 
-  ////
   firstName : String;
   lastName : String;
   mail :String;
@@ -8,12 +7,12 @@ export class SignUpInfo {
   password:String;
   birthDate:Date;
   address:String;
-  //image :Blob;
+  image : FormData;
   profession:String;
   professionnalisme: boolean;
   role: string[];
   recommander: string
-  ///
+
 
   constructor(firstName: string, lastName: string, mail: string, username:string, password: string,
       birthDate: Date, address: string, profession: string, recommander: string) {

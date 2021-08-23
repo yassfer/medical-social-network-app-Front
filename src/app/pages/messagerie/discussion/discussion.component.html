@@ -1,0 +1,41 @@
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title"><strong>Chat with {{UserToTalk.firstName}} {{UserToTalk.lastName}} </strong></h4>
+            <button type="button" class="btn-close" (click)="changeDisc()" aria-label="Close"></button>
+        </div>
+        <div class="ps-container ps-theme-default ps-active-y" id="chat-content"
+            style="overflow-y: scroll !important; height:400px !important;">
+            <div *ngFor="let msg of filtredMsg">
+                <ng-template [ngIf]="msg.sender==currentId" [ngIfElse]="loading">
+                    <div class="outgoing_msg">
+                        <div class="sent_msg">
+                            <p>{{msg.content}}</p>
+                            <span class="time_date"> <time datetime="2018">11111111</time></span>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template #loading>
+                    <div class="incoming_msg">
+                        <div class="incoming_msg_img">
+                            <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                        </div>
+                        <div class="received_msg">
+                            <div class="received_withd_msg">
+                                <p>{{msg.content}}</p>
+                                <span class="time_date"> {{msg.time}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="send-message">
+            <input cols="10" rows="2" #msg type="text" placeholder="Type your message here ...">
+            <ul class="list-inline">
+                <li>
+                    <button type="button" class="btn btn-info" (click)="sendMsg(msg.value,UserToTalk.id)"><i
+                            class="fas fa-paper-plane"></i></button>
+                </li>
+            </ul>
+        </div>
+    </div>

@@ -6,7 +6,7 @@
         <div class="col-8 " *ngFor="let publication of ApprouvedPublications">
           <div class=" card card-chart">
             <div class="card-body text-secondary">
-              <button type="button" class="close" aria-label="Close" (click)="onDeletePub">
+              <button type="button" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
               <h5 class=" card-category">
@@ -38,7 +38,7 @@
                 <div class=" card-header">
                   <h3 class=" card-title">
                     <i class=" tim-icons icon-heart-2 text-warn-states"
-                      (click)="onLike(1, publication.id)"> </i> <small id="like">
+                      (click)="onLike(idCurrentUser, publication.id)"> </i> <small id="like">
                       {{ publication.NbrLike }}</small>
                   </h3>
                 </div>
@@ -65,9 +65,3 @@
   </div>
 
 </div>
-
-<style>
-  .file-input {
-    display: none;
-  }
-</style>

@@ -1,39 +1,19 @@
-.profile-content{
-  margin-bottom: 350px;
-}
 
-.profile{
-  position: absolute;
-  top: 12%;
+.content{
+  margin-top: 50px;
 }
-
 
 .user-img{
   z-index: 2;
-  position: absolute;
-  left: 51%;
-  top: 4%;
 }
 
 .follow-button{
-  margin-bottom: 25px;
-  height: 60px;
-  padding: 0;
-  font-size: 11px;
-  color: white;
+  margin-bottom: 20px;
 }
-
 
 .card-info{
   z-index: 1;
-  width: 60%;
-  height: 150px;
-  justify-content: space-around;
-  position: absolute;
-  left: 27%;
-  top: 15%;
-  text-align: center;
-  justify-content: center;
+  width: 80%;
 }
 
 .row-friends{
@@ -58,12 +38,7 @@ span{
 .user-info{
   padding-top: 20px !important;
   padding-left: 20px !important;
-}
-
-.hr-user{
-  color: #47d3dd;
-  width: 250px;
-  margin-left: 20px;
+  height: 930px;
 }
 
 
@@ -96,8 +71,5 @@ h6{
   padding: 10px 20px 0 20px;
 }
 
-.comment{
-  font-size: 11px;
-  padding: 5px 30px;
-}
+
 

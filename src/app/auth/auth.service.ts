@@ -28,7 +28,7 @@ export class AuthService {
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {
     this.username = tokenStorage.getUsername();
     this.authorities = tokenStorage.getAuthorities();
-
+    this.currentUserId = Number(tokenStorage.getId());
   }
 
   public get currentUserValue(): User {
@@ -47,7 +47,6 @@ export class AuthService {
       console.log(this.currentUserId);
       return this.currentUserId;
     });
-    //console.log(this.currentUserId);
     return 0;
   }
 
@@ -71,8 +70,10 @@ export class AuthService {
   }
 
   logout() {
-    // remove user from local storage to log user out
+    console.log("nnn:"+ this.currentUserId )
+    this.http.put(`${this.userUrl}/manageStatus/${this.currentUserId }`, httpOptions).subscribe(data =>{
+      console.log("done!!")
+    });
     this.tokenStorage.logout();
-    //this.currentUserSubject.next(null);
 }
 }

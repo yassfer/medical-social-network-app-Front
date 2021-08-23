@@ -12,9 +12,14 @@ export class ChallengeService {
 
   constructor(private http: HttpClient) { }
 
-  // Challenge Service
-  createChallenge(challenge: Object): Observable<Object> {
-    return this.http.post<number>(`${this.baseUrl}challange/add`, challenge);
+  // Challenge Services
+
+  saveChallenge(id: number, challenge: Object): Observable<Object> {
+    return this.http.put(`${this.baseUrl}challange/save/${id}`, challenge);
+  }
+
+  createChallengeWithPiece(id: number, file: FormData): Observable<any> {
+    return this.http.post<Challenge>(`${this.baseUrl}challange/addChallenge/${id}`, file);
   }
 
   deleteChallenge(id: number): Observable<any> {

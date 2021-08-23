@@ -8,38 +8,23 @@ import { Intents } from 'src/app/entities/intents';
 })
 export class ChatBotService {
 
-  private baseUrl = 'http://localhost:5000/chat';
+  private baseUrl = 'http://localhost:5000';
 
   constructor(private http: HttpClient) { }
 
   getChatResponse(question: string): Observable<any> {
-    return this.http.get<Intents[]>(`${this.baseUrl}/${question}`);
+    return this.http.get<Intents[]>(`${this.baseUrl}/healthBot/${question}`);
   }
 
   openWorkoutBot(): Observable<any> {
-    return this.http.get<Intents>(`${this.baseUrl}`);
+    return this.http.get<Intents>(`${this.baseUrl}/workoutBot`);
   }
 
   getWorkoutFirstResponse(question: string): Observable<any> {
-    return this.http.get<Intents[]>(`${this.baseUrl}/problem/${question}`);
+    return this.http.get<Intents[]>(`${this.baseUrl}/workoutBot/problem/${question}`);
   }
 
-  getWorkouSecondResponse(question: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/upload/${question}`, null);
-  }
-
-  parseTable(file, question: string) {
-    console.log(file)
-    const uploadImageData = new FormData();
-    uploadImageData.append('file', file);
-    console.log("testt3: ")
-    console.log(uploadImageData.getAll("file"));
-    const httpOptions = {
-      headers: new HttpHeaders({
-          'Content-Type': 'multipart/form-data',
-      })
-    };
-
-    return this.http.post(`${this.baseUrl}/upload/${question}`, uploadImageData, httpOptions)
+  getWorkouSecondResponse(question: string, uploadImageData: FormData): Observable<any> {
+    return this.http.post(`${this.baseUrl}/workoutBot/upload/${question}`, uploadImageData);
   }
 }

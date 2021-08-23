@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ChallengeService } from './challenge.service';
 import { Challenge } from 'src/app/entities/Challenge';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { TokenStorageService } from "src/app/auth/token-storage.service";
 
 @Component({
   selector: "app-dashboard",
@@ -11,17 +12,26 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ChallengeComponent implements OnInit {
 
+  selectedFile: File;
+  challengeR: Challenge;
+  idChallengeR: number;
+  challenge: Challenge = new Challenge();
+  idCurrentUser: number;
+
   challenges: Challenge[];
   base64Data: any;
   condition: boolean;
   currentUserId: number = 1;
   closeResult = '';
-  challenge: Challenge = new Challenge();
+
   submitted = false;
   idChallenge: any;
 
 
-  constructor(private challengeService: ChallengeService, private router: Router, private modalService: NgbModal) { }
+  constructor(private challengeService: ChallengeService, private router: Router, private modalService: NgbModal,
+    private tokenStorage: TokenStorageService) {
+    this.idCurrentUser = Number(tokenStorage.getId());
+  }
 
   ngOnInit(): void {
     this.reloadData();
@@ -29,7 +39,7 @@ export class ChallengeComponent implements OnInit {
 
   /////start modal
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -52,25 +62,30 @@ export class ChallengeComponent implements OnInit {
 
 
   ///create challenge
-  save() {
+  public onFileSelected(event) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  onUpload() {
+    console.log(this.selectedFile);
+    console.log("id::: " + this.idCurrentUser);
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
     this.challengeService
-      .createChallenge(this.challenge).subscribe(data => {
+      .createChallengeWithPiece(this.idCurrentUser, uploadImageData).subscribe(data => {
         console.log(data);
-        this.idChallenge = data;
-        this.challenge = new Challenge();
-        this.gotoUploadImage(this.idChallenge);
+        this.challengeR = data;
+        this.idChallengeR = this.challengeR.id;
       },
         error => console.log(error));
   }
-
-  gotoUploadImage(id: number) {
-    console.log("id::" + id)
-    this.router.navigate(['/challenge/create/image', { idC: id }]);
-  }
-
-  onSubmit() {
-    this.submitted = true;
-    this.save();
+  save() {
+    this.challengeService
+      .saveChallenge(this.idChallengeR, this.challenge).subscribe(data => {
+        console.log(data);
+      },
+        error => console.log(error));
+    window.location.reload();
   }
 
   ///end create challenge
@@ -90,17 +105,15 @@ export class ChallengeComponent implements OnInit {
 
     });
   }
-  onParticipateCondition(challenge: Challenge){
-    if(challenge.adminChallenge.id === this.currentUserId){
+  onParticipateCondition(challenge: Challenge) {
+    if (challenge.adminChallenge.id === this.currentUserId) {
       alert("can't participate in your own challenge")
     }
     else {
-      this.router.navigate(['/challenge/create/publication'], {queryParams: {idC: challenge.id}});
+      this.router.navigate(['/challenge/create/publication'], { queryParams: { idC: challenge.id } });
     }
   }
-  gotoCreateChallenge() {
-    this.router.navigate(['/challenge/create']);
-  }
+
   gotoCheckChallenge() {
     this.router.navigate(['/challenge/myChallenges']);
   }

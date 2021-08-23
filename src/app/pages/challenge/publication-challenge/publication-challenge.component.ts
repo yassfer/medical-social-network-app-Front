@@ -5,6 +5,7 @@ import { Liking } from 'src/app/entities/liking';
 import { PublicationChallenge } from 'src/app/entities/PublicationChallenge';
 import { User } from 'src/app/entities/user';
 import { ChallengeService } from '../challenge.service';
+import { TokenStorageService } from "src/app/auth/token-storage.service";
 
 @Component({
   selector: 'app-publication-challenge',
@@ -15,17 +16,17 @@ export class PublicationChallengeComponent implements OnInit {
   condition: boolean;
   base64Data: any;
   user: User;
-  idCurrentUser = 1;
-
+  idCurrentUser: number;
   click = true;
   pub = true;
   liking: Liking = new Liking();
-
   ApprouvedPublications: PublicationChallenge[];
-  like: number = 5;
+  like;
 
   constructor(private challengeService: ChallengeService, private route: ActivatedRoute,
-    private router: Router, private domSanitizer: DomSanitizer) { }
+    private router: Router, private domSanitizer: DomSanitizer, private tokenStorage: TokenStorageService) {
+      this.idCurrentUser = Number(tokenStorage.getId());
+     }
 
 
   ngOnInit() {

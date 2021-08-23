@@ -1,0 +1,26 @@
+<div class="content">
+  <div class="row justify-content-around">
+    <div class="col-6" *ngFor="let invitation of invitations">
+      <div class=" card card-chart">
+        <div class="card-body text-secondary">
+          <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class=" card-category row">
+            <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="50" alt="Cinque Terre">
+            <div class="col-10">
+              <h5>{{invitation.sender.firstName}}&nbsp; {{invitation.sender.lastName}}</h5>
+              <h6 style="margin-top: -15px;">{{invitation.sender.profession}}</h6>
+            </div>
+          </div>
+        </div>
+        <div class=" card-body">
+          <div class="row justify-content-around mt-4">
+            <button class="btn col-4">Approuve</button>
+            <button class="btn col-4">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

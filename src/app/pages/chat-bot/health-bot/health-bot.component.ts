@@ -23,7 +23,6 @@ export class HealthBotComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   send() {
     if (this.running == true) return;
     const msg = this.message.nativeElement.value;

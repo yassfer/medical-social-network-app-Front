@@ -22,5 +22,4 @@ export class ChatBotComponent implements OnInit {
   openWorkoutBot(){
     this.router.navigate(["/workoutBot"])
   }
-
 }

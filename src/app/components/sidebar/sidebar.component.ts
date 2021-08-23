@@ -32,14 +32,14 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: "/chat",
-    title: "Chat",
-    icon: "icon-chat-33",
+    title: "Chatbot",
+    icon: "icon-satisfied",
     class: ""
   },
   {
-    path: "/welcome-chatbot",
-    title: "Chatbots",
-    icon: "icon-satisfied",
+    path: "/messagerie",
+    title: "Messagerie",
+    icon: "icon-chat-33",
     class: ""
   },
   {
