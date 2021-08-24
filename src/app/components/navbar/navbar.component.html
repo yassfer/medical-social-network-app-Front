@@ -55,6 +55,8 @@
             </a>
             </li>
 
+
+
               <li class=" nav-item item" ngbDropdown>
                 <a
                   class=" nav-link"
@@ -66,65 +68,20 @@
                   <p class=" d-lg-none">Chat</p>
                 </a>
                 <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
-                  <li class=" nav-link" style="width: 400px;">
+                  <li class=" nav-link" style="width: 400px;" *ngFor="let msg of lastFiveMsg">
                     <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
                                   <div class="row">
                                           <div class="img-square-wrapper col-3">
                                             <img src="../assets/test.jpg" id="nom" class="rounded-circle chat-img" height="50px" width="50px" alt="Cinque Terre">
                                           </div>
                                           <div class="col-8">
-                                              <h5 class="card-title">Maaloul Cyrine</h5>
-                                              <p class="card-text">Some quick example text to build</p>
-                                              <small class="text-muted">Il y a 3 mins</small>
+                                              <h5 class="card-title">{{msg.senderUser.firstName}}&nbsp;{{msg.senderUser.lastName}}</h5>
+                                              <p class="card-text">{{msg.content}}</p>
+                                              <small class="text-muted">{{msg.timestamp}}</small>
                                           </div>
                                       </div>
                                     </a>
-                  </li>
-                  <li class=" nav-link" style="width: 400px;">
-                    <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
-                                  <div class="row">
-                                          <div class="img-square-wrapper col-3">
-                                            <img src="../assets/test.jpg" id="nom" class="rounded-circle chat-img" height="50px" width="50px" alt="Cinque Terre">
-                                          </div>
-                                          <div class="col-8">
-                                              <h5 class="card-title">Maaloul Cyrine</h5>
-                                              <p class="card-text">Some quick example text to build</p>
-                                              <small class="text-muted">Il y a 3 mins</small>
-                                          </div>
-                                      </div>
-                                    </a>
-                  </li>
-                  <li class=" nav-link " style="width: 400px;">
-                    <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
-                                  <div class="row">
-                                          <div class="img-square-wrapper col-3">
-                                            <img src="../assets/test.jpg" id="nom" class="rounded-circle chat-img" height="50px" width="50px" alt="Cinque Terre">
-                                          </div>
-                                          <div class="col-8">
-                                            <h5 class="card-title">Maaloul Cyrine</h5>
-                                            <p class="card-text">Some quick example text to build</p>
-                                            <small class="text-muted">Il y a 3 mins</small>
-                                          </div>
-                                      </div>
-                                    </a>
-                  </li>
-                  <li class=" nav-link " style="width: 400px;">
-                    <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
-                                  <div class="row">
-                                          <div class="img-square-wrapper col-3">
-                                            <img src="../assets/test.jpg" id="nom" class="rounded-circle chat-img" height="50px" width="50px" alt="Cinque Terre">
-                                          </div>
-                                          <div class="col-8">
-                                            <h5 class="card-title">Maaloul Cyrine</h5>
-                                              <p class="card-text">Some quick example text to build</p>
-                                              <small class="text-muted">Il y a 3 mins</small>
-                                          </div>
-                                      </div>
-                                    </a>
-                  </li>
-                  <div class="all-msg">
-                    <a routerLink="/chat" style="color: #0098f0;">Afficher tous les messages</a>
-                  </div>
+                                  </li>
                 </ul>
               </li>
 
@@ -137,82 +94,56 @@
             ngbDropdownToggle>
 
             <i class=" tim-icons icon-send"> </i>
+            <p class=" d-lg-none">Invitations</p>
+          </a>
+          <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
+            <li class=" nav-link" style="width: 400px;" *ngFor="let invitation of FiveLastInvitations">
+              <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
+                            <div class="row">
+                                    <div class="img-square-wrapper col-3">
+                                      <img src="../assets/test.jpg" id="nom" class="rounded-circle chat-img" height="50px" width="50px" alt="Cinque Terre">
+                                    </div>
+                                    <div class="col-8">
+                                        <h5 class="card-title">{{invitation.sender.firstName}}&nbsp;{{invitation.sender.lastName}}</h5>
+                                        <div class="row justify-content-around">
+                                          <button type="button" class="btn btn-sm col-5" (click)="AcceptInvitation(isCurrentUser, invitation.id)">Accepter</button>
+                                          <button type="button" class="btn btn-sm col-5" (click)="deleteInvitation(invitation.id)">Refuser</button>
+                                        </div>
+                                        <small class="text-muted">{{invitation.since}}</small>
+                                    </div>
+                                </div>
+                              </a>
+                            </li>
+          </ul>
+        </li>
+
+        <li class=" nav-item" ngbDropdown>
+          <a
+            class=" nav-link"
+            data-toggle="dropdown"
+            href="javascript:void(0)"
+            ngbDropdownToggle
+          >
+            <div class=" notification d-none d-lg-block d-xl-block"></div>
+            <span class="badge badge-danger">{{numberMynotif}}</span>
+            <i class=" tim-icons icon-sound-wave"> </i>
             <p class=" d-lg-none">Notifications</p>
           </a>
           <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
-            <li class=" nav-link" style="width: 400px;">
+            <div *ngFor="let notif of myNotifs" >
+            <li class=" nav-link"   >
               <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
-                            <div class="row">
-                                    <div class="img-square-wrapper col-3">
-                                      <img src="../assets/test.jpg" id="nom" class="rounded-circle chat-img" height="50px" width="50px" alt="Cinque Terre">
-                                    </div>
-                                    <div class="col-8">
-                                        <h5 class="card-title">Maaloul Cyrine</h5>
-                                        <div class="row justify-content-around">
-                                          <button type="button" class="btn btn-sm col-5">Accepter</button>
-                                          <button type="button" class="btn btn-sm col-5">Refuser</button>
-                                        </div>
-                                        <small class="text-muted">Il y a 3 mins</small>
-                                    </div>
-                                </div>
-                              </a>
-            </li>
-            <li class=" nav-link" style="width: 400px;">
-              <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
-                            <div class="row">
-                                    <div class="img-square-wrapper col-3">
-                                      <img src="../assets/test.jpg" id="nom" class="rounded-circle chat-img" height="50px" width="50px" alt="Cinque Terre">
-                                    </div>
-                                    <div class="col-8">
-                                        <h5 class="card-title">Maaloul Cyrine</h5>
-                                        <div class="row justify-content-around">
-                                          <button type="button" class="btn btn-sm approuve-button col-5">Accepter</button>
-                                          <button type="button" class="btn btn-sm col-5">Refuser</button>
-                                        </div>
-                                        <small class="text-muted">Il y a 3 mins</small>
-                                    </div>
-                                </div>
-                              </a>
+                {{notif.content}}
+                <button type="button" class="btn-close" (click)="deleteNotif(notif.id)" aria-label="Close"></button>
+
+              </a>
+
             </li>
 
-            <li class=" nav-link" style="width: 400px;">
-              <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
-                            <div class="row">
-                                    <div class="img-square-wrapper col-3">
-                                      <img src="../assets/test.jpg" id="nom" class="rounded-circle chat-img" height="50px" width="50px" alt="Cinque Terre">
-                                    </div>
-                                    <div class="col-8">
-                                        <h5 class="card-title">Maaloul Cyrine</h5>
-                                        <div class="row justify-content-around">
-                                          <button type="button" class="btn btn-sm approuve-button col-5">Accepter</button>
-                                          <button type="button" class="btn btn-sm col-5">Refuser</button>
-                                        </div>
-                                        <small class="text-muted">Il y a 3 mins</small>
-                                    </div>
-                                </div>
-                              </a>
-            </li>
-
-            <li class=" nav-link" style="width: 400px;">
-              <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
-                            <div class="row">
-                                    <div class="img-square-wrapper col-3">
-                                      <img src="../assets/test.jpg" id="nom" class="rounded-circle chat-img" height="50px" width="50px" alt="Cinque Terre">
-                                    </div>
-                                    <div class="col-8">
-                                        <h5 class="card-title">Maaloul Cyrine</h5>
-                                        <div class="row justify-content-around">
-                                          <button type="button" class="btn btn-sm approuve-button col-5">Accepter</button>
-                                          <button type="button" class="btn btn-sm col-5">Refuser</button>
-                                        </div>
-                                        <small class="text-muted">Il y a 3 mins</small>
-                                    </div>
-                                </div>
-                              </a>
-            </li>
-
-          </ul>
+            </div>
+            </ul>
         </li>
+
         <li class=" nav-item item" ngbDropdown>
           <a
             class=" nav-link"

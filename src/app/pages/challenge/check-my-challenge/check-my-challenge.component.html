@@ -1,32 +1,23 @@
 <div class="content">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h2>My challenges</h2>
-    </div>
-    <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
-    <ng-template #elseBlock>
-      <div class="panel-body">
-        <table class="table table-striped">
-          <thead>
+  <div class="row justify-content-center custyle" style="margin-top: 50px;">
+    <div class="col-9">
+      <table class="table table-striped custab" style="color: white !important;">
+        <thead>
             <tr>
-              <th>Name</th>
-              <th>Object</th>
-              <th>Image</th>
-              <th>Actions</th>
+              <td>Logo</td>
+                <th>Name</th>
+                <th>Object</th>
+                <th class="text-center">Action</th>
             </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let challenge of challenges ">
-              <td>{{challenge.nom}}</td>
-              <td>{{challenge.objectif}}</td>
-              <td><img [src]="challenge.image" height=100 width=100 /></td>
-              <td><button (click)="deleteChallenge(challenge.id)" class="btn btn-danger">Delete</button>
-                <button type="button" class="btn btn-info" style="margin-left: 10px" [routerLink]="['/challengePublications']" [queryParams]="{idC: challenge.id}">Consult publications</button>
-              </td>
-            </tr>
-          </tbody>
+        </thead>
+                <tr *ngFor="let challenge of challenges">
+                  <td><img [src]="challenge.image" height=100 width=100 /></td>
+                    <td>{{challenge.nom}}</td>
+                    <td>{{challenge.objectif}}</td>
+                    <td class="text-center"><a class='btn btn-info btn-xs' [routerLink]="['/challengePublications']" [queryParams]="{idC: challenge.id}"><span class="glyphicon glyphicon-edit"></span> check publication</a> <a (click)="deleteChallenge(challenge.id)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                </tr>
         </table>
-      </div>
-    </ng-template>
-  </div>
+    </div>
+
+    </div>
 </div>

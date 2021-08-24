@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { Message } from 'src/app/entities/message';
+import { User } from 'src/app/entities/User';
 import { MessagerieService } from '../messagerie.service';
 
 @Component({
@@ -47,4 +49,5 @@ export class MessagerieComponent implements OnInit {
       console.log(this.userConnected);
     })
   }
+
 }

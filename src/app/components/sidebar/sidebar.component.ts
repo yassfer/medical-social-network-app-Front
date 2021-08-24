@@ -31,7 +31,7 @@ export const ROUTES: RouteInfo[] = [
     class: ""
   },
   {
-    path: "/chat",
+    path: "/chatbot",
     title: "Chatbot",
     icon: "icon-satisfied",
     class: ""
@@ -50,13 +50,13 @@ export const ROUTES: RouteInfo[] = [
   },
 
   {
-    path: "/donation",
+    path: "/donations",
     title: "Donations",
     icon: "icon-sound-wave",
     class: ""
   },
   {
-    path: "/publicité",
+    path: "/partenaires",
     title: "Publicités",
     icon: "icon-bag-16",
     class: ""

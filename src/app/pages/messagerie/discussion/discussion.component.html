@@ -10,7 +10,7 @@
                     <div class="outgoing_msg">
                         <div class="sent_msg">
                             <p>{{msg.content}}</p>
-                            <span class="time_date"> <time datetime="2018">11111111</time></span>
+                            <span class="time_date"> <time datetime="2018">{{msg.timestamp}}</time></span>
                         </div>
                     </div>
                 </ng-template>
@@ -22,7 +22,7 @@
                         <div class="received_msg">
                             <div class="received_withd_msg">
                                 <p>{{msg.content}}</p>
-                                <span class="time_date"> {{msg.time}}</span>
+                                <span class="time_date"> {{msg.timestamp}}</span>
                             </div>
                         </div>
                     </div>

@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 
 import { ChallengeComponent } from "../../pages/challenge/challenge.component";
 import { PublicationComponent } from "../../pages/publications/publication.component";
-import { NotificationsComponent } from "../../pages/notifications/notifications.component";
+import { DonationsComponent } from "../../pages/donations/donations.component";
 import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
 import { TypographyComponent } from "../../pages/typography/typography.component";
@@ -25,6 +25,7 @@ import { WorkoutBotComponent } from "src/app/pages/chat-bot/workout-bot/workout-
 import { AboutUsComponent } from "src/app/pages/about-us/about-us.component";
 import { InvitationComponent } from "src/app/pages/invitation/invitation.component";
 import { MessagerieComponent } from "src/app/pages/messagerie/messagerie/messagerie.component";
+import { PartenaireComponent } from "src/app/pages/partenaires/partenaire.component";
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -34,7 +35,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: "challenge/create/publication", component: CreatePublicationChallengeComponent, canActivate: [AuthGuard] },
   { path: "challengePublications", component: ApprouvePubChallengeComponent, canActivate: [AuthGuard] },
   { path: "publications", component: PublicationComponent, canActivate: [AuthGuard] },
-  { path: "notifications", component: NotificationsComponent, canActivate: [AuthGuard] },
   { path: "user", component: UserComponent, canActivate: [AuthGuard] },
   { path: "tables", component: TablesComponent, canActivate: [AuthGuard] },
   { path: "typography", component: TypographyComponent, canActivate: [AuthGuard] },
@@ -42,9 +42,10 @@ export const AdminLayoutRoutes: Routes = [
   { path: "user-profile", component: UserProfileComponent, canActivate: [AuthGuard] },
   { path: "healthBot", component: HealthBotComponent, canActivate: [AuthGuard] },
   { path: "workoutBot", component: WorkoutBotComponent, canActivate: [AuthGuard] },
-  { path: "invitations", component: InvitationComponent, canActivate: [AuthGuard] },
+  { path: "invitations", component: InvitationComponent},
   { path: "about-us", component: AboutUsComponent},
-  { path: "notif", component: NotificationsComponent},
+  { path: "donations", component: DonationsComponent, canActivate: [AuthGuard]},
+  { path: "partenaires", component: PartenaireComponent, canActivate: [AuthGuard]},
   //Communities
   { path: "communities", component: CommunitieslistComponent, canActivate: [AuthGuard] },
   { path: 'communityadd', component: CommunityaddComponent, canActivate: [AuthGuard] },
@@ -52,6 +53,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: "communityupdate/:id", component: CommunityupdateComponent, canActivate: [AuthGuard] },
   { path: 'CreateImage', component: CreateCommunityImageComponent, canActivate: [AuthGuard] },
   { path: 'allcommunities', component: AllCommunitiesComponent, canActivate: [AuthGuard] },
-    //messagerie
-    { path: 'messagerie', component: MessagerieComponent }
+  //messagerie
+  { path: 'messagerie', component: MessagerieComponent }
 ];

@@ -10,6 +10,7 @@ import { PublicationService } from "../publications/publication.service";
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { PieceJoint } from "src/app/entities/PieceJoint";
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { InvitationService } from '../invitation/invitation.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -33,9 +34,10 @@ export class UserProfileComponent implements OnInit {
   closeResult = '';
   file: any[];
   currentUser: User;
+  friends: User[];
 
 
-  constructor(private publicationservice: PublicationService,
+  constructor(private publicationservice: PublicationService,private invitationService: InvitationService,
     private router: Router, private domSanitizer: DomSanitizer, private modalService: NgbModal,
     private route: ActivatedRoute, private tokenStorage: TokenStorageService) {
       this.idCurrentUser = Number(tokenStorage.getId());
@@ -44,6 +46,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.getUser(this.idCurrentUser);
+    this.getMyFriends();
     this.reloadData(this.idCurrentUser);
   }
 
@@ -79,9 +82,7 @@ export class UserProfileComponent implements OnInit {
     },
       error => console.log(error));
   }
-  /*gotoUploadImage() {
-    this.router.navigate(['/publication/create/image']);
-  }*/
+
   onDeletePub(id: number) {
     this.publicationservice.deletePub(id).subscribe(data => {
       console.log(data);
@@ -211,6 +212,28 @@ reloadData(id: number) {
 
 
 
+  getMyFriends() {
+    this.publicationservice.getFriends(this.idCurrentUser).subscribe(data => {
+      console.log(data);
+      this.friends = data;
+      console.log(this.friends)
+    },
+    error => {
+      console.log(error);
+    });
+
+  }
+
+
+  onFollow(senderId: number, receiverId: number) {
+    this.invitationService.AddInvitation(senderId, receiverId).subscribe(data => {
+      console.log(data);
+    },
+    error => {
+      console.log(error);
+    });
+
+  }
 
 
 }

@@ -22,4 +22,8 @@ export class MessagerieService {
   getUserList(id: number): Observable<User[]> {
     return this.http.get<User[]>(`${this.url}api/users/getMyFriends/${id}`);
   }
+
+  getMessageByReceiver(id: number): Observable<any> {
+    return this.http.get<Message[]>(`${this.url}message/receiverId/${id}`);
+  }
 }

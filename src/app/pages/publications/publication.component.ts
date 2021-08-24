@@ -10,6 +10,7 @@ import { PublicationService } from "../publications/publication.service";
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { PieceJoint } from "src/app/entities/PieceJoint";
 import { TokenStorageService } from "src/app/auth/token-storage.service";
+import { InvitationService } from "../invitation/invitation.service";
 
 @Component({
   selector: "app-publication",
@@ -33,9 +34,10 @@ export class PublicationComponent implements OnInit {
   closeResult = '';
   file: any[];
   currentUser: User;
+  friends: User[];
 
 
-  constructor(private publicationservice: PublicationService,
+  constructor(private publicationservice: PublicationService,private invitationService: InvitationService,
     private router: Router, private domSanitizer: DomSanitizer, private modalService: NgbModal,
     private route: ActivatedRoute, private tokenStorage: TokenStorageService) {
       this.idCurrentUser = Number(tokenStorage.getId());
@@ -44,7 +46,8 @@ export class PublicationComponent implements OnInit {
 
   ngOnInit() {
     this.getUser(this.idCurrentUser);
-    this.reloadData();
+    this.getMyFriends();
+    this.reloadData(this.idCurrentUser);
   }
 
 
@@ -74,14 +77,12 @@ export class PublicationComponent implements OnInit {
   getUser(idCurrentUser: number) {
     this.publicationservice.getUserById(idCurrentUser).subscribe(data => {
       this.currentUser = data;
-     /* this.base64Data = this.currentUser.image;
+      /*this.base64Data = this.currentUser.image;
       this.currentUser.imageProfile = 'data:image/jpeg;base64,' + this.base64Data;*/
     },
       error => console.log(error));
   }
-  /*gotoUploadImage() {
-    this.router.navigate(['/publication/create/image']);
-  }*/
+
   onDeletePub(id: number) {
     this.publicationservice.deletePub(id).subscribe(data => {
       console.log(data);
@@ -128,18 +129,17 @@ export class PublicationComponent implements OnInit {
   }
 
 
-  getPublications(){
-    this.publicationservice.getPub().subscribe(data => {
+  getPublicationByUserId(id: number){
+    this.publicationservice.getPublicationByUserId(id).subscribe(data => {
 
       this.publications = data;
-      console.log(data);
       console.log(this.publications);
     },
       error => console.log(error));
 }
 
-reloadData() {
-  this.publicationservice.getPub().subscribe(data => {
+reloadData(id: number) {
+  this.publicationservice.getPublicationByUserId(id).subscribe(data => {
     if (data.length === 0) {
       this.condition = true;
     } else {
@@ -212,6 +212,28 @@ reloadData() {
 
 
 
+  getMyFriends() {
+    this.publicationservice.getFriends(this.idCurrentUser).subscribe(data => {
+      console.log(data);
+      this.friends = data;
+      console.log(this.friends)
+    },
+    error => {
+      console.log(error);
+    });
+
+  }
+
+
+  onFollow(senderId: number, receiverId: number) {
+    this.invitationService.AddInvitation(senderId, receiverId).subscribe(data => {
+      console.log(data);
+    },
+    error => {
+      console.log(error);
+    });
+
+  }
 
 
 }

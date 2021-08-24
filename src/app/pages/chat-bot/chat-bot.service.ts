@@ -9,11 +9,12 @@ import { Intents } from 'src/app/entities/intents';
 export class ChatBotService {
 
   private baseUrl = 'http://localhost:5000';
+  private baseUrlS = 'http://localhost:5100';
 
   constructor(private http: HttpClient) { }
 
   getChatResponse(question: string): Observable<any> {
-    return this.http.get<Intents[]>(`${this.baseUrl}/healthBot/${question}`);
+    return this.http.get<Intents[]>(`${this.baseUrlS}/healthBot/${question}`);
   }
 
   openWorkoutBot(): Observable<any> {
@@ -26,5 +27,9 @@ export class ChatBotService {
 
   getWorkouSecondResponse(question: string, uploadImageData: FormData): Observable<any> {
     return this.http.post(`${this.baseUrl}/workoutBot/upload/${question}`, uploadImageData);
+  }
+
+  getWorkoutVideo(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/workoutBot/returnvideo`);
   }
 }

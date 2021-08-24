@@ -4,6 +4,7 @@ import { ChallengeService } from './challenge.service';
 import { Challenge } from 'src/app/entities/Challenge';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { TokenStorageService } from "src/app/auth/token-storage.service";
+import { User } from "src/app/entities/User";
 
 @Component({
   selector: "app-dashboard",
@@ -20,9 +21,11 @@ export class ChallengeComponent implements OnInit {
 
   challenges: Challenge[];
   base64Data: any;
+  base64DataP: any;
   condition: boolean;
   currentUserId: number = 1;
   closeResult = '';
+  currentUser: User;
 
   submitted = false;
   idChallenge: any;
@@ -30,11 +33,18 @@ export class ChallengeComponent implements OnInit {
 
   constructor(private challengeService: ChallengeService, private router: Router, private modalService: NgbModal,
     private tokenStorage: TokenStorageService) {
-    this.idCurrentUser = Number(tokenStorage.getId());
+    this.idCurrentUser = Number(this.tokenStorage.getId());
   }
 
   ngOnInit(): void {
     this.reloadData();
+    this.challengeService.getUserById(this.idCurrentUser).subscribe(data => {
+    this.currentUser = data;
+    console.log("userrr")
+    console.log(this.currentUser)
+    //this.base64DataP = this.currentUser.logo;
+    this.currentUser.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
+    });
   }
 
   /////start modal
@@ -115,6 +125,6 @@ export class ChallengeComponent implements OnInit {
   }
 
   gotoCheckChallenge() {
-    this.router.navigate(['/challenge/myChallenges']);
+    this.router.navigate(['challenge/myChallenges']);
   }
 }

@@ -73,10 +73,13 @@ export class ApprouvePubChallengeComponent implements OnInit {
       error => console.log(error));
       window.location.reload();
   }
-  approuvePublicationChallenge(idPubChallenge: number) {
+  approuvePublicationChallenge(idPubChallenge: number, publication: PublicationChallenge) {
     this.challengeService.approuvePubChallenge(idPubChallenge, 4).subscribe(data => {
       console.log(data);
-      this.deletePublicationChallenge(idPubChallenge);
+     /* const idx = this.publications.indexOf(publication);
+      this.publications.forEach((element,index)=>{
+        if(element==publication) this.publications.splice(index,idx);
+     });*/
     },
       error => console.log(error));
       window.location.reload();

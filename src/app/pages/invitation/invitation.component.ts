@@ -13,11 +13,12 @@ export class InvitationComponent implements OnInit {
 invitations: Invitation[];
 idCurrentUser: number;
 
-  constructor(private invitationService: InvitationService, private tokenStorage: TokenStorageService) { 
+  constructor(private invitationService: InvitationService, private tokenStorage: TokenStorageService) {
     this.idCurrentUser = Number(tokenStorage.getId());
   }
 
   ngOnInit(): void {
+    this.getInvitations();
   }
 
   getInvitations(){
@@ -29,20 +30,22 @@ idCurrentUser: number;
   }
 
 
-  deleteInvitation(id: number, invitation: Object){
-    this.invitationService.DeleteInvitation(id, invitation).subscribe(data => {
+  deleteInvitation(invitationId: number){
+    this.invitationService.DeleteInvitation(invitationId).subscribe(data => {
       console.log(data);
     },
       error => console.log(error));
+      window.location.reload();
   }
 
 
 
-  AcceptInvitation(id: number, invitation: Object){
-    this.invitationService.AcceptInvitation(id, invitation).subscribe(data => {
+  AcceptInvitation(id: number, invitationId: number){
+    this.invitationService.AcceptInvitation(id, invitationId).subscribe(data => {
       console.log(data);
     },
       error => console.log(error));
+      window.location.reload();
   }
 
 }

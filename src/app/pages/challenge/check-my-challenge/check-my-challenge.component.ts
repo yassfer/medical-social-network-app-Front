@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Challenge } from 'src/app/entities/Challenge';
 import { ChallengeService } from '../challenge.service';
 
@@ -13,15 +14,18 @@ export class CheckMyChallengeComponent implements OnInit {
   challenges: Challenge[];
   base64Data: any;
   condition: boolean;
+  idCurrentUser: number;
 
-  constructor(private challengeService: ChallengeService, private router: Router) { }
+  constructor(private challengeService: ChallengeService, private router: Router, private tokenStorage: TokenStorageService) {
+    this.idCurrentUser = Number(this.tokenStorage.getId());
+   }
 
   ngOnInit(): void {
     this.reloadData();
   }
 
   reloadData() {
-    this.challengeService.getMyChallengesList().subscribe(data => {
+    this.challengeService.getMyChallengesList(this.idCurrentUser).subscribe(data => {
       this.challenges = data;
       if (this.challenges.length === 0) {
         this.condition = true;
@@ -44,5 +48,6 @@ export class CheckMyChallengeComponent implements OnInit {
         },
         error => console.log(error));
   }
+
 
 }

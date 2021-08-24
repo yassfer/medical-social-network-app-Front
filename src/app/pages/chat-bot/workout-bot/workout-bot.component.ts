@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Intents } from 'src/app/entities/intents';
 import { ChatBotService } from '../chat-bot.service';
 
@@ -21,8 +22,9 @@ export class WorkoutBotComponent implements OnInit {
   advices: string;
   selectedFile: File;
   problem: string;
+  base64Data: any;
 
-  constructor(private chatBotService: ChatBotService) { }
+  constructor(private chatBotService: ChatBotService, private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
   }
@@ -98,9 +100,6 @@ export class WorkoutBotComponent implements OnInit {
 
   public onFileChanged(event) {
     this.selectedFile = event.target.files[0];
-  }
-
-  onUpload() {
     const uploadImageData = new FormData();
     uploadImageData.append('file', this.selectedFile);
     this.chatBotService
@@ -109,14 +108,18 @@ export class WorkoutBotComponent implements OnInit {
       this.intents = data;
       this.remarques = this.intents.remarques;
       this.advices =this.intents.advices;
-      console.log("rema:: "+this.remarques)
-      console.log("adv:: "+this.advices)
     },
     error => console.log(error))
+    this.addResponseMsg("Please wait a few seconds 😀")
     setTimeout(()=>{
       this.addResponseMsg(this.remarques)
       this.addResponseMsg(this.advices)
     },9000)
+    /*this.chatBotService
+    .getWorkoutVideo().subscribe(data => {
+    },
+    error => console.log(error))*/
+
     this.running = true;
   }
 }

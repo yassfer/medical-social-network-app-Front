@@ -8,7 +8,7 @@ import { Invitation } from 'src/app/entities/invitation';
 })
 export class InvitationService {
 
-  private baseUrl = 'http://localhost:8090/invitations'; 
+  private baseUrl = 'http://localhost:8090/invitations';
 
   constructor(private http: HttpClient) { }
 
@@ -16,11 +16,16 @@ export class InvitationService {
     return this.http.get<Invitation[]>(`${this.baseUrl}/getInvitationByUser/${id}`);
   }
 
-  DeleteInvitation(id: number, invitation: Object): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/delete/${id}`, invitation);
+  DeleteInvitation(invitationId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/delete/${invitationId}`);
   }
 
-  AcceptInvitation(id: number, invitation: Object): Observable<any> {
-    return this.http.post<number>(`${this.baseUrl}/accept/${id}`, invitation);
+  AcceptInvitation(id: number, invitationId: number): Observable<any> {
+    return this.http.get<number>(`${this.baseUrl}/accept/${id}/${invitationId}`);
   }
+
+  AddInvitation(senderId: number, receiverId: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/add/${senderId}/${receiverId}`, Invitation);
+  }
+
 }

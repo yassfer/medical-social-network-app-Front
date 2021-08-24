@@ -7,7 +7,7 @@ import { FormsModule } from "@angular/forms";
 import { AdminLayoutRoutes } from "./admin-layout.routing";
 import { ChallengeComponent } from "../../pages/challenge/challenge.component";
 import { PublicationComponent } from "../../pages/publications/publication.component";
-import { NotificationsComponent } from "../../pages/notifications/notifications.component";
+import { DonationsComponent } from "../../pages/donations/donations.component";
 import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
 import { TypographyComponent } from "../../pages/typography/typography.component";
@@ -36,7 +36,7 @@ import { HealthBotComponent } from "src/app/pages/chat-bot/health-bot/health-bot
     TablesComponent,
     PublicationComponent,
     TypographyComponent,
-    NotificationsComponent
+    DonationsComponent
   ],
   providers: [HealthBotComponent]
 })

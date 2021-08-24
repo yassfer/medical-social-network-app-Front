@@ -1,157 +1,99 @@
 <div class=" content">
-  <!--<div class="row justify-content-between mt-3">
-        <div class="col-4 ml-auto">
-            <button (click)="gotoCheckChallenge()" type="button" mdbBtn color="primary" mdbWavesEffect>Check my
-                challenges</button>
-        </div>
-    </div>-->
-  <!--<div class="row mt-3">
-        <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
-        <ng-template #elseBlock>
-            <div class="col-md-4" *ngFor="let challenge of challenges">-->
-  <!--Card-->
-  <!--<mdb-card cascade="true" narrower="true">-->
-
-  <!--Card image-->
-  <!--<div class="view view-cascade overlay waves-light" mdbWavesEffect>
-                        <mdb-card-img [src]="challenge.image"></mdb-card-img>
-                        <a>
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>-->
-  <!--/Card image-->
-
-  <!--<mdb-card-body cascade="true" class="text-center">-->
-  <!--Card content-->
-
-  <!--Title-->
-  <!--<h4 class="card-title">{{challenge.nom}}</h4>-->
-  <!--Text-->
-
-  <!-- <mdb-card-text>
-                            {{challenge.objectif}}
-                        </mdb-card-text>
-
-                        <button type="button" color="unique" class="btn btn-xs col-5 button-challenge" (click)="onParticipateCondition(challenge)">Participate</button>
-                          <button color="unique" class="btn btn-xs col-5 button-challenge" [routerLink]="['/challenge/publications']" [queryParams]="{idC: challenge.id}">Consult publication</button>
-
-                    </mdb-card-body>-->
-  <!--/.Card content-->
-
-  <!--</mdb-card>-->
-  <!--/.Card-->
-  <!--</div>
-        </ng-template>
-
-    </div>-->
-
-
-  <!--add challenge test-->
-
-  <div class="offset-1">
-    <div class="card offset-2" style="width: 30rem;">
-      <div class="card-body">
-        <div class="card-category row">
-          <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
-          <div class="col-10 mt-1">
-            <h5>Cyrine Maaloul</h5>
-          </div>
-        </div>
-        <div class="md-form">
-          <div [hidden]="submitted" style="width: 400px;">
-            <form>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Name" id="nom" required [(ngModel)]="challenge.nom"
-                  name="nom">
-              </div>
-
-              <div class="form-group">
-                <textarea id="form7" placeholder="objectif" id="objectif" required [(ngModel)]="challenge.objectif"
-                  class="md-textarea form-control" rows="4"></textarea>
-              </div>
-
-              <div class="mt-2">
-                <i class="tim-icons icon-image-02 mr-3" (click)="open(content)"></i>
-                <ng-template #content let-modal>
-                  <div class="modal-header">
-                    <h4 class="modal-title" id="modal-basic-title">Start Uploading</h4>
-                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="content">
-                      <form enctype="multipart/form-data" class="row">
-                        <div class="file-field md-form col-5">
-                          <div mdbBtn rounded="true" gradient="aqua" size="md" mdbWavesEffect>
-                            <input type="file" (change)="onFileSelected($event)" multiple="multiple" #fileUpload>
-                          </div>
-                        </div>
-                        <button class="col-2 button-upload ml-auto" type="button" (click)="onUpload()">Upload</button>
-                      </form>
-                    </div>
-                  </div>
-                  <div class="modal-footer justify-content-center align-center">
-                    <button type="button" class="button-upload" (click)="modal.close('Save click')">Save</button>
-                  </div>
-                </ng-template>
-              </div>
-
-              <button type="button" class="btn btn-sm btn-add" (click)="save()">Add</button>
-            </form>
-          </div>
-        </div>
-        <div [hidden]="!submitted">
-          <h4>You submitted successfully!</h4>
+  <div class="card offset-2" style="width: 30rem;">
+    <div class="card-body">
+      <div class="card-category row">
+        <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
+        <div class="col-10 mt-1">
+          <h5>Cyrine Maaloul</h5>
         </div>
       </div>
-    </div>
-    <!--end add challenge test-->
-
-
-
-    <!--test-->
-    <div class="row row-challenge justify-content-around">
-      <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
-      <ng-template #elseBlock>
-        <div class="col-5" *ngFor="let challenge of challenges">
-          <mdb-card cascade="true" narrower="true">
-            <div class="view view-cascade overlay waves-light" mdbWavesEffect>
-              <mdb-card-img [src]="challenge.image"></mdb-card-img>
-              <a>
-                <div class="mask rgba-white-slight"></div>
-              </a>
+      <div class="md-form">
+        <div [hidden]="submitted" style="width: 400px;">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Name" id="nom" required [(ngModel)]="challenge.nom"
+                name="nom">
             </div>
-            <!--Card image-->
 
-            <mdb-card-body cascade="true" class="text-center">
-              <!--Card content-->
+            <div class="form-group">
+              <textarea id="form7" placeholder="objectif" id="objectif" required [(ngModel)]="challenge.objectif"
+                class="md-textarea form-control" rows="4"></textarea>
+            </div>
 
-              <!--Title-->
-              <h4 class="card-title">{{challenge.nom}}</h4>
-              <!--Text-->
+            <div class="mt-2">
+              <i class="tim-icons icon-image-02 mr-3" (click)="open(content)"></i>
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Start Uploading</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="content">
+                    <form enctype="multipart/form-data" class="row">
+                      <div class="file-field md-form col-5">
+                        <div mdbBtn rounded="true" gradient="aqua" size="md" mdbWavesEffect>
+                          <input type="file" (change)="onFileSelected($event)" multiple="multiple" #fileUpload>
+                        </div>
+                      </div>
+                      <button class="col-2 button-upload ml-auto" type="button" (click)="onUpload()">Upload</button>
+                    </form>
+                  </div>
+                </div>
+                <div class="modal-footer justify-content-center align-center">
+                  <button type="button" class="button-upload" (click)="modal.close('Save click')">Save</button>
+                </div>
+              </ng-template>
+            </div>
 
-              <mdb-card-text>
-                {{challenge.objectif}}
-              </mdb-card-text>
-
-              <div class="row justify-content-around">
-                <button type="button" color="unique" class="btn btn-xs col-5 button-challenge" (click)="onParticipateCondition(challenge)">Participate</button>
-                <button color="unique" class="btn btn-xs col-5 button-challenge" [routerLink]="['/challenge/publications']" [queryParams]="{idC: challenge.id}">Consult publication</button>
-              </div>
-
-            </mdb-card-body>
-            <!--/.Card content-->
-
-          </mdb-card>
-          <!--/.Card-->
+            <button type="button" class="btn btn-sm btn-add" (click)="save()">Add</button>
+          </form>
         </div>
-      </ng-template>
-
-      <!--end another card-->
+      </div>
+      <div [hidden]="!submitted">
+        <h4>You submitted successfully!</h4>
+      </div>
     </div>
+
   </div>
+  <div class="offset-9">
+    <button class="btn btn-default orange-circle-button" href="" (click)="gotoCheckChallenge()">Mine<br /><span
+        class="orange-circle-greater-than" >></span></button>
+  </div>
+      <div class="row row-challenge justify-content-around">
 
-  <!--end test-->
+    <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
+    <ng-template #elseBlock>
+      <div class="col-4" *ngFor="let challenge of challenges">
+        <mdb-card cascade="true" narrower="true">
+          <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+            <mdb-card-img [src]="challenge.image" style="max-width: 200 !important; max-height: 300px !important;">
+            </mdb-card-img>
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
 
+          <mdb-card-body cascade="true" class="text-center">
+
+            <h4 class="card-title">{{challenge.nom}}</h4>
+
+            <mdb-card-text>
+              {{challenge.objectif}}
+            </mdb-card-text>
+
+            <div class="row justify-content-around">
+              <button type="button" color="unique" class="btn btn-xs col-5 button-challenge"
+                (click)="onParticipateCondition(challenge)">Participate</button>
+              <button color="unique" class="btn btn-xs col-5 button-challenge"
+                [routerLink]="['/challenge/publications']" [queryParams]="{idC: challenge.id}">Consult
+                publication</button>
+            </div>
+
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </ng-template>
+  </div>
 </div>

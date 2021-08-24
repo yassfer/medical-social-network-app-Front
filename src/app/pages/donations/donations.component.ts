@@ -3,11 +3,11 @@ import { Component, OnInit } from "@angular/core";
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: "app-notifications",
-  templateUrl: "notifications.component.html",
-  styleUrls: ['./notifications.component.scss']
+  selector: "app-donations",
+  templateUrl: "donations.component.html",
+  styleUrls: ['./donations.component.scss']
 })
-export class NotificationsComponent implements OnInit {
+export class DonationsComponent implements OnInit {
 
 
   constructor() {}

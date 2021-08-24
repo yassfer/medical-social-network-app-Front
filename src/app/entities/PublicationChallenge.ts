@@ -1,3 +1,4 @@
+import { Challenge } from "./Challenge";
 import { Comments } from "./Comments";
 import { Liking } from "./liking";
 import { PieceJoint } from "./PieceJoint";
@@ -12,4 +13,5 @@ export class PublicationChallenge {
     NbrLike: number;
     user: User;
     approuve: boolean;
+    challenge: Challenge;
 }

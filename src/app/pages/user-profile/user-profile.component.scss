@@ -33,12 +33,18 @@ span{
   color: darkgray;
 }
 
+.profile-name{
+  text-transform: uppercase;
+  justify-content: center;
+  text-align: center;
+}
 
 
 .user-info{
-  padding-top: 20px !important;
-  padding-left: 20px !important;
-  height: 930px;
+  padding-top: 20px;
+  padding-left: 20px;
+  box-sizing: content-box;
+  height: 800px;
 }
 
 

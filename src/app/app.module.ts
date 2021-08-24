@@ -27,6 +27,7 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { InvitationComponent } from './pages/invitation/invitation.component';
 import { DiscussionComponent } from './pages/messagerie/discussion/discussion.component';
 import { MessagerieComponent } from './pages/messagerie/messagerie/messagerie.component';
+import { PartenaireComponent } from './pages/partenaires/partenaire.component';
 
 @NgModule({
   imports: [
@@ -55,7 +56,9 @@ import { MessagerieComponent } from './pages/messagerie/messagerie/messagerie.co
     AboutUsComponent,
     InvitationComponent,
     DiscussionComponent,
-    MessagerieComponent],
+    MessagerieComponent,
+    PartenaireComponent
+  ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })

@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { Challenge } from 'src/app/entities/Challenge';
 import { PublicationChallenge } from 'src/app/entities/PublicationChallenge';
 import { Liking } from 'src/app/entities/liking';
+import { User } from 'src/app/entities/User';
 @Injectable({
   providedIn: 'root'
 })
 export class ChallengeService {
-  private baseUrl = 'http://localhost:8090/';
 
+  private baseUrl = 'http://localhost:8090/';
   constructor(private http: HttpClient) { }
 
   // Challenge Services
@@ -30,10 +31,13 @@ export class ChallengeService {
     return this.http.get<Challenge[]>(`${this.baseUrl}challange/getAll`);
   }
 
-  getMyChallengesList(): Observable<any> {
-    return this.http.get<Challenge[]>(`${this.baseUrl}challange/getMyChallenges`);
+  getMyChallengesList(id: number): Observable<any> {
+    return this.http.get<Challenge[]>(`${this.baseUrl}challange/getMyChallenges/${id}`);
   }
 
+  getUserById(id: number): Observable<any> {
+    return this.http.get<User>(`${this.baseUrl}api/users/${id}`)
+  }
   /*updateChallenge(id: number, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}/${id}`, value);
   }*/

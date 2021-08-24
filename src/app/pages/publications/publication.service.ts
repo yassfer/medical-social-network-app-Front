@@ -57,7 +57,7 @@ export class PublicationService {
   //************* */
 
   getPub(): Observable<any> {
-    return this.httpClient.get<any>(`${this.baseURL}publication/all`);
+    return this.httpClient.get<Publication[]>(`${this.baseURL}publication/all`);
   }
 
   getPubById(id: number): Observable<Publication> {
@@ -97,8 +97,12 @@ export class PublicationService {
 
   /*********/
 
-  getUserById(id: number): Observable<User> {
+  getUserById(id: number): Observable<any> {
     return this.httpClient.get<User>(`${this.baseURL}users/${id}`);
+  }
+
+  getFriends(id: number): Observable<any> {
+    return this.httpClient.get<User[]>(`${this.baseURL}users/getMyFriends/${id}`);
   }
 
 

@@ -4,6 +4,15 @@ import { Location } from "@angular/common";
 import { Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from "src/app/auth/auth.service";
+import { User } from "src/app/entities/User";
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { Message } from "src/app/entities/message";
+import { NavbarService } from "./navbar.service";
+import { NotificationService } from "src/app/pages/notifications/notification.service";
+import { Invitation } from "src/app/entities/invitation";
+import { InvitationService } from "src/app/pages/invitation/invitation.service";
+import { MessagerieService } from "src/app/pages/messagerie/messagerie.service";
+
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
@@ -15,20 +24,37 @@ export class NavbarComponent implements OnInit, OnDestroy {
   mobile_menu_visible: any = 0;
   private toggleButton: any;
   private sidebarVisible: boolean;
-
   public isCollapsed = true;
-
   closeResult: string;
+  idCurrentUser: number;
+  currentUser: User;
+  invitations: Invitation[];
+  FiveLastInvitations: Invitation[];
+  messages: Message[];
+  lastFiveMsg: Array<Message> = [];
+  UserToTalk :User = new User();
+/**/
+
+  currentId =1;
+  myNotifs=[];
+  numberMynotif:number;
+  notifications = []
 
   constructor(
     location: Location,
     private element: ElementRef,
     private router: Router,
     private modalService: NgbModal,
-    private authService: AuthService
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private navbarService: NavbarService,
+    private notifService: NotificationService,
+    private invitationService: InvitationService,
+    private msgService: MessagerieService
   ) {
     this.location = location;
     this.sidebarVisible = false;
+    this.idCurrentUser = Number(tokenStorage.getId());
   }
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
    updateColor = () => {
@@ -41,7 +67,43 @@ export class NavbarComponent implements OnInit, OnDestroy {
        navbar.classList.add('navbar-transparent');
      }
    };
+
+   getAllNotif (){
+    this.notifService.getNotifList().subscribe( data => {
+      this.notifications=data;
+      this.filterNotifbyUser(this.notifications)
+       })
+
+  }
+
+    filterNotifbyUser(notifs){
+      notifs.forEach(element => {
+        if (element.idu==this.currentId) {
+  this.myNotifs.push(element);
+         this.numberMynotif= this.NumberNotif(this.myNotifs);
+        }
+      });
+    }
+
+    NumberNotif(notif){
+      return notif.length;
+    }
+
+    deleteNotif(id){
+      console.log(id);
+      this.notifService.deleteNotif(id).subscribe(data => {
+        console.log(data);
+
+       },
+      error => console.log(error));
+      window.location.reload();
+
+    }
   ngOnInit() {
+    this.getAllNotif();
+    this.getUser(this.idCurrentUser);
+    this.getMsg(this.idCurrentUser);
+    this.getInvitations(this.idCurrentUser);
     window.addEventListener("resize", this.updateColor);
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
@@ -201,4 +263,113 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.router.navigate(['/auth/login']);
 }
+getUser(id: number) {
+  this.navbarService.getUserById(id).subscribe(data => {
+    this.currentUser = data;
+  },
+    error => console.log(error));
+}
+
+/**************** Invitations *************/
+
+getInvitations(idCurrentUser: number) {
+  this.invitationService.getAllInvitations(idCurrentUser).subscribe(data => {
+    this.invitations = data;
+    console.log(this.invitations);
+    if(this.invitations.length<5){
+        this.FiveLastInvitations = this.invitations;
+    } else {
+      for(let i = 0; i<5; i++){
+        this.FiveLastInvitations.push(this.invitations[i]);
+      }
+    }
+  },
+    error => console.log(error));
+}
+
+deleteInvitation(invitationId: number){
+  this.invitationService.DeleteInvitation(invitationId).subscribe(data => {
+  },
+    error => console.log(error));
+    window.location.reload();
+}
+
+
+
+AcceptInvitation(id: number, invitationId: number){
+  this.invitationService.AcceptInvitation(id, invitationId).subscribe(data => {
+  },
+    error => console.log(error));
+    window.location.reload();
+}
+
+/**************** end Invitations *************/
+
+
+
+/**************** Messages *************/
+
+getSender(id: number, message: Message) {
+  this.navbarService.getUserById(id).subscribe(data => {
+    message.senderUser = data;
+  },
+    error => console.log(error));
+}
+
+getMsg(idCurrentUser: number) {
+  this.msgService.getMessageByReceiver(idCurrentUser).subscribe(data => {
+    this.messages = data;
+    let testMessage: Array<Message> = data;
+    /*for(let i = 0; i<this.messages.length; i++){
+      testMessage.push(this.messages[i])
+    }*/
+
+    if(this.messages.length<5){
+      for(let i=0; i<this.messages.length; i++){
+        for(let j=1; j<this.messages.length; j++){
+          console.log(this.messages);
+          if(this.messages[i].sender !== this.messages[j].sender){
+            this.getSender(this.messages[i].sender, this.messages[i]);
+            this.lastFiveMsg.push(this.messages[i]);
+          }
+          else{
+            this.getSender(this.messages[i].sender, this.messages[i]);
+
+          }
+        }
+      }
+  } else {
+    for(let i=0; i<5; i++){
+      for(let j=1; j<5; j++){
+        if(this.messages[i].sender !== this.messages[j].sender){
+          this.getSender(this.messages[i].sender, this.messages[i])
+          this.lastFiveMsg.push(this.messages[i]);
+        }
+        else{
+          this.getSender(this.messages[i].sender, this.messages[i]);
+
+        }
+      }
+    }
+  }
+    /*if(this.messages.length<5){
+      for(let i = 0; i<this.messages.length; i++){
+        this.getSender(this.messages[i].sender, this.messages[i])
+        this.lastFiveMsg.push(this.messages[i]);
+      }
+      console.log(this.lastFiveMsg);
+  } else {
+    for(let i = 0; i<5; i++){
+      this.getSender(this.messages[i].sender, this.messages[i])
+      this.lastFiveMsg.push(this.messages[i]);
+    }
+    console.log(this.lastFiveMsg);
+  }*/
+},
+    error => console.log(error));
+}
+
+
+/**************** end Messages *************/
+
 }

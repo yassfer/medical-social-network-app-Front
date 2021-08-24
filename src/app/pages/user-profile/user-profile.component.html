@@ -1,28 +1,26 @@
 <div class="content">
-<div class="profile">
-  <div class="profile-content">
+  <div class="profile">
     <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle user-img offset-5" height="150px" width="150" alt="Cinque Terre">
-    <div class="card card-info offset-2">
+    <div class="card card-info offset-1">
+      <h4 class="profile-name">{{currentUser.firstName}}&nbsp; {{currentUser.lastName}}</h4>
       <div class="row info card-body justify-content-around">
         <div class="col-3">
           <i class="tim-icons icon-single-02"></i>
-          <h5><span style="color: #47d3dd;">410</span>&nbsp; followers</h5>
+          <h5><span style="color: #47d3dd;">{{friends.length}}</span>&nbsp; followers</h5>
         </div>
         <div class="col-3">
           <i class="tim-icons icon-trophy"></i>
-          <h5><span style="color: #47d3dd;">0</span>&nbsp; score</h5>
+          <h5><span style="color: #47d3dd;">{{currentUser.score}}</span>&nbsp; score</h5>
         </div>
         <div class="col-3">
           <i class="tim-icons icon-badge"></i>
           <h5><span style="color: #47d3dd;">20</span>&nbsp; badge</h5>
         </div>
       </div>
-      <button type="button" class="btn btn-md follow-button btn-block">Folllow</button>
+      <button type="button" class="btn btn-md follow-button btn-block">Follow</button>
     </div>
-
   </div>
-</div>
-<!--user infoooo-->
+  <!--user infoooo-->
     <div class="row justify-content-around">
       <div class="col-4 user-info card">
         <div class="about-user">
@@ -35,44 +33,12 @@
         <!--user friends-->
         <div class="friends">
           <h5>Friends</h5>
-          <div class="row row-friends justify-content-center">
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Cyrine Maaloul</h6>
-              <small id="friend">profession</small>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Cyrine Maaloul</h6>
-              <small id="friend">profession</small>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Cyrine Maaloul</h6>
-              <small id="friend">profession</small>
-            </div>
-          </div>
-
 
           <div class="row row-friends justify-content-center">
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Cyrine Maaloul</h6>
-              <small id="friend">profession</small>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Cyrine Maaloul</h6>
-              <small id="friend">profession</small>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Cyrine Maaloul</h6>
-              <small id="friend">profession</small>
+            <div class="col-4" *ngFor="let friend of friends">
+              <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>{{friend.firstName}}&nbsp; {{friend.lastName}}</h6>
+              <small id="friend">{{friend.profession}}</small>
             </div>
           </div>
 
@@ -186,7 +152,7 @@
                   <div class=" card-category row">
                     <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
                     <div class="col-10">
-                      <h5>{{publication.user.firstName}}&nbsp;{{publication.user.lastName}}</h5>
+                      <h5>{{publication.user.firstName}}&nbsp;{{publication.user.lastName}}&nbsp;&nbsp; <small>vous avez partagé une publication</small></h5>
                       <h6 style="margin-top: -15px;">{{publication.user.profession}}</h6>
                     </div>
                   </div>
@@ -220,7 +186,7 @@
                         <i class=" tim-icons icon-heart-2 text-warn-states" (click)="onLike(currentUser.id, publication.id)"></i>
                         <small id="like" class="mr-4">{{ publication.NbrLike }}</small>
                         <i class=" tim-icons icon-chat-33 text-warn-states" (click)="commenting()"></i>
-                        <small id="like">{{publication.comments.length}}</small>
+                        <small id="comment">{{publication.comments.length}}</small>
                       </h3>
                     </div>
 
@@ -232,7 +198,7 @@
                         <i class=" tim-icons icon-heart-2 text-danger-states" (click)="onDislike(currentUser.id, publication.id)"></i>
                         <small id="like">{{ publication.NbrLike }}</small>
                         <i class=" tim-icons icon-chat-33 text-warn-states"></i>
-                        <small id="like">{{publication.comments.length}}</small>
+                        <small id="comment">{{publication.comments.length}}</small>
                       </h3>
                     </div>
                   </ng-template>
