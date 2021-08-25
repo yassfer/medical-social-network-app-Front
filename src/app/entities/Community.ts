@@ -10,4 +10,5 @@ export class Community {
     public participants : Set<User>;
     public type : String;
     public description : String;
+    public followed : boolean;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Community } from 'src/app/entities/Community';
 import { CommunityServiceService } from '../community-service.service';
 
@@ -14,10 +15,12 @@ export class CommunitydetailsComponent implements OnInit {
   id :number;
   base64Data: any;
   nbrparticipants : number;
-
+  idCurrentUser : number;
+  testfollow : boolean;
 
  participants = new Set();
-  constructor(private router: Router,private communityService: CommunityServiceService, private route:ActivatedRoute) { }
+  constructor(private router: Router,private communityService: CommunityServiceService, private route:ActivatedRoute,private tokenStorage: TokenStorageService) {
+    this.idCurrentUser = Number(tokenStorage.getId()); }
 
   ngOnInit(): void {
     this.displaycommunity();
@@ -31,18 +34,25 @@ export class CommunitydetailsComponent implements OnInit {
     this.community = new Community();
     this.communityService.getCommunityById(this.id).subscribe( data => {
       this.community = data;
-      this.nbrparticipants=this.participants.size;
+      console.log(this.nbrparticipants);
       this.community.participants.forEach(element => {
         this.participants.add(element);
       });
-    });
-  }
+      this.nbrparticipants=this.participants.size;
+      this.testfollow=this.community.followed;
+  });}
 
 Tofollow(id :number){
-    this.communityService.ToFollow(2,id).subscribe( data => {
+    this.communityService.ToFollow(id,this.idCurrentUser).subscribe( data => {
       console.log(data)});
-      window.location.reload();
-}
+      this.community.followed=true;
+      window.location.reload();}
+ToUnfollow(id :number){
+        this.communityService.ToUnFollow(id,this.idCurrentUser).subscribe( data => {
+          console.log(data)});
+          this.community.followed=true;
+          window.location.reload();}
+
 
 load() {
     this.communityService.getCommunityList().subscribe(data => {

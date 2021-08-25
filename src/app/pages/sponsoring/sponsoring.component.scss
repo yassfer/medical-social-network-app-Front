@@ -1,3 +1,16 @@
+.button-challenge{
+  width: 160px;
+  height: 40px;
+  font-size: 11px;
+  font-weight: none;
+  padding: 3px 8px;
+  color: white !important;
+}
+
+.row-challenge{
+  margin-top: 80px;
+}
+
 input{
   border: none;
   border-bottom: solid 1px rgba(169, 169, 169, 0.151);
@@ -22,4 +35,22 @@ input{
   font-size: 11px;
   margin: 10px 25px;
   border-color: rgba(0, 0, 0, 0.041);
+}
+
+/**/
+h6{
+  color: darkgrey;
+}
+
+.content{
+  margin-top: 50px;
+}
+
+.card{
+  padding: 10px 20px 0 20px;
+}
+
+.comment{
+  font-size: 11px;
+  padding: 5px 30px;
 }

@@ -43,7 +43,7 @@ export class CommunityupdateComponent implements OnInit {
   })}
 
 
-  OnSubmit() { this.submitted = true; 
+  OnSubmit() { this.submitted = true;
     this.savedata();}
 
     goToUploadImage(id: number){

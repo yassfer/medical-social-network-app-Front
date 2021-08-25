@@ -9,12 +9,57 @@ h3{
  top: 25%;
 }
 
+#quote {
+  padding-left: 400px;
+  padding-top: 80px;
+}
 
 .card{
   width: 450px;
   padding: 20px;
 }
 
-img{
+#img{
   margin-left: 150px;
+}
+
+.pricing-card {
+  flex-direction: column;
+  min-width: 0;
+  color: #000;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  padding-bottom: 20px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgb(249, 249, 250);
+  -moz-box-shadow: 0px 0px 5px 0px rgb(115, 213, 216);
+  box-shadow: 0px 0px 5px 0px rgb(161, 163, 164)
+}
+#listpub {
+  padding-left: 300px;
+  padding-top: 30px;
+}
+#cardd {
+  padding-bottom: 20px;
+
+}
+#link {
+  color: rgb(88, 194, 194);
+}
+#off {
+  color: rgb(216, 0, 0);
+}
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+  background-color: #314666 !important;
+  border-color: #314666 !important
+}
+
+body {
+  background: #64748B
 }

@@ -1,8 +1,10 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityServiceService } from '../community-service.service';
-import {MatDialog} from '@angular/material/dialog';
 import { Community } from 'src/app/entities/Community';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -13,14 +15,23 @@ import { Community } from 'src/app/entities/Community';
 export class CommunitieslistComponent implements OnInit {
 
   communityList: Community [];
-  community : Community;
+  CommunityItem : Community;
+  community : Community = new Community();
+  CommunityR : Community ;
+  idCommunityR : number;
   base64Data: any;
   condition: boolean;
-  
+  closeResult = '';
+  submitted = false;
+  idCurrentUser : number;
+  selectedFile: File;
+
   //communityItem : CommunityItem;
 
-  constructor(public dialog: MatDialog, private communityservice: CommunityServiceService, private router: Router) {
-  }
+  constructor(private route: ActivatedRoute,
+    private router: Router, private httpClient: HttpClient, private modalService: NgbModal ,private communityservice: CommunityServiceService,
+    private tokenStorage: TokenStorageService) {
+      this.idCurrentUser = Number(tokenStorage.getId()); }
 
   /*deleteEmployee(id: number){
     this.employeeService.deleteEmployee(id).subscribe( data => {
@@ -28,6 +39,37 @@ export class CommunitieslistComponent implements OnInit {
       this.getEmployees();
     })
   }*/
+
+
+
+/////start modal
+open(content) {
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });
+}
+
+
+private getDismissReason(reason: any): string {
+  if (reason === ModalDismissReasons.ESC) {
+    return 'by pressing ESC';
+  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+    return 'by clicking on a backdrop';
+  } else {
+    return `with: ${reason}`;
+  }
+}
+
+
+/////end modal
+
+
+
+changeValue(type : String){
+  this.community.type=type;
+}
   communitydetails(id:number){
     this.router.navigate(['/communitydetails', id]);
   }
@@ -37,13 +79,17 @@ export class CommunitieslistComponent implements OnInit {
   communityadd(){
     this.router.navigate(['/communityadd']);
   }
+
+
+
+
 checktype(id : number){
 
-  this.community = new Community();
+  this.CommunityItem = new Community();
   this.communityservice.getCommunityById(id).subscribe( data => {
-    this.community = data;
-if (this.community.type == "Publique" ){
-  
+    this.CommunityItem = data;
+if (this.CommunityItem.type == "Publique" ){
+
  this.communitydetails(id) }
  else {
   console.log("**************")
@@ -52,22 +98,49 @@ if (this.community.type == "Publique" ){
 }})
 }
 
+  public onFileSelected(event) {
+    this.selectedFile = event.target.files[0];
+  }
+  onUpload() {
+    console.log(this.selectedFile);
+    console.log("id::: " + this.idCurrentUser);
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    console.log(uploadImageData);
+    this.communityservice.createCommunity(this.idCurrentUser, uploadImageData).subscribe(data => {
+        console.log(data);
+        this.CommunityR = data;
+        this.idCommunityR = this.CommunityR.id;
+      },
+        error => console.log(error));
+  }
+
+  save() {
+    this.communityservice.saveCommunity(this.idCommunityR, this.community).subscribe(data => {
+        console.log(data);
+      },
+        error => console.log(error));
+    //window.location.reload();
+    console.log(this.community);
+  }
+
 
 
 
 
   load() {
-    
-    this.communityservice.getCommunityByAdmin().subscribe(data => {
+
+    this.communityservice.getCommunityByAdmin(this.idCurrentUser).subscribe(data => {
       this.communityList = data;
-    
+      console.log(this.communityList);
+
       if (this.communityList.length === 0) {
         this.condition = true;
       } else {
         this.condition = false;
       /*for (let i = 0; i < this.communityList.length; i++) {
 
-     
+
         this.base64Data = this.communityList[i].Image;
         console.log(this.communityList[i].Image);
         this.communityList[i].piecejointe = 'data:image/jpeg;base64,' + this.base64Data;
@@ -75,11 +148,12 @@ if (this.community.type == "Publique" ){
     );
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.load();
   }
 
 
-  
+
 
   }
+

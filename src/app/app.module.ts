@@ -28,6 +28,8 @@ import { InvitationComponent } from './pages/invitation/invitation.component';
 import { DiscussionComponent } from './pages/messagerie/discussion/discussion.component';
 import { MessagerieComponent } from './pages/messagerie/messagerie/messagerie.component';
 import { PartenaireComponent } from './pages/partenaires/partenaire.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { SponsoringComponent } from './pages/sponsoring/sponsoring.component';
 
 @NgModule({
   imports: [
@@ -57,7 +59,9 @@ import { PartenaireComponent } from './pages/partenaires/partenaire.component';
     InvitationComponent,
     DiscussionComponent,
     MessagerieComponent,
-    PartenaireComponent
+    PartenaireComponent,
+    ProfileComponent,
+    SponsoringComponent
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

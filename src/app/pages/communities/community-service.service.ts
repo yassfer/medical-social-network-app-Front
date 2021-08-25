@@ -7,38 +7,41 @@ import { Community } from 'src/app/entities/Community';
   providedIn: 'root'
 })
 export class CommunityServiceService {
-  private Url = 'http://localhost:8090/communities';
+  private Url = 'http://localhost:8090/communities/';
 
   constructor(private http: HttpClient) { }
   deleteCommunity(id: number): Observable<any> {
-    return this.http.delete(`${this.Url}/delete/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.Url}delete/${id}`, { responseType: 'text' });
   }
-  createCommunity(communityItem: Community): Observable<Object> {
-    return this.http.post<number>(`${this.Url}/Create/2`, communityItem);}
+  createCommunity(id : number ,file: FormData): Observable<any> {
+    return this.http.post<Community>(`${this.Url}Create/${id}`, file);}
+
+    saveCommunity(id : number , communtiy : Community): Observable<any> {
+      return this.http.put(`${this.Url}save/${id}`, communtiy);}
 
   getCommunityList(): Observable<Community[]> {
-      return this.http.get<Community[]>(`${this.Url}/getAll`);
+      return this.http.get<Community[]>(`${this.Url}getAll`);
     }
     getCommunityById(id: number): Observable<Community>{
-      return this.http.get<Community>(`${this.Url}/getById/${id}`);
+      return this.http.get<Community>(`${this.Url}getById/${id}`);
     }
-    getCommunityByAdmin() : Observable<Community[]>{
-      return this.http.get<Community[]>(`${this.Url}/getByAdmin/2`);
+    getCommunityByAdmin(id : number) : Observable<Community[]>{
+      return this.http.get<Community[]>(`${this.Url}getByAdmin/${id}`);
     }
     updateCommunity(id :number, community :Community ): Observable<Object>{
-      return this.http.put<number>(`${this.Url}/update/${id}` , community)
+      return this.http.put<number>(`${this.Url}update/${id}` , community)
     }
-    getFollowedCommunities() : Observable<Community[]>{
-      return this.http.get<Community[]>(`${this.Url}/getFollowedCommunities/2`);
+    getFollowedCommunities(id : number) : Observable<Community[]>{
+      return this.http.get<Community[]>(`${this.Url}getFollowedCommunities/${id}`);
     }
-    getUnFollowedCommunities() : Observable<Community[]>{
-      return this.http.get<Community[]>(`${this.Url}/getUnFollowedCommunities/2`);
+    getUnFollowedCommunities(id : number) : Observable<Community[]>{
+      return this.http.get<Community[]>(`${this.Url}getUnFollowedCommunities/${id}`);
     }
-    ToFollow(iduser : number , idcom : number) : Observable<Object>{
-      return this.http.get<number>(`${this.Url}/Adduser/${iduser}/${idcom}`);
+    ToFollow(idcom : number,iduser : number) : Observable<Object>{
+      return this.http.get<number>(`${this.Url}Adduser/${idcom}/${iduser}`);
     }
-    ToUnFollow(iduser : number , idcom : number) : Observable<Object>{
-      return this.http.get<number>(`${this.Url}/Removeuser/${iduser}/${idcom}`);
+    ToUnFollow(idcom : number, iduser : number) : Observable<Object>{
+      return this.http.get<number>(`${this.Url}Removeuser/${idcom}/${iduser}`);
     }
 
 

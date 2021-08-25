@@ -319,52 +319,22 @@ getSender(id: number, message: Message) {
 getMsg(idCurrentUser: number) {
   this.msgService.getMessageByReceiver(idCurrentUser).subscribe(data => {
     this.messages = data;
-    let testMessage: Array<Message> = data;
-    /*for(let i = 0; i<this.messages.length; i++){
-      testMessage.push(this.messages[i])
-    }*/
 
     if(this.messages.length<5){
       for(let i=0; i<this.messages.length; i++){
-        for(let j=1; j<this.messages.length; j++){
-          console.log(this.messages);
-          if(this.messages[i].sender !== this.messages[j].sender){
-            this.getSender(this.messages[i].sender, this.messages[i]);
-            this.lastFiveMsg.push(this.messages[i]);
-          }
-          else{
-            this.getSender(this.messages[i].sender, this.messages[i]);
-
-          }
+        for(let j=0; j<this.messages.length; j++){
+          this.getSender(this.messages[i].sender, this.messages[i]);
+          this.lastFiveMsg.push(this.messages[i]);
         }
       }
   } else {
     for(let i=0; i<5; i++){
       for(let j=1; j<5; j++){
-        if(this.messages[i].sender !== this.messages[j].sender){
-          this.getSender(this.messages[i].sender, this.messages[i])
-          this.lastFiveMsg.push(this.messages[i]);
-        }
-        else{
-          this.getSender(this.messages[i].sender, this.messages[i]);
-
-        }
+        this.getSender(this.messages[i].sender, this.messages[i]);
+        this.lastFiveMsg.push(this.messages[i]);
       }
     }
   }
-    /*if(this.messages.length<5){
-      for(let i = 0; i<this.messages.length; i++){
-        this.getSender(this.messages[i].sender, this.messages[i])
-        this.lastFiveMsg.push(this.messages[i]);
-      }
-      console.log(this.lastFiveMsg);
-  } else {
-    for(let i = 0; i<5; i++){
-      this.getSender(this.messages[i].sender, this.messages[i])
-      this.lastFiveMsg.push(this.messages[i]);
-    }
-    console.log(this.lastFiveMsg);
-  }*/
 },
     error => console.log(error));
 }

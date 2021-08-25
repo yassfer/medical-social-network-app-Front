@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { of } from 'rxjs';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Community } from 'src/app/entities/Community';
+import { User } from 'src/app/entities/User';
 import { CommunityServiceService } from '../community-service.service';
 
 @Component({
@@ -10,11 +14,15 @@ import { CommunityServiceService } from '../community-service.service';
 })
 export class AllCommunitiesComponent implements OnInit {
 
-  constructor( private router: Router,private communityService: CommunityServiceService, private route:ActivatedRoute) { }
+  constructor(private modalService: NgbModal , private router: Router,private communityService: CommunityServiceService, private route:ActivatedRoute,private tokenStorage: TokenStorageService) {
+    this.idCurrentUser = Number(tokenStorage.getId()); }
+    idCurrentUser : number;
 follow :boolean =true;
 communityListFollowed : Community[];
 communityListUnFollowed : Community[];
 community : Community;
+Community : Community;
+Comm : Community;
 com = new Community();
 id : number;
 nbrparticipants : number;
@@ -26,28 +34,36 @@ objet :any;
   ngOnInit(): void {
     this.followed ();
   }
-  
+
 followed () {
-  this.communityService.getFollowedCommunities().subscribe(data => {
+  this.communityService.getFollowedCommunities(this.idCurrentUser).subscribe(data => {
     this.communityListFollowed = data;
     this.follow=true;
 
-    
+
 })}
 unfollowed(){
   this.follow=false;
-  this.communityService.getUnFollowedCommunities().subscribe(data => {
+  this.communityService.getUnFollowedCommunities(this.idCurrentUser).subscribe(data => {
     this.communityListUnFollowed = data;
   console.log(data);})}
 
 Tofollow(id :number){
-  this.communityService.ToFollow(2,id).subscribe( data => {
+  this.communityService.ToFollow(id,this.idCurrentUser).subscribe( data => {
     console.log(data)});
+    this.communityService.getCommunityById(id).subscribe( data => {
+      this.community = data;
+      });
+      this.community.followed =true;
     window.location.reload();
 }
 ToUnfollow(id :number){
-  this.communityService.ToUnFollow(2,id).subscribe( data => {
+  this.communityService.ToUnFollow(id,this.idCurrentUser).subscribe( data => {
     console.log(data)});
+    this.communityService.getCommunityById(id).subscribe( data => {
+      this.community = data;
+      });
+      this.community.followed =false;
     window.location.reload();
 }
 communitydetails(id:number){
@@ -59,13 +75,15 @@ checktype(id : number){
   this.communityService.getCommunityById(id).subscribe( data => {
     this.community = data;
 if (this.community.type == "Publique" ){
-  
+
  this.communitydetails(id) }
  else {
-  console.log("**************")
- //this.openDialog();
- alert("This community is private you should follow it");
+  for (const participant of Array.from(this.community.participants.values()))
+
+     {if (participant.id = this.idCurrentUser)
+      this.communitydetails(id);
+      else
+       alert("This community is private you should follow it");}
 }})
 }
-
 }

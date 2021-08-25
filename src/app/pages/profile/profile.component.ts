@@ -1,28 +1,26 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { ActivatedRoute } from '@angular/router';
-import {DomSanitizer} from '@angular/platform-browser';
-import { User } from "src/app/entities/User";
-import { Liking } from "src/app/entities/liking";
-import { Publication } from "src/app/entities/publication";
-import { Comments } from "src/app/entities/Comments";
-import { PublicationService } from "../publications/publication.service";
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { PieceJoint } from "src/app/entities/PieceJoint";
-import { TokenStorageService } from "src/app/auth/token-storage.service";
-import { InvitationService } from "../invitation/invitation.service";
+import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { Comments } from 'src/app/entities/Comments';
+import { Liking } from 'src/app/entities/liking';
+import { PieceJoint } from 'src/app/entities/PieceJoint';
+import { Publication } from 'src/app/entities/publication';
+import { User } from 'src/app/entities/User';
+import { InvitationService } from '../invitation/invitation.service';
+import { PublicationService } from '../publications/publication.service';
 
 @Component({
-  selector: "app-publication",
-  templateUrl: "publication.component.html",
-  styleUrls: ["./publication.component.css"]
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class PublicationComponent implements OnInit {
+export class ProfileComponent implements OnInit {
 
   condition: boolean;
   base64Data: any;
   user: User;
-  idCurrentUser: number;
   click = true;
   com = true;
   pieceJoints: PieceJoint[];
@@ -33,22 +31,27 @@ export class PublicationComponent implements OnInit {
   publications: Publication[];
   closeResult = '';
   file: any[];
-  currentUser: User;
   friends: User[];
+  idUser: number;
 
 
   constructor(private publicationservice: PublicationService,private invitationService: InvitationService,
     private router: Router, private domSanitizer: DomSanitizer, private modalService: NgbModal,
     private route: ActivatedRoute, private tokenStorage: TokenStorageService) {
-      this.idCurrentUser = Number(tokenStorage.getId());
      }
 
 
   ngOnInit() {
-    this.getUser(this.idCurrentUser);
+    this.idUser =  this.route.snapshot.params['id'];
+    this.getUser(this.idUser);
     this.getMyFriends();
-    this.reloadData(this.idCurrentUser);
+    this.reloadData(this.idUser);
   }
+
+  goToProfile(id:number){
+    this.router.navigate(['/profile', id]);
+  }
+
 
 
   /////start modal
@@ -74,9 +77,9 @@ export class PublicationComponent implements OnInit {
 
   /////end modal
 
-  getUser(idCurrentUser: number) {
-    this.publicationservice.getUserById(idCurrentUser).subscribe(data => {
-      this.currentUser = data;
+  getUser(idUser: number) {
+    this.publicationservice.getUserById(idUser).subscribe(data => {
+      this.user = data;
     },
       error => console.log(error));
   }
@@ -127,8 +130,8 @@ export class PublicationComponent implements OnInit {
   }
 
 
-  getPublicationByUserId(id: number){
-    this.publicationservice.getPublicationByUserId(id).subscribe(data => {
+  getPublicationByUserId(idUser: number){
+    this.publicationservice.getPublicationByUserId(idUser).subscribe(data => {
 
       this.publications = data;
       console.log(this.publications);
@@ -136,8 +139,8 @@ export class PublicationComponent implements OnInit {
       error => console.log(error));
 }
 
-reloadData(id: number) {
-  this.publicationservice.getPublicationByUserId(id).subscribe(data => {
+reloadData(idUser: number) {
+  this.publicationservice.getPublicationByUserId(idUser).subscribe(data => {
     if (data.length === 0) {
       this.condition = true;
     } else {
@@ -191,16 +194,12 @@ reloadData(id: number) {
   updatePieceJoint(pubId: number, pieceJoints: PieceJoint[]) {
     console.log(pieceJoints);
     this.publicationservice.updatePieceJoint(pubId, pieceJoints).subscribe(data => {
-      console.log("data");
-      console.log(data);
     });
   }
 
   onPublication() {
-    this.publicationservice.createPublication(this.idCurrentUser, this.Newpublication).subscribe(data => {
-      console.log(data);
+    this.publicationservice.createPublication(this.idUser, this.Newpublication).subscribe(data => {
       this.publica = data;
-      console.log("onee: "+this.pieceJoints)
       this.updatePieceJoint(this.publica.id, this.pieceJoints);
     });
 
@@ -211,10 +210,8 @@ reloadData(id: number) {
 
 
   getMyFriends() {
-    this.publicationservice.getFriends(this.idCurrentUser).subscribe(data => {
-      console.log(data);
+    this.publicationservice.getFriends(this.idUser).subscribe(data => {
       this.friends = data;
-      console.log(this.friends)
     },
     error => {
       console.log(error);
@@ -235,3 +232,4 @@ reloadData(id: number) {
 
 
 }
+

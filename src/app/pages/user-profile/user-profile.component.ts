@@ -77,8 +77,6 @@ export class UserProfileComponent implements OnInit {
   getUser(idCurrentUser: number) {
     this.publicationservice.getUserById(idCurrentUser).subscribe(data => {
       this.currentUser = data;
-      /*this.base64Data = this.currentUser.image;
-      this.currentUser.imageProfile = 'data:image/jpeg;base64,' + this.base64Data;*/
     },
       error => console.log(error));
   }

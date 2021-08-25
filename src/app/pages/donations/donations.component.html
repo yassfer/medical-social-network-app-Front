@@ -1,4 +1,4 @@
-<div class="content">
+<!--<div class="content">
 
   <div class="card">
     <h3>No one has ever become poor by giving</h3>
@@ -10,4 +10,37 @@
     </div>
   </div>
 
+</div>-->
+
+
+
+<div class="container mt-5">
+  <div id ="quote">
+  <div class="card" >
+    <h3>No one has ever become poor by giving</h3>
+      <a href="http://commerce.coinbase.com/charges/ZHAY3AV5?fbclid=IwAR3pmm0OhoNhJzOHej1RMtsQRWNumChhm1rPN3cX6VSVy7biz3VHpIz0Yk0">
+        <img id="img" src="../../../assets/img/donate_icon_s.png" width="100px" height="100px">
+      </a>
+    <div class="card-body">
+      <p class="card-title">people forget that it doesn't take a big donation to help someone, just a lot of little donations.</p>
+    </div>
+  </div>
+</div>
+  <div class="row" id="listpub" >
+      <div class="col-md-5" id="cardd" *ngFor ="let partner of organisations">
+          <div class="pricing-card p-3 text-center py-5 mt-2">
+              <div class="images"><img src="{{partner.image}}" height="140" width="200"></div>
+             <span class="d-block" ><a id="link"  href="{{partner.url}}">{{partner.nom}}</a></span>
+
+              <div class="mt-3"><span class="d-block"><i class="fa fa-check"></i>&nbsp;Save people's life</span><span id="link" class="d-block"><i class="fa fa-check"></i>&nbsp;Be helpful</span>
+                  <span class="d-block"><i class="fa fa-check"></i>&nbsp;Help with donation</span></div>
+                  <hr>
+                  <i class=" fa fa-donate"> </i>
+
+                  <h3 class="mt-3" id="link" ><a href="{{partner.toDonate}}">Donate Now</a> </h3>
+
+
+          </div>
+      </div>
+  </div>
 </div>
