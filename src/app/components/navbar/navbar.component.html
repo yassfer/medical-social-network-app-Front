@@ -30,7 +30,7 @@
           <li class="nav-item active">
             <form class="form-inline md-form form-sm mt-0">
               <input class=" input-search form-control mr-3" type="text" placeholder="Search" aria-label="Search">
-              <i class=" tim-icons icon-zoom-split"></i>
+              <i class=" tim-icons icon-zoom-split" (click)= "navigateToAll()"></i>
             </form>
           </li>
 
@@ -101,7 +101,7 @@
               <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
                             <div class="row">
                                     <div class="img-square-wrapper col-3">
-                                      <img src="../assets/test.jpg" id="nom" class="rounded-circle chat-img" height="50px" width="50px" alt="Cinque Terre">
+                                      <img [src]="invitation.sender.imageProfile" id="nom" class="rounded-circle chat-img" height="50px" width="50px" alt="Cinque Terre">
                                     </div>
                                     <div class="col-8">
                                         <h5 class="card-title">{{invitation.sender.firstName}}&nbsp;{{invitation.sender.lastName}}</h5>

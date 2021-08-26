@@ -76,4 +76,17 @@ export class ChallengeService {
     return this.http.patch(`${this.baseUrl}pieceJoint/publicationChallenge/${pubId}`, pieceJoints, { responseType: 'text' });
   }
 
+  deleteLike(id: number): Observable<Object> {
+    return this.http.delete(`${this.baseUrl}api/like/${id}`);
+  }
+
+  likePubChallenge(pubId: number, userId: number): Observable<Liking> {
+    return this.http.get<Liking>(`${this.baseUrl}api/like/likeChallenge/${userId}/${pubId}`);
+  }
+
+
+  getAllPub(): Observable<any> {
+    return this.http.get<PublicationChallenge[]>(`${this.baseUrl}api/publicationChallenge/all`);
+  }
+
 }

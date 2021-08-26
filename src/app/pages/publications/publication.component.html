@@ -67,7 +67,8 @@
         </div>
         <div class=" card-body">
           <div class="row">
-            <div class="col" *ngFor="let pieceJoint of publication.pieceJoints">
+
+          <div class="col" *ngFor="let pieceJoint of publication.pieceJoints">
               <div *ngIf="pieceJoint.contentType=='image/jpeg'; else pdfBlock">
                 <img class="card-img-top" [src]="pieceJoint.image" alt="Card image cap">
               </div>
@@ -82,6 +83,7 @@
                 </video>
               </ng-template>
             </div>
+
           </div>
 
           <div *ngIf="click==true; else elseBlock">

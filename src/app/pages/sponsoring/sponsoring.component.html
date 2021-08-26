@@ -4,9 +4,9 @@
       <div class="card offset-2" style="width: 30rem;">
         <div class="card-body">
           <div class="card-category row">
-            <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
+            <img [src]="currentUser.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
             <div class="col-10 mt-1">
-              <h5>Cyrine Maaloul</h5>
+              <h5>{{currentUser.firstName}}&nbsp;{{currentUser.lastName}}</h5>
             </div>
           </div>
           <div class="md-form">
@@ -36,21 +36,12 @@
                   <input type="date" class="form-control" placeholder="Date d'Expiration" id="Expiration" required [(ngModel)]="Entreprise.expiration"
                     name="reduction">
                 </div>
-              <div class="form-group">
-                  <label style="font-size: small;">Choose Category     : </label>
-              <div class="btn-group" dropdown>
-                   <button id="button-basic" dropdownToggle type="button" class="btn btn-secondary btn-sm dropdown-toggle"
-              aria-controls="dropdown-basic">
-              Categories <span class="caret"></span>
-              </button>
-              <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
-              role="menu" aria-labelledby="button-basic" >
-                  <li role="menuitem" style="color: black;"><a class="dropdown-item" (click)="setProduct('Medical')">Medical</a></li>
-                  <li role="menuitem" style="color: black;"><a class="dropdown-item" (click)="setProduct('Food')">Food</a></li>
-                  <li role="menuitem" style="color: black;"><a class="dropdown-item" (click)="setProduct('Sport')">Sport</a></li>
-              </ul>
-              </div>
-              </div>
+                <div class="form-group">
+                  <label for="name">Type</label><hr>
+                  <input type="radio" name="type"  (click)="setProduct('Medical')" />Medical
+                  <input type="radio" name="type"  (click)="setProduct('Food')"/>Food
+                  <input type="radio" name="type"  (click)="setProduct('Sport')">Sport
+                </div>
 
 
 

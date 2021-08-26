@@ -11,6 +11,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { PieceJoint } from "src/app/entities/PieceJoint";
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { InvitationService } from '../invitation/invitation.service';
+import { CommunityServiceService } from '../communities/community-service.service';
+import { Community } from 'src/app/entities/Community';
 
 @Component({
   selector: 'app-user-profile',
@@ -38,11 +40,12 @@ export class UserProfileComponent implements OnInit {
   file: any[];
   currentUser: User;
   friends: User[];
+  followedCommunities: Community[];
 
 
   constructor(private publicationservice: PublicationService,private invitationService: InvitationService,
     private router: Router, private domSanitizer: DomSanitizer, private modalService: NgbModal,
-    private route: ActivatedRoute, private tokenStorage: TokenStorageService) {
+    private route: ActivatedRoute, private tokenStorage: TokenStorageService,private communityservice: CommunityServiceService) {
       this.idCurrentUser = Number(tokenStorage.getId());
      }
 
@@ -50,6 +53,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.getUser(this.idCurrentUser);
     this.getMyFriends();
+    this.getfollowedCommunities(this.idCurrentUser);
     this.reloadData(this.idCurrentUser);
   }
 
@@ -80,6 +84,10 @@ export class UserProfileComponent implements OnInit {
   getUser(idCurrentUser: number) {
     this.publicationservice.getUserById(idCurrentUser).subscribe(data => {
       this.currentUser = data;
+      console.log("logooo")
+      console.log(this.currentUser.logo)
+      console.log('prooo')
+      console.log(this.currentUser.logo)
       this.base64DataP = this.currentUser.logo;
       this.currentUser.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
     },
@@ -247,6 +255,16 @@ reloadData(id: number) {
       console.log(error);
     });
 
+  }
+
+  getfollowedCommunities(id : number){
+    this.communityservice.getFollowedCommunities(id).subscribe( data => {
+      console.log("***********");
+      console.log(data);
+      this.followedCommunities=data;
+      console.log("***********");
+      console.log(this.followedCommunities);
+    })
   }
 
 

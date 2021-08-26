@@ -33,7 +33,7 @@ export class CreateCommunityImageComponent implements OnInit {
     //Make a call to the Spring Boot Application to save the image
     const idC = this.route.snapshot.paramMap.get('idC');
 
-    this.httpClient.put('http://localhost:8080/communities/uploadImage/' + idC, uploadImageData, { observe: 'response' })
+    this.httpClient.put('http://localhost:8090/communities/uploadImage/' + idC, uploadImageData, { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
           this.message = 'Image uploaded';

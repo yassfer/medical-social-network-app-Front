@@ -27,7 +27,7 @@ export class InvitationService {
   }
 
   AddInvitation(senderId: number, receiverId: number): Observable<any> {
-    return this.http.post(`${this.baseUrl}/add/${senderId}/${receiverId}`, Invitation);
+    return this.http.get(`${this.baseUrl}/add/${senderId}/${receiverId}`);
   }
 
   getAllUsers(): Observable<any> {
@@ -42,4 +42,7 @@ export class InvitationService {
     return this.http.get<Invitation[]>(`${this.baseUrl}/getBySender/${id}`);
   }
 
+  AcceptInvitationUser(ididSender: number, idReceiver: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/acceptUser/${ididSender}/${idReceiver}`);
+  }
 }

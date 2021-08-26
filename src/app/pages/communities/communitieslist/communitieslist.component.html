@@ -3,9 +3,9 @@
     <div class="card offset-2" style="width: 30rem;">
       <div class="card-body">
         <div class="card-category row">
-          <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
+          <img [src]="currentUser.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
           <div class="col-10 mt-1">
-            <h5>Cyrine Maaloul</h5>
+            <h5>{{currentUser.firstName}}&nbsp;{{currentUser.lastName}}</h5>
           </div>
         </div>
         <div class="md-form">
@@ -99,7 +99,7 @@
 
               <div class="mt-3">
                 <button (click)="communityupdate(community.id)" class="btn btn-outline-secondary"> <i class="fas fa-sync-alt"></i>Update</button>
-                <button class="btn btn-danger"><i class="fas fa-minus-circle"  (click) ="deleteCommunity(community.id)"></i> Delete</button>
+                <button class="btn btn-danger" (click)="deleteCommunity(community.id)"><i class="fas fa-minus-circle"></i> Delete</button>
             </div>
 
           </mdb-card-body>

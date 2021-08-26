@@ -42,15 +42,14 @@ export class CreatePublicationChallengeComponent implements OnInit {
 
 
   ngOnInit() {
+
     this.route.queryParams
     .subscribe(params => {
       this.idC = params["idC"];
     }
   );
-    this.getUser(this.idCurrentUser);
-    this.reloadData(this.idCurrentUser);
+  this.getUser(this.idCurrentUser);
   }
-
 
   /////start modal
   open(content) {
@@ -84,75 +83,6 @@ export class CreatePublicationChallengeComponent implements OnInit {
       error => console.log(error));
   }
 
-  onDeletePub(id: number) {
-    this.challengeService.getPublicationByChallengeId(id).subscribe(data => {
-      console.log(data);
-    },
-      error => console.log(error));
-      window.location.reload();
-  }
-
-
-  onLike(idUser: number, idPub: number) {
-    this.click = !this.click;
-    this.challengeService.createLike(idUser, idPub).subscribe(data => {
-      console.log(data);
-    },
-      error => console.log(error));
-      window.location.reload();
-  }
-
-  /*onDislike(idUser: number, idPub: number) {
-    this.click = !this.click;
-    this.challengeService.deleteLike(idUser, idPub).subscribe(data => {
-      console.log(data);
-    },
-      error => console.log(error));
-      window.location.reload();
-  }*/
-
-
-  getPublicationByChallengeId(id: number){
-    this.challengeService.getPublicationByChallengeId(id).subscribe(data => {
-
-      this.publications = data;
-      console.log(this.publications);
-    },
-      error => console.log(error));
-}
-
-reloadData(id: number) {
-  this.challengeService.getPublicationByChallengeId(id).subscribe(data => {
-    if (data.length === 0) {
-      this.condition = true;
-    } else {
-      this.condition = false;
-      this.publications = data;
-
-      for (let i = 0; i < this.publications.length; i++) {
-        for (let j = 0; j < this.publications[i].pieceJoints.length; j++) {
-          if (this.publications[i].pieceJoints[j].contentType === "image/jpeg") {
-            this.base64Data = this.publications[i].pieceJoints[j].data;
-            this.publications[i].pieceJoints[j].image= 'data:image/jpeg;base64,' + this.base64Data ;
-          }
-          if (this.publications[i].pieceJoints[j].contentType === "video/mp4") {
-            this.base64Data = this.publications[i].pieceJoints[j].data;
-            this.publications[i].pieceJoints[j].image = this.domSanitizer.bypassSecurityTrustUrl('data:video/mp4;base64, ' + this.base64Data);
-          }
-          if (this.publications[i].pieceJoints[j].contentType === "application/pdf") {
-            this.base64Data = this.publications[i].pieceJoints[j].data;
-            this.publications[i].pieceJoints[j].image= this.domSanitizer.bypassSecurityTrustResourceUrl('data:application/pdf;base64, ' + this.base64Data);
-          }
-        }
-        this.base64DataPp = this.publications[i].user.logo;
-        this.publications[i].user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataPp;
-        this.publications[i].NbrLike = this.publications[i].likes.length;
-        this.user = this.publications[i].user;
-      }
-    }
-  }
-  );
-}
 
   //////////////////upload files
   onFileSelected(event: { target: { files: any[]; }; }){
@@ -178,6 +108,7 @@ reloadData(id: number) {
   updatePieceJoint(pubId: number, pieceJoints: PieceJoint[]) {
     console.log(pieceJoints);
     this.challengeService.updatePieceJoint(pubId, pieceJoints).subscribe(data => {
+      console.log(data);
     });
   }
 
@@ -186,6 +117,9 @@ reloadData(id: number) {
       this.publica = data;
       this.updatePieceJoint(this.publica.id, this.pieceJoints);
     });
+
+
+    this.router.navigate(['/challenge']);
 
     //window.location.reload();
 

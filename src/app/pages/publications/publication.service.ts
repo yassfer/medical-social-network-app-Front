@@ -105,6 +105,9 @@ export class PublicationService {
     return this.httpClient.get<User[]>(`${this.baseURL}users/getMyFriends/${id}`);
   }
 
-
+//////////
+getAllPublication(): Observable<any> {
+  return this.httpClient.get<Publication[]>(`${this.baseURL}publication/getAllByDate`);
+}
 
 }

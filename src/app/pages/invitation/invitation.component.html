@@ -33,8 +33,8 @@
     <div class="col-md-4 mb-md-0 mb-5" *ngFor="let user of users | filter:searchText" style="margin-bottom: 20px;">
       <div class="testimonial">
         <!--Avatar-->
-        <div class="avatar mx-auto">
-          <img src="{{user.imageProfile}}" class="rounded-circle" height="150px" width="150px">
+        <div class="avatar mx-auto" [routerLink]="['/profile', user.id]">
+          <img [src]="user.imageProfile" class="rounded-circle" height="150px" width="150px" >
         </div>
         <!--Content-->
         <h4 class="font-weight-bold dark-grey-text mt-4">{{user.firstName}}&nbsp; {{user.lastName}}</h4>
@@ -46,24 +46,24 @@
           </p>
         </div>
         <ng-template #second>
-          <div *ngIf="user.waitingList; else third">
+          <div *ngIf="user.invited; else third">
             <div class="container-fluid">
               <p>
-                <i class="fas fa-hourglass-half"></i>Waiting
+                <button target="_blank" class="themeBtn" [disabled]="true"><i class="fas fa-hourglass-half"></i>Invitation sent</button>
               </p>
             </div>
           </div>
         </ng-template>
         <ng-template #third>
-          <div *ngIf="user.invited; else furth">
+          <div *ngIf="user.waitingList; else furth">
             <div class="container-fluid">
-              <button target="_blank" class="themeBtn" (click)="AcceptInvitation(idCurrentUser, invitation.id)"><i class="fas fa-check"></i>Accept</button>
+              <button target="_blank" class="themeBtn" (click)="AcceptInvitationUser(user.id)"><i class="fas fa-check"></i>Accept</button>
             </div>
           </div>
         </ng-template>
         <ng-template #furth>
           <div class="container-fluid">
-            <button target="_blank" class="themeBtn"><i class="fas fa-user-plus"></i>Add</button>
+            <button target="_blank" class="themeBtn"><i class="fas fa-user-plus" (click)="EnvoiInvitationUser(user.id)"></i>Add</button>
           </div>
         </ng-template>
       </div>

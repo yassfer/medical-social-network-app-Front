@@ -22,6 +22,7 @@ export class PublicationChallengeComponent implements OnInit {
   liking: Liking = new Liking();
   ApprouvedPublications: PublicationChallenge[];
   like;
+  idC: number;
 
   constructor(private challengeService: ChallengeService, private route: ActivatedRoute,
     private router: Router, private domSanitizer: DomSanitizer, private tokenStorage: TokenStorageService) {
@@ -30,13 +31,13 @@ export class PublicationChallengeComponent implements OnInit {
 
 
   ngOnInit() {
-    let idC;
     this.route.queryParams
     .subscribe(params => {
-      idC = params["idC"];
+      this.idC = params["idC"];
     }
   );
-    this.reloadData(Number(idC));
+    console.log(this.idC);
+    this.reloadData(Number(this.idC));
   }
 
   reloadData(id: number) {
@@ -69,6 +70,20 @@ export class PublicationChallengeComponent implements OnInit {
     },
     error => console.log(error));
   }
+
+
+
+
+  onDeletePub(id: number) {
+    this.challengeService.deletePubChallenge(id).subscribe(data => {
+      console.log(data);
+    },
+      error => console.log(error));
+      window.location.reload();
+  }
+
+
+
   onLike(idUser: number, idPub: number) {
     this.click = !this.click;
     this.challengeService.createLike(idUser, idPub).subscribe(data => {
@@ -77,9 +92,17 @@ export class PublicationChallengeComponent implements OnInit {
       error => console.log(error));
       window.location.reload();
   }
-  publication() {
-    this.pub = !this.pub;
+
+  onDislike(id: number) {
+    this.click = !this.click;
+    this.challengeService.deleteLike(id).subscribe(data => {
+      console.log(data);
+    },
+      error => console.log(error));
+      window.location.reload();
   }
+
+
   /*onDeletePub() {
     this.publicationservice.deletePub(this.Newpublication.id).subscribe(data => {
       console.log(data);

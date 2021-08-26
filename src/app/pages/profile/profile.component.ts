@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Comments } from 'src/app/entities/Comments';
+import { Invitation } from 'src/app/entities/invitation';
 import { Liking } from 'src/app/entities/liking';
 import { PieceJoint } from 'src/app/entities/PieceJoint';
 import { Publication } from 'src/app/entities/publication';
@@ -36,30 +37,33 @@ export class ProfileComponent implements OnInit {
   file: any[];
   friends: User[];
   idUser: number;
+  idCurrentUser: number;
+  ////
+  myFriends: User[];
+  myWaiting: Invitation[];
+  mySenders: Invitation[];
 
-
-  constructor(private publicationservice: PublicationService,private invitationService: InvitationService,
+  constructor(private publicationservice: PublicationService, private invitationService: InvitationService,
     private router: Router, private domSanitizer: DomSanitizer, private modalService: NgbModal,
     private route: ActivatedRoute, private tokenStorage: TokenStorageService) {
-     }
+      this.idCurrentUser = Number(this.tokenStorage.getId());
+  }
 
 
   ngOnInit() {
-    this.idUser =  this.route.snapshot.params['id'];
+    this.idUser = this.route.snapshot.params['id'];
     this.getUser(this.idUser);
     this.getMyFriends();
     this.reloadData(this.idUser);
   }
 
-  goToProfile(id:number){
+  goToProfile(id: number) {
     this.router.navigate(['/profile', id]);
   }
 
-
-
   /////start modal
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -83,6 +87,40 @@ export class ProfileComponent implements OnInit {
   getUser(idUser: number) {
     this.publicationservice.getUserById(idUser).subscribe(data => {
       this.user = data;
+      //First traitment
+      this.invitationService.getMyFriends(idUser).subscribe(data => {
+        this.myFriends = data;
+        console.log("MyF::")
+        console.log(this.myFriends)
+        for (let j = 0; j < this.myFriends.length; j++) {
+          if (this.idCurrentUser === this.myFriends[j].id) {
+            this.user.myFriend = true;
+          }
+        }
+      },
+        error => console.log(error));
+      //Second traitment
+      this.invitationService.getAllInvitations(idUser).subscribe(data => {
+        this.myWaiting = data;
+        for (let j = 0; j < this.myWaiting.length; j++) {
+          if (this.idCurrentUser === this.myWaiting[j].sender.id) {
+            this.user.waitingList = true;
+          }
+        }
+
+      },
+        error => console.log(error));
+      //Third traitment
+      this.invitationService.getBySender(idUser).subscribe(data => {
+        this.mySenders = data;
+        for (let j = 0; j < this.mySenders.length; j++) {
+          if (this.idCurrentUser === this.mySenders[j].receiver.id) {
+            this.user.invited = true;
+          }
+        }
+      },
+        error => console.log(error));
+
       this.base64DataP = this.user.logo;
       this.user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
     },
@@ -94,7 +132,7 @@ export class ProfileComponent implements OnInit {
       console.log(data);
     },
       error => console.log(error));
-      window.location.reload();
+    window.location.reload();
   }
   onComment(idUser: number, idPub: number) {
     console.log(this.comment)
@@ -102,15 +140,15 @@ export class ProfileComponent implements OnInit {
       console.log(data);
     },
       error => console.log(error));
-      window.location.reload();
+    window.location.reload();
   }
 
-  onDeleteCommment(id:number) {
+  onDeleteCommment(id: number) {
     this.publicationservice.deleteCom(id).subscribe(data => {
       console.log(data);
     },
       error => console.log(error));
-      window.location.reload();
+    window.location.reload();
   }
 
   onLike(idUser: number, idPub: number) {
@@ -119,7 +157,7 @@ export class ProfileComponent implements OnInit {
       console.log(data);
     },
       error => console.log(error));
-      window.location.reload();
+    window.location.reload();
   }
 
   onDislike(idUser: number, idPub: number) {
@@ -128,78 +166,78 @@ export class ProfileComponent implements OnInit {
       console.log(data);
     },
       error => console.log(error));
-      window.location.reload();
+    window.location.reload();
   }
   commenting() {
     this.com = !this.com;
   }
 
 
-  getPublicationByUserId(idUser: number){
+  getPublicationByUserId(idUser: number) {
     this.publicationservice.getPublicationByUserId(idUser).subscribe(data => {
 
       this.publications = data;
       console.log(this.publications);
     },
       error => console.log(error));
-}
+  }
 
-reloadData(idUser: number) {
-  this.publicationservice.getPublicationByUserId(idUser).subscribe(data => {
-    if (data.length === 0) {
-      this.condition = true;
-    } else {
-      this.condition = false;
-      this.publications = data;
+  reloadData(idUser: number) {
+    this.publicationservice.getPublicationByUserId(idUser).subscribe(data => {
+      if (data.length === 0) {
+        this.condition = true;
+      } else {
+        this.condition = false;
+        this.publications = data;
 
-      for (let i = 0; i < this.publications.length; i++) {
-        for (let j = 0; j < this.publications[i].pieceJoints.length; j++) {
-          if (this.publications[i].pieceJoints[j].contentType === "image/jpeg") {
-            this.base64Data = this.publications[i].pieceJoints[j].data;
-            this.publications[i].pieceJoints[j].image= 'data:image/jpeg;base64,' + this.base64Data ;
+        for (let i = 0; i < this.publications.length; i++) {
+          for (let j = 0; j < this.publications[i].pieceJoints.length; j++) {
+            if (this.publications[i].pieceJoints[j].contentType === "image/jpeg") {
+              this.base64Data = this.publications[i].pieceJoints[j].data;
+              this.publications[i].pieceJoints[j].image = 'data:image/jpeg;base64,' + this.base64Data;
+            }
+            if (this.publications[i].pieceJoints[j].contentType === "video/mp4") {
+              this.base64Data = this.publications[i].pieceJoints[j].data;
+              this.publications[i].pieceJoints[j].image = this.domSanitizer.bypassSecurityTrustUrl('data:video/mp4;base64, ' + this.base64Data);
+            }
+            if (this.publications[i].pieceJoints[j].contentType === "application/pdf") {
+              this.base64Data = this.publications[i].pieceJoints[j].data;
+              this.publications[i].pieceJoints[j].image = this.domSanitizer.bypassSecurityTrustResourceUrl('data:application/pdf;base64, ' + this.base64Data);
+            }
           }
-          if (this.publications[i].pieceJoints[j].contentType === "video/mp4") {
-            this.base64Data = this.publications[i].pieceJoints[j].data;
-            this.publications[i].pieceJoints[j].image = this.domSanitizer.bypassSecurityTrustUrl('data:video/mp4;base64, ' + this.base64Data);
-          }
-          if (this.publications[i].pieceJoints[j].contentType === "application/pdf") {
-            this.base64Data = this.publications[i].pieceJoints[j].data;
-            this.publications[i].pieceJoints[j].image= this.domSanitizer.bypassSecurityTrustResourceUrl('data:application/pdf;base64, ' + this.base64Data);
-          }
+          this.base64DataPp = this.publications[i].user.logo;
+          this.publications[i].user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataPp;
+          this.publications[i].NbrLike = this.publications[i].likes.length;
+          this.user = this.publications[i].user;
         }
-        this.base64DataPp = this.publications[i].user.logo;
-        this.publications[i].user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataPp;
-        this.publications[i].NbrLike = this.publications[i].likes.length;
-        this.user = this.publications[i].user;
-      }
-      for(let m=0; m<this.publications.length; m++){
-        for(let n=0; n<this.publications[m].comments.length; n++){
-          this.base64DataC = this.publications[m].comments[n].user.logo;
-          this.publications[m].comments[n].user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataC ;
+        for (let m = 0; m < this.publications.length; m++) {
+          for (let n = 0; n < this.publications[m].comments.length; n++) {
+            this.base64DataC = this.publications[m].comments[n].user.logo;
+            this.publications[m].comments[n].user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataC;
+          }
         }
       }
     }
+    );
   }
-  );
-}
 
   //////////////////upload files
-  onFileSelected(event: { target: { files: any[]; }; }){
+  onFileSelected(event: { target: { files: any[]; }; }) {
     this.file = event.target.files;
   }
   onUpload() {
-      let formData = new FormData();
-      for(var i =0; i< this.file.length ; i++){
-        formData.append("pieceJoints", this.file[i], this.file[i].name);
-      }
-      //let f = formData.getAll('pieceJoints');
-      this.publicationservice.imagesUploadWithoutPubId(formData).subscribe(data => {
-        console.log(data.body);
-        this.pieceJoints = data.body;
-      },
-        error => {
-          console.log(error);
-        });
+    let formData = new FormData();
+    for (var i = 0; i < this.file.length; i++) {
+      formData.append("pieceJoints", this.file[i], this.file[i].name);
+    }
+    //let f = formData.getAll('pieceJoints');
+    this.publicationservice.imagesUploadWithoutPubId(formData).subscribe(data => {
+      console.log(data.body);
+      this.pieceJoints = data.body;
+    },
+      error => {
+        console.log(error);
+      });
 
   }
 
@@ -225,14 +263,14 @@ reloadData(idUser: number) {
   getMyFriends() {
     this.publicationservice.getFriends(this.idUser).subscribe(data => {
       this.friends = data;
-      for(let i=0; i<this.friends.length; i++){
+      for (let i = 0; i < this.friends.length; i++) {
         this.base64DataP = this.friends[i].logo;
         this.friends[i].imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
       }
     },
-    error => {
-      console.log(error);
-    });
+      error => {
+        console.log(error);
+      });
 
   }
 
@@ -241,12 +279,26 @@ reloadData(idUser: number) {
     this.invitationService.AddInvitation(senderId, receiverId).subscribe(data => {
       console.log(data);
     },
-    error => {
-      console.log(error);
-    });
+      error => {
+        console.log(error);
+      });
 
   }
 
+  AcceptInvitationUser(idSender: number) {
+    this.invitationService.AcceptInvitationUser(idSender, this.idCurrentUser).subscribe(data => {
+      console.log(data);
+    },
+      error => console.log(error));
+    window.location.reload();
+  }
 
+  EnvoiInvitationUser(idUser: number) {
+    this.invitationService.AddInvitation(this.idCurrentUser, idUser).subscribe(data => {
+      console.log(data);
+    },
+      error => console.log(error));
+    window.location.reload();
+  }
 }
 

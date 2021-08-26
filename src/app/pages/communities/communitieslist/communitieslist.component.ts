@@ -5,6 +5,7 @@ import { Community } from 'src/app/entities/Community';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { HttpClient } from '@angular/common/http';
+import { User } from 'src/app/entities/User';
 
 
 @Component({
@@ -25,7 +26,10 @@ export class CommunitieslistComponent implements OnInit {
   submitted = false;
   idCurrentUser : number;
   selectedFile: File;
-
+  currentUser: User;
+  base64DataP: any;
+  base64DataPp: any;
+  base64DataC: any;
   //communityItem : CommunityItem;
 
   constructor(private route: ActivatedRoute,
@@ -120,14 +124,29 @@ if (this.CommunityItem.type == "Publique" ){
         console.log(data);
       },
         error => console.log(error));
-    //window.location.reload();
+    window.location.reload();
     console.log(this.community);
   }
 
 
+  deleteCommunity(id: number){
+    this.communityservice.deleteCommunity(id).subscribe( data => {
+      console.log(data);
+      window.location.reload();
+
+    },
+    error => console.log(error));
+  }
 
 
-
+  getUser(idCurrentUser: number) {
+    this.communityservice.getUserById(idCurrentUser).subscribe(data => {
+      this.currentUser = data;
+      this.base64DataP = this.currentUser.logo;
+      this.currentUser.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
+    },
+      error => console.log(error));
+  }
   load() {
 
     this.communityservice.getCommunityByAdmin(this.idCurrentUser).subscribe(data => {
@@ -149,6 +168,7 @@ if (this.CommunityItem.type == "Publique" ){
   }
 
   ngOnInit(): void {
+    this.getUser(this.idCurrentUser);
     this.load();
   }
 

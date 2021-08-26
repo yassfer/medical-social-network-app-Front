@@ -17,7 +17,6 @@
           <h5><span style="color: #47d3dd;">20</span>&nbsp; badge</h5>
         </div>
       </div>
-      <button type="button" class="btn btn-md follow-button btn-block">Follow</button>
     </div>
   </div>
   <!--user infoooo-->
@@ -47,46 +46,18 @@
         <!--end user friends-->
         <hr class="hr-user">
 
-        <!--user followed communities-->
-        <div class="communities">
-          <h5>Followed Communities</h5>
-          <div class="row row-communities justify-content-center">
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
+       <!--user followed communities-->
+       <div class="communities">
+        <h5>Followed Communities</h5>
+        <div class="row row-communities justify-content-center">
+          <div class="col-4"  *ngFor="let community of followedCommunities">
+            <img src="data:image/png;base64,{{community.image}}" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+            <h6>{{community.nom}}</h6>
           </div>
-
-
-          <div class="row row-communities justify-content-center">
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-          </div>
-
         </div>
-        <!--end user followed communities-->
+
+      </div>
+      <!--end user followed communities-->
       </div>
 
 

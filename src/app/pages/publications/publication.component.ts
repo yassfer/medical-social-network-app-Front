@@ -48,7 +48,7 @@ export class PublicationComponent implements OnInit {
   ngOnInit() {
     this.getUser(this.idCurrentUser);
     this.getMyFriends();
-    this.reloadData(this.idCurrentUser);
+    this.reloadData();
   }
 
 
@@ -139,8 +139,8 @@ export class PublicationComponent implements OnInit {
       error => console.log(error));
 }
 
-reloadData(id: number) {
-  this.publicationservice.getPublicationByUserId(id).subscribe(data => {
+reloadData() {
+  this.publicationservice.getAllPublication().subscribe(data => {
     if (data.length === 0) {
       this.condition = true;
     } else {

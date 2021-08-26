@@ -1,95 +1,52 @@
-body {
-  background-color: #2fbaf1;
-  font-family: source-sans-pro, sans-serif;
-}
-
 h1 {
-  margin-left: auto;
-  margin-top: 50px;
+  margin-left: 200px;
+  margin-top: 100px;
   text-align: center;
   font-weight: 100;
   font-size: 2.8em;
   color: #ffffff;
 }
 
-div {
-  width: 500px;
-  margin: auto;
+input{
+  border: none;
+  border-bottom: solid 1px rgba(169, 169, 169, 0.151);
 }
 
-.formStyle {
-  background-color: #29e2f0;
-  padding: 20px;
-  width: 400px;
-  margin-bottom: 20px;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: #ecf0f1;
-  border-top-style: none;
-  border-right-style: none;
-  border-left-style: none;
-  font-size: 1em;
-  font-weight: 100;
-  color: #053a47;
+.form-group{
+  margin-top: 7px;
 }
 
-label{
-  padding: 20px;
-  width: 400px;
-  margin-bottom: 20px;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: #ecf0f1;
-  border-top-style: none;
-  border-right-style: none;
-  border-left-style: none;
-  font-size: 1em;
-  font-weight: 100;
-  color: #ffffff;
-}
-
-
-.btn-success {
+.btn-add{
+  width: 100px;
+  font-size: 11px;
+  font-weight: none;
+  background: linear-gradient(#0098f0, #20c997);
   float: right;
-    background-color:#2dcbf3;
-    display:inline-block;
-    color:#053a47;
-    font-size:28px;
-    font-weight: 500;
-    padding:6px 24px;
-  margin-top: 15px;
-  margin-right: 60px;
-    text-decoration:none;
 }
 
-.formButton:hover {
-    background-color: #686868;
-  color:#ffffff;
+
+.button-upload{
+  width: 60px;
+  height: 30px;
+  font-size: 11px;
+  margin: 10px 25px;
+  border-color: rgba(0, 0, 0, 0.041);
 }
 
-.formButton:active {
-    position:relative;
-    top:3px;
+/**/
+h6{
+  color: darkgrey;
 }
 
-/*To remove the outline that appears on clicking the input textbox*/
-input:focus {
-  outline: none;
+.content{
+  margin-top: 10px;
 }
 
-/* To format the placeholder text color */
-::-webkit-input-placeholder {
-   color: #ecf0f1;
+.card{
+  padding: 10px 20px 0 10px;
 }
 
-:-moz-placeholder { /* Firefox 18- */
-   color: #ecf0f1;
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   color: #ecf0f1;
-}
-
-:-ms-input-placeholder {
-   color: #ecf0f1;
+.comment{
+  font-size: 11px;
+  padding: 5px 30px;
 }

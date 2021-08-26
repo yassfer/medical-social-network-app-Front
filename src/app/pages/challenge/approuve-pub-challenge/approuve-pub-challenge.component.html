@@ -1,51 +1,51 @@
 <div class="content">
-      <div class="row justify-content-center ">
-        <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
-        <ng-template #elseBlock>
-          <div class="col-7 offset-1" *ngFor="let publication of publications">
-            <div class=" card card-chart">
-              <div class="card-body text-secondary">
-                <button type="button" class="close" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class=" card-category">
-                  <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
-                  {{ publication.user.firstName }}
-                </h5>
-                <h5 class="card-title">{{ publication.content }}</h5>
-              </div>
-              <div class=" card-body">
-                <div class="row">
-                  <div class="col" *ngFor="let pieceJoint of publication.pieceJoints">
-                    <div *ngIf="pieceJoint.contentType=='image/jpeg'; else pdfBlock">
-                      <img class="card-img-top" [src]="pieceJoint.image" alt="Card image cap">
-                    </div>
-                    <ng-template #pdfBlock>
-                      <div *ngIf="pieceJoint.contentType=='application/pdf';else videoBloc">
-                        <embed [src]="pieceJoint.image" width=800 height=500 type='application/pdf' />
-                      </div>
-                    </ng-template>
-                    <ng-template #videoBloc>
-                      <video width="100%" style="height: 300px!important" controls>
-                        <source [src]="pieceJoint.image" type="video/mp4">
-                      </video>
-                    </ng-template>
+  <div class="row justify-content-center ">
+    <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
+    <ng-template #elseBlock>
+      <div class="col-7 offset-1" *ngFor="let publication of publications">
+        <div class=" card card-chart">
+          <div class="card-body text-secondary">
+            <button type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class=" card-category">
+              <img [src]="publication.user.imageProfile" id="nom" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
+              {{ publication.user.firstName }}&nbsp;{{ publication.user.lastName }}
+            </h5>
+            <h5 class="card-title">{{ publication.content }}</h5>
+          </div>
+          <div class=" card-body">
+            <div class="row">
+              <div class="col" *ngFor="let pieceJoint of publication.pieceJoints">
+                <div *ngIf="pieceJoint.contentType=='image/jpeg'; else pdfBlock">
+                  <img class="card-img-top" [src]="pieceJoint.image" alt="Card image cap">
+                </div>
+                <ng-template #pdfBlock>
+                  <div *ngIf="pieceJoint.contentType=='application/pdf';else videoBloc">
+                    <embed [src]="pieceJoint.image" width=800 height=500 type='application/pdf' />
                   </div>
-                </div>
-
-                <div class="row">
-                  <button (click)="approuvePublicationChallenge(publication.id, publication)" class="btn col-5">Approuve</button>
-                  <button (click)="deletePublicationChallenge(publication.id)" class="btn btn-info col-5">Delete</button>
-                </div>
-
+                </ng-template>
+                <ng-template #videoBloc>
+                  <video width="100%" style="height: 300px!important" controls>
+                    <source [src]="pieceJoint.image" type="video/mp4">
+                  </video>
+                </ng-template>
               </div>
             </div>
+
+            <div class="row">
+              <button (click)="approuvePublicationChallenge(publication.id, publication)" class="btn col-5">Approuve</button>
+              <button (click)="deletePublicationChallenge(publication.id)" class="btn btn-info col-5">Delete</button>
+            </div>
+
           </div>
-        </ng-template>
-
-
-
+        </div>
       </div>
+    </ng-template>
+
+
 
   </div>
+
+</div>
 

@@ -17,7 +17,36 @@
           <h5><span style="color: #47d3dd;">20</span>&nbsp; badge</h5>
         </div>
       </div>
-      <button type="button" class="btn btn-md follow-button btn-block">Follow</button>
+      <!---->
+      <div *ngIf="user.myFriend; else second">
+        <p class="dark-grey-text mt-4">
+          <button type="button" class="btn btn-md follow-button btn-block" [disabled]="true"><i class="fas fa-user-check"></i>You'r friends</button>
+          
+        </p>
+      </div>
+      <ng-template #second>
+        <div *ngIf="user.waitingList; else third">
+          <div class="container-fluid">
+            <p>
+              <button type="button" class="btn btn-md follow-button btn-block" [disabled]="true"><i class="fas fa-hourglass-half"></i>invitation sent</button>
+            </p>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #third>
+        <div *ngIf="user.invited; else furth">
+          <div class="container-fluid">
+            <button type="button" class="btn btn-md follow-button btn-block" (click)="AcceptInvitationUser(user.id)"><i class="fas fa-check"></i>Accept</button>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #furth>
+        <div class="container-fluid">
+          <button type="button" class="btn btn-md follow-button btn-block" (click)="EnvoiInvitationUser(user.id)">Follow</button>
+        </div>
+      </ng-template>
+      <!---->
+      
     </div>
   </div>
   <!--user infoooo-->

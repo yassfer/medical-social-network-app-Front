@@ -111,6 +111,8 @@ export class WorkoutBotComponent implements OnInit {
     },
     error => console.log(error))
     this.addResponseMsg("Please wait a few seconds 😀")
+    console.log(this.remarques)
+    console.log(this.advices)
     setTimeout(()=>{
       this.addResponseMsg(this.remarques)
       this.addResponseMsg(this.advices)

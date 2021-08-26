@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Entreprise } from 'src/app/entities/entreprise';
+import { User } from 'src/app/entities/User';
 import { SponsoringService } from './sponsoring.service';
 
 interface Catégorie {
@@ -20,19 +21,20 @@ export class SponsoringComponent implements OnInit {
   selectedFile: File;
   EntrepriseR: Entreprise;
   idEntrepriseR: number;
-  Entreprise: Entreprise;
+  Entreprise: Entreprise = new Entreprise(null,null,null,null,null,null,null,null,null,null,null);
   idCurrentUser: number;
-
+  currentUser: User;
   Entreprises: Entreprise[];
   base64Data: any;
   condition: boolean;
-  currentUserId: number = 1;
   closeResult = '';
 
   submitted = false;
   idChallenge: any;
   message: string;
   idC : any;
+  base64DataP: any;
+  base64DataPp: any;
 
   constructor(private route: ActivatedRoute,
     private router: Router, private httpClient: HttpClient, private modalService: NgbModal , private sponsoringservice : SponsoringService, private tokenStorage: TokenStorageService) {
@@ -75,7 +77,7 @@ export class SponsoringComponent implements OnInit {
 
   ngOnInit(): void {
     this.reloadData();
-
+    this.getUser(this.idCurrentUser);
   }
 /*
   public onFileChanged(event) {
@@ -85,6 +87,15 @@ export class SponsoringComponent implements OnInit {
   }*/
   public onFileSelected(event) {
     this.selectedFile = event.target.files[0];
+  }
+
+  getUser(id: number) {
+    this.sponsoringservice.getUserById(id).subscribe(data => {
+      this.currentUser = data;
+      this.base64DataP = this.currentUser.logo;
+      this.currentUser.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
+    },
+      error => console.log(error));
   }
 
 
@@ -137,4 +148,3 @@ export class SponsoringComponent implements OnInit {
 
 
   }
-

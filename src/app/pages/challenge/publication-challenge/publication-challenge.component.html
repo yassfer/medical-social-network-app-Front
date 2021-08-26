@@ -10,7 +10,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
               <h5 class=" card-category">
-                <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
+                <img [src]="publication.user.imageProfile" id="nom" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
                 {{ publication.user.firstName }}
               </h5>
               <h5 class="card-title">{{ publication.content }}</h5>

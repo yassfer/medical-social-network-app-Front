@@ -12,6 +12,7 @@ import { NotificationService } from "src/app/pages/notifications/notification.se
 import { Invitation } from "src/app/entities/invitation";
 import { InvitationService } from "src/app/pages/invitation/invitation.service";
 import { MessagerieService } from "src/app/pages/messagerie/messagerie.service";
+import { Route } from "@angular/compiler/src/core";
 
 @Component({
   selector: "app-navbar",
@@ -34,6 +35,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   lastFiveMsg: Array<Message> = [];
   UserToTalk :User = new User();
   base64DataP:any;
+  base64DataI: any;
 /**/
   myNotifs=[];
   numberMynotif:number;
@@ -285,6 +287,10 @@ getInvitations(idCurrentUser: number) {
         this.FiveLastInvitations.push(this.invitations[i]);
       }
     }
+    for(let i=0; i<this.FiveLastInvitations.length; i++){
+      this.base64DataI = this.FiveLastInvitations[i].sender.logo;
+      this.FiveLastInvitations[i].sender.imageProfile = 'data:image/jpeg;base64,' +this.base64DataI;
+    }
   },
     error => console.log(error));
 }
@@ -343,5 +349,7 @@ getMsg(idCurrentUser: number) {
 
 
 /**************** end Messages *************/
-
+navigateToAll(){
+  this.router.navigate(['/invitations'])
+}
 }
