@@ -8,7 +8,7 @@ import { User } from 'src/app/entities/User';
 })
 export class UserService {
 
-  private baseURL = "http://localhost:8090/";
+  private baseURL = "http://localhost:8080/";
 
   constructor(private httpClient: HttpClient) { }
 

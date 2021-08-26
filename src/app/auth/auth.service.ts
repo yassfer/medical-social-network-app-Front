@@ -21,9 +21,9 @@ export class AuthService {
   private authorities: string[];
   private currentUserId: number;
 
-  private loginUrl = 'http://localhost:8090/api/auth/signin';
-  private signupUrl = 'http://localhost:8090/api/auth/signup';
-  private userUrl = 'http://localhost:8090/api/users';
+  private loginUrl = 'http://localhost:8080/api/auth/signin';
+  private signupUrl = 'http://localhost:8080/api/auth/signup';
+  private userUrl = 'http://localhost:8080/api/users';
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {
     this.username = tokenStorage.getUsername();

@@ -7,7 +7,7 @@ import { Community } from 'src/app/entities/Community';
   providedIn: 'root'
 })
 export class CommunityServiceService {
-  private Url = 'http://localhost:8090/communities/';
+  private Url = 'http://localhost:8080/communities/';
 
   constructor(private http: HttpClient) { }
   deleteCommunity(id: number): Observable<any> {

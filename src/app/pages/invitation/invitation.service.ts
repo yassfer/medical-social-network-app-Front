@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Invitation } from 'src/app/entities/invitation';
-import { User } from 'medical-social-network-app-Front/src/app/entities/User';
+import { User } from 'src/app/entities/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InvitationService {
 
-  private baseUrl = 'http://localhost:8090/invitations';
+  private baseUrl = 'http://localhost:8080/invitations';
   private baseUrlUsers = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) { }

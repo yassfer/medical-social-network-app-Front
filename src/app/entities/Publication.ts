@@ -10,7 +10,7 @@ export class Publication {
     pieceJoints : PieceJoint[];
     likes : Liking[];
     NbrLike: number;
-    comment :Comments[] ;
+    comments :Comments[] ;
     user: User;
     images: any;
 }

@@ -9,7 +9,7 @@ import { User } from 'src/app/entities/User';
 })
 export class MessagerieService {
 
-  private url = 'http://localhost:8090/';
+  private url = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) { }
   setMsg(msg: Message): Observable<Object> {

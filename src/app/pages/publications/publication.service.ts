@@ -14,7 +14,7 @@ export class PublicationService {
 
 
 
-  private baseURL = "http://localhost:8090/api/";
+  private baseURL = "http://localhost:8080/api/";
 
   constructor(private httpClient: HttpClient) { }
   getPublicationByUserId(id: number): Observable<any> {

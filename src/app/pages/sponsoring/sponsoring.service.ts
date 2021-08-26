@@ -7,7 +7,7 @@ import { Entreprise } from 'src/app/entities/entreprise';
   providedIn: 'root'
 })
 export class SponsoringService {
-  private baseUrl = 'http://localhost:8090/Entreprises/';
+  private baseUrl = 'http://localhost:8080/Entreprises/';
 
   constructor(private http: HttpClient) { }
   createEntrepriseWithPiece(id: number, file: FormData): Observable<any> {

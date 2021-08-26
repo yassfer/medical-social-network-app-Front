@@ -7,7 +7,7 @@ import { Entreprise } from 'src/app/entities/entreprise';
   providedIn: 'root'
 })
 export class PartenaireService {
-  private url = 'http://localhost:8090/entreprise/';
+  private url = 'http://localhost:8080/entreprise/';
 
   constructor(private http: HttpClient) { }
 

@@ -11,7 +11,7 @@ import { PieceJoint } from 'src/app/entities/PieceJoint';
 })
 export class ChallengeService {
 
-  private baseUrl = 'http://localhost:8090/';
+  private baseUrl = 'http://localhost:8080/';
   constructor(private http: HttpClient) { }
 
   // Challenge Services

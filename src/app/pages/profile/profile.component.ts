@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   base64Data: any;
   base64DataP: any;
   base64DataPp: any;
+  base64DataC: any;
   user: User;
   click = true;
   com = true;
@@ -170,6 +171,12 @@ reloadData(idUser: number) {
         this.publications[i].user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataPp;
         this.publications[i].NbrLike = this.publications[i].likes.length;
         this.user = this.publications[i].user;
+      }
+      for(let m=0; m<this.publications.length; m++){
+        for(let n=0; n<this.publications[m].comments.length; n++){
+          this.base64DataC = this.publications[m].comments[n].user.logo;
+          this.publications[m].comments[n].user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataC ;
+        }
       }
     }
   }
