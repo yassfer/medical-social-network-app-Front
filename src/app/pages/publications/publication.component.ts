@@ -35,7 +35,8 @@ export class PublicationComponent implements OnInit {
   file: any[];
   currentUser: User;
   friends: User[];
-
+  base64DataP: any;
+  base64DataPp: any;
 
   constructor(private publicationservice: PublicationService,private invitationService: InvitationService,
     private router: Router, private domSanitizer: DomSanitizer, private modalService: NgbModal,
@@ -77,6 +78,8 @@ export class PublicationComponent implements OnInit {
   getUser(idCurrentUser: number) {
     this.publicationservice.getUserById(idCurrentUser).subscribe(data => {
       this.currentUser = data;
+      this.base64DataP = this.currentUser.logo;
+      this.currentUser.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
     },
       error => console.log(error));
   }
@@ -159,6 +162,8 @@ reloadData(id: number) {
             this.publications[i].pieceJoints[j].image= this.domSanitizer.bypassSecurityTrustResourceUrl('data:application/pdf;base64, ' + this.base64Data);
           }
         }
+        this.base64DataPp = this.publications[i].user.logo;
+        this.publications[i].user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataPp;
         this.publications[i].NbrLike = this.publications[i].likes.length;
         this.user = this.publications[i].user;
       }
@@ -204,7 +209,7 @@ reloadData(id: number) {
       this.updatePieceJoint(this.publica.id, this.pieceJoints);
     });
 
-    window.location.reload();
+    //window.location.reload();
 
   }
 

@@ -1,3 +1,28 @@
 .content{
   margin-top: 70px;
 }
+
+.themeBtn {
+  background: #344675;
+  color: #ffffff !important;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 500;
+  height: 30px;
+  line-height: 0.8;
+  padding: 5px 30px;
+  text-transform: capitalize;
+  border-radius: 1px;
+  letter-spacing: 0.5px;
+border:0px !important;
+cursor:pointer;
+border-radius:100px;
+
+}
+.themeBtn:hover {
+  background: #344675;
+  color: #ffffff;
+  box-shadow: 0 10px 25px -2px #1e2944;
+}
+
+/////////////

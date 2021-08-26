@@ -22,6 +22,7 @@ export class ChallengeComponent implements OnInit {
   challenges: Challenge[];
   base64Data: any;
   base64DataP: any;
+  base64DataC: any;
   condition: boolean;
   currentUserId: number = 1;
   closeResult = '';
@@ -40,10 +41,14 @@ export class ChallengeComponent implements OnInit {
     this.reloadData();
     this.challengeService.getUserById(this.idCurrentUser).subscribe(data => {
     this.currentUser = data;
-    console.log("userrr")
-    console.log(this.currentUser)
-    //this.base64DataP = this.currentUser.logo;
+    console.log("name")
+    console.log(this.currentUser.username)
+
+    console.log("Logo")
+    console.log(this.currentUser.imageProfile)
+    this.base64DataP = this.currentUser.logo;
     this.currentUser.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
+    console.log(this.currentUser.imageProfile)
     });
   }
 
@@ -56,7 +61,6 @@ export class ChallengeComponent implements OnInit {
     });
   }
 
-
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -66,8 +70,6 @@ export class ChallengeComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
-
   /////end modal
 
 
@@ -77,8 +79,6 @@ export class ChallengeComponent implements OnInit {
   }
 
   onUpload() {
-    console.log(this.selectedFile);
-    console.log("id::: " + this.idCurrentUser);
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
     this.challengeService
@@ -97,7 +97,6 @@ export class ChallengeComponent implements OnInit {
         error => console.log(error));
     window.location.reload();
   }
-
   ///end create challenge
 
   reloadData() {
@@ -110,13 +109,17 @@ export class ChallengeComponent implements OnInit {
         for (let i = 0; i < this.challenges.length; i++) {
           this.base64Data = this.challenges[i].pieceJoint;
           this.challenges[i].image = 'data:image/jpeg;base64,' + this.base64Data;
+          this.base64DataC = this.challenges[i].adminChallenge.logo;
+          this.challenges[i].adminChallenge.imageProfile = 'data:image/jpeg;base64,' + this.base64DataC;
+          this.challenges[i].NbParticipant = this.challenges[i].publicationChallenge.length;
         }
+
       }
 
     });
   }
   onParticipateCondition(challenge: Challenge) {
-    if (challenge.adminChallenge.id === this.currentUserId) {
+    if (!(challenge.adminChallenge.id === this.currentUserId)) {
       alert("can't participate in your own challenge")
     }
     else {

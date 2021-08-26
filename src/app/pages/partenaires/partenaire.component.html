@@ -4,8 +4,8 @@
           <div class="pricing-card p-3 text-center py-5 mt-2">
               <div class="images"><img src="{{partner.image}}" height="120" width="180"></div>
              <span class="d-block" ><a id="link"  href="{{partner.address}}">{{partner.nom}}</a></span>
-             <span class="d-block font-weight-bold mt-3" id="off">{{partner.reduction}}% Off ( -{{partner.scoreReduct}} points )</span>
-             <button  class="btn btn-light shadow mt-4 px-5 rounded-pill" type="button" (click)="sendCode(partner.nom,partner.id,partner.reduction)" >Get it now</button>
+             <span class="d-block font-weight-bold mt-3" id="off">{{partner.point}}% Off ( -{{partner.scoreReduct}} points )</span>
+             <button  class="btn btn-light shadow mt-4 px-5 rounded-pill" type="button" (click)="sendCode(partner.nom,partner.id,partner.point)" >Get it now</button>
 
              <ng-template *ngIf="scoreFail && partner.id==IdDetail; then nothing;">
           </ng-template>

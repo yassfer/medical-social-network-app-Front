@@ -7,11 +7,16 @@ export class User {
   password:String;
   birthDate:Date;
   address:String;
-  image? :File;
-  imageProfile: string;
+  logo? :File;
+  imageProfile: any;
   profession:String;
   professionnalisme:String;
   recommander: User;
   score: number;
   connected: boolean;
+  myFriend: boolean;
+  waitingList: boolean;
+  invited: boolean;
+  nom: String;
+  prenom: String;
 }

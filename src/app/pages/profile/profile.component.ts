@@ -20,6 +20,8 @@ export class ProfileComponent implements OnInit {
 
   condition: boolean;
   base64Data: any;
+  base64DataP: any;
+  base64DataPp: any;
   user: User;
   click = true;
   com = true;
@@ -80,6 +82,8 @@ export class ProfileComponent implements OnInit {
   getUser(idUser: number) {
     this.publicationservice.getUserById(idUser).subscribe(data => {
       this.user = data;
+      this.base64DataP = this.user.logo;
+      this.user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
     },
       error => console.log(error));
   }
@@ -162,6 +166,8 @@ reloadData(idUser: number) {
             this.publications[i].pieceJoints[j].image= this.domSanitizer.bypassSecurityTrustResourceUrl('data:application/pdf;base64, ' + this.base64Data);
           }
         }
+        this.base64DataPp = this.publications[i].user.logo;
+        this.publications[i].user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataPp;
         this.publications[i].NbrLike = this.publications[i].likes.length;
         this.user = this.publications[i].user;
       }
@@ -212,6 +218,10 @@ reloadData(idUser: number) {
   getMyFriends() {
     this.publicationservice.getFriends(this.idUser).subscribe(data => {
       this.friends = data;
+      for(let i=0; i<this.friends.length; i++){
+        this.base64DataP = this.friends[i].logo;
+        this.friends[i].imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
+      }
     },
     error => {
       console.log(error);

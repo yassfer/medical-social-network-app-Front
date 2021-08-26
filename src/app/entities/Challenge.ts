@@ -1,4 +1,5 @@
 import { User } from './User';
+import { PublicationChallenge } from './PublicationChallenge';
 
 export class Challenge {
     id: number;
@@ -6,5 +7,8 @@ export class Challenge {
     objectif: string;
     adminChallenge: User;
     pieceJoint?: File;
-    image: any
+    image: any;
+    publicationChallenge: PublicationChallenge[];
+    NbParticipant: number;
+    createdAt: Date;
 }

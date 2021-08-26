@@ -1,6 +1,6 @@
 <div class="content">
   <div class="profile">
-    <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle user-img offset-5" height="150px" width="150" alt="Cinque Terre">
+    <img [src]="user.imageProfile" id="nom" class="rounded-circle user-img offset-5" height="150px" width="150" alt="Cinque Terre">
     <div class="card card-info offset-1">
       <h4 class="profile-name">{{user.firstName}}&nbsp; {{user.lastName}}</h4>
       <div class="row info card-body justify-content-around">
@@ -37,7 +37,7 @@
           <div class="row row-friends justify-content-center">
             <div class="col-4" *ngFor="let friend of friends">
               <a style="cursor: pointer;" (click)="goToProfile(friend.id)">
-                <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+                <img [src]="friend.imageProfile" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
                 <h6>{{friend.firstName}}&nbsp; {{friend.lastName}}</h6>
                 <small id="friend">{{friend.profession}}</small>
                 </a>
@@ -101,7 +101,7 @@
             <div class="card">
               <div class="card-body">
                   <div class=" card-category row">
-                    <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
+                    <img [src]="user.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
                     <div class="col-10 mt-1">
                       <h5>{{user.firstName}}&nbsp; {{user.lastName}}</h5>
                     </div>
@@ -152,7 +152,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                   <div class=" card-category row">
-                    <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
+                    <img [src]="publication.user.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
                     <div class="col-10">
                       <h5>{{publication.user.firstName}}&nbsp;{{publication.user.lastName}}&nbsp;&nbsp; <small>vous avez partagé une publication</small></h5>
                       <h6 style="margin-top: -15px;">{{publication.user.profession}}</h6>

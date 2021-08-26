@@ -10,6 +10,8 @@ import { UserService } from "./user.service";
 export class UserComponent implements OnInit {
   idCurrentUser: number;
   user: User;
+  base64DataP: any;
+  base64DataPp: any;
 
   constructor(private tokenStorage: TokenStorageService, private userService: UserService) {
     this.idCurrentUser = Number(this.tokenStorage.getId())
@@ -23,6 +25,8 @@ export class UserComponent implements OnInit {
     this.userService.getUserById(this.idCurrentUser).subscribe(data => {
       console.log(data);
       this.user = data;
+      this.base64DataP = this.user.logo;
+      this.user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
     },
       error => console.log(error));
   }

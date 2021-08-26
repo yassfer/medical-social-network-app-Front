@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Entreprise } from 'src/app/entities/entreprise';
 import { SponsoringService } from './sponsoring.service';
@@ -21,7 +20,7 @@ export class SponsoringComponent implements OnInit {
   selectedFile: File;
   EntrepriseR: Entreprise;
   idEntrepriseR: number;
-  Entreprise: Entreprise = new Entreprise();
+  Entreprise: Entreprise;
   idCurrentUser: number;
 
   Entreprises: Entreprise[];

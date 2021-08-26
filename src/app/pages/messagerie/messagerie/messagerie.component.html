@@ -1,41 +1,41 @@
 <div class="content">
-    <div class="connected">
-        <div class="row">
-            <div class="col-4">
-                <div class="card">
-                    <div class="top offset-3">
-                        <h4 class="mt-2">My Friends</h4>
-                    </div>
-                    <div class="bottom">
-                        <div class="d-flex justify-content-between align-items-center"
-                            *ngFor="let user of userConnected">
-                            <div class="d-flex flex-row align-items-center">
-                                <img [src]="user.imageProfile" height="50" width="50">
-                                <span class="type">
-                                    <img src="../../../../assets/img/message-logo.png" width="20">
-                                </span>
-                                <div class=" ml-2">
-                                    <span (click)="onpenDisc(user.id )" id="name">{{ user.firstName }} {{ user.lastName
-                                        }}</span>
-                                    <ng-template [ngIf]="user.connected" [ngIfElse]="loading">
-                                        <span class="d-flex flex-row align-items-center l-now">OnLine</span>
-                                    </ng-template>
-                                    <ng-template #loading>
-                                        <span class="d-flex flex-row align-items-center l-now">OffLine </span>
-                                    </ng-template>
+  <div class="connected">
+      <div class="row">
+          <div class="col-4">
+              <div class="card">
+                  <div class="top offset-3">
+                      <h4 class="mt-2">My Friends</h4>
+                  </div>
+                  <div class="bottom">
+                      <div class="d-flex justify-content-between align-items-center"
+                          *ngFor="let user of userConnected">
+                          <div class="d-flex flex-row align-items-center">
+                              <img [src]="user.imageProfile" class="rounded-circle" height="45px"  width="40px">
+                              <span class="type">
+                                  <img src="../../../../assets/img/message-logo.png" width="20">
+                              </span>
+                              <div class=" ml-2">
+                                  <span (click)="onpenDisc(user.id )" id="name">{{ user.firstName }}&nbsp;{{ user.lastName
+                                      }}</span>
+                                  <ng-template [ngIf]="user.connected" [ngIfElse]="loading">
+                                      <span class="d-flex flex-row align-items-center l-now">OnLine</span>
+                                  </ng-template>
+                                  <ng-template #loading>
+                                      <span class="d-flex flex-row align-items-center l-now">OffLine </span>
+                                  </ng-template>
 
-                                </div>
-                            </div>
-                            <span class="dots"> </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 offset-2">
-                <div *ngIf="display">
-                    <app-discuss (event)="closeDisc($event)" [id]=opendId></app-discuss>
-                </div>
-            </div>
-        </div>
-    </div>
+                              </div>
+                          </div>
+                          <span class="dots"> </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-6 offset-2">
+              <div *ngIf="display">
+                  <app-discuss (event)="closeDisc($event)" [id]=opendId></app-discuss>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>

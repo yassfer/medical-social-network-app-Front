@@ -33,9 +33,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   messages: Message[];
   lastFiveMsg: Array<Message> = [];
   UserToTalk :User = new User();
+  base64DataP:any;
 /**/
-
-  currentId =1;
   myNotifs=[];
   numberMynotif:number;
   notifications = []
@@ -71,6 +70,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
    getAllNotif (){
     this.notifService.getNotifList().subscribe( data => {
       this.notifications=data;
+      console.log(this.notifications);
       this.filterNotifbyUser(this.notifications)
        })
 
@@ -78,7 +78,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     filterNotifbyUser(notifs){
       notifs.forEach(element => {
-        if (element.idu==this.currentId) {
+        if (element.idu==this.idCurrentUser) {
   this.myNotifs.push(element);
          this.numberMynotif= this.NumberNotif(this.myNotifs);
         }
@@ -266,6 +266,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 getUser(id: number) {
   this.navbarService.getUserById(id).subscribe(data => {
     this.currentUser = data;
+    this.base64DataP = this.currentUser.logo;
+    this.currentUser.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
   },
     error => console.log(error));
 }

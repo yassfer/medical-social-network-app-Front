@@ -7,6 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
@@ -40,7 +41,8 @@ import { SponsoringComponent } from './pages/sponsoring/sponsoring.component';
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    Ng2SearchPipeModule
   ],
   declarations: [
     AppComponent,

@@ -3,7 +3,7 @@
     <div class="card" style="width: 34.5rem;">
       <div class="card-body">
           <div class=" card-category row">
-            <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
+            <img [src]="currentUser.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
             <div class="col-10 mt-1">
               <h5>{{currentUser.firstName}}&nbsp; {{currentUser.lastName}}</h5>
             </div>
@@ -54,7 +54,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
           <div class=" card-category row">
-            <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
+            <img [src]="publication.user.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
             <div class="col-10">
               <h5>{{publication.user.firstName}}&nbsp;{{publication.user.lastName}}&nbsp;&nbsp;</h5>
               <h6 style="margin-top: -15px;">{{publication.user.profession}}</h6>

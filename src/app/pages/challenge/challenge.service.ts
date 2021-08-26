@@ -5,6 +5,7 @@ import { Challenge } from 'src/app/entities/Challenge';
 import { PublicationChallenge } from 'src/app/entities/PublicationChallenge';
 import { Liking } from 'src/app/entities/liking';
 import { User } from 'src/app/entities/User';
+import { PieceJoint } from 'src/app/entities/PieceJoint';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +15,6 @@ export class ChallengeService {
   constructor(private http: HttpClient) { }
 
   // Challenge Services
-
   saveChallenge(id: number, challenge: Object): Observable<Object> {
     return this.http.put(`${this.baseUrl}challange/save/${id}`, challenge);
   }
@@ -70,6 +70,10 @@ export class ChallengeService {
   }
   approuvePubChallenge(pubChallengeId: number, userId:number): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}api/publicationChallenge/approuve/${pubChallengeId}/${userId}`);
+  }
+
+  updatePieceJoint(pubId: number, pieceJoints: PieceJoint[]): Observable<any> {
+    return this.http.patch(`${this.baseUrl}pieceJoint/publicationChallenge/${pubId}`, pieceJoints, { responseType: 'text' });
   }
 
 }

@@ -42,7 +42,7 @@ export class MessagerieComponent implements OnInit {
       }else{
         this.condition = false;
         for (let i = 0; i < this.userConnected.length; i++) {
-          this.base64Data = this.userConnected[i].image;
+          this.base64Data = this.userConnected[i].logo;
           this.userConnected[i].imageProfile = 'data:image/jpeg;base64,' + this.base64Data;
         }
       }

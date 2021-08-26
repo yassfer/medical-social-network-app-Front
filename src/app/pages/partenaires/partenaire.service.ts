@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Partenaire } from 'src/app/entities/Partenaire';
+import { Entreprise } from 'src/app/entities/entreprise';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ export class PartenaireService {
 
   constructor(private http: HttpClient) { }
 
-  getPartnerList(): Observable<Partenaire[]> {
-    return this.http.get<Partenaire[]>(`${this.url}getAll`);
+  getPartnerList(): Observable<Entreprise[]> {
+    return this.http.get<Entreprise[]>(`${this.url}getAll`);
   }
 
 

@@ -2,9 +2,9 @@
   <div class="card offset-2" style="width: 30rem;">
     <div class="card-body">
       <div class="card-category row">
-        <img src="../../../assets/img/me.jpg" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
+        <img [src]="currentUser.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
         <div class="col-10 mt-1">
-          <h5>Cyrine Maaloul</h5>
+          <h5>{{currentUser.firstName}}&nbsp;{{currentUser.lastName}}&nbsp;&nbsp;</h5>
         </div>
       </div>
       <div class="md-form">
@@ -67,16 +67,21 @@
     <ng-template #elseBlock>
       <div class="col-4" *ngFor="let challenge of challenges">
         <mdb-card cascade="true" narrower="true">
+          <div class="view view-cascade overlay waves-light" style="margin-bottom: 15px;" mdbWavesEffect>
+            <img [src]= "challenge.adminChallenge.imageProfile" class="rounded-circle" height="45px"  width="40px">
+            <span style="color: wheat;"> {{challenge.adminChallenge.firstName}}&nbsp; {{challenge.adminChallenge.lastName}} </span>
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
           <div class="view view-cascade overlay waves-light" mdbWavesEffect>
-            <mdb-card-img [src]="challenge.image" style="max-width: 200 !important; max-height: 300px !important;">
+            <mdb-card-img [src]="challenge.image" class="rounded mx-auto d-block" >
             </mdb-card-img>
             <a>
               <div class="mask rgba-white-slight"></div>
             </a>
           </div>
-
           <mdb-card-body cascade="true" class="text-center">
-
             <h4 class="card-title">{{challenge.nom}}</h4>
 
             <mdb-card-text>
@@ -90,7 +95,16 @@
                 [routerLink]="['/challenge/publications']" [queryParams]="{idC: challenge.id}">Consult
                 publication</button>
             </div>
-
+            <mdb-card-footer class="mdb-color lighten-3 text-center">
+              <ul class="list-unstyled list-inline font-small mt-3">
+                <li class="list-inline-item pr-2 white-text">
+                  <mdb-icon far icon="clock" class="pr-1"></mdb-icon>{{challenge.createdAt}}</li>
+                <li class="list-inline-item pr-2">
+                  <a href="#" class="white-text">
+                    <mdb-icon fas icon="users" class="pr-1"></mdb-icon>{{ challenge.NbParticipant }}</a>
+                </li>
+              </ul>
+            </mdb-card-footer>
           </mdb-card-body>
         </mdb-card>
       </div>

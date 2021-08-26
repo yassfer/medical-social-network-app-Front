@@ -117,32 +117,31 @@
           </ul>
         </li>
 
-        <li class=" nav-item" ngbDropdown>
-          <a
-            class=" nav-link"
-            data-toggle="dropdown"
-            href="javascript:void(0)"
-            ngbDropdownToggle
-          >
-            <div class=" notification d-none d-lg-block d-xl-block"></div>
+
+        <li class=" nav-item item" ngbDropdown>
+          <a class=" nav-link" data-toggle="dropdown" href="javascript:void(0)" ngbDropdownToggle>
             <span class="badge badge-danger">{{numberMynotif}}</span>
-            <i class=" tim-icons icon-sound-wave"> </i>
+
+            <i class="fa fa-bell"> </i>
             <p class=" d-lg-none">Notifications</p>
           </a>
           <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
-            <div *ngFor="let notif of myNotifs" >
-            <li class=" nav-link"   >
+            <li class=" nav-link" style="width: 400px;" *ngFor="let notif of myNotifs">
               <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
-                {{notif.content}}
-                <button type="button" class="btn-close" (click)="deleteNotif(notif.id)" aria-label="Close"></button>
+                <div class="row">
 
+                  <div class="col-8">
+                    <h5 class="card-title"> {{notif.content}}
+                      <button type="button" class="btn-close" (click)="deleteNotif(notif.id)"
+                        aria-label="Close"></button>
+                    </h5>
+
+                  </div>
+                </div>
               </a>
-
             </li>
+          </ul>
 
-            </div>
-            </ul>
-        </li>
 
         <li class=" nav-item item" ngbDropdown>
           <a
@@ -152,7 +151,7 @@
             ngbDropdownToggle
           >
             <div class=" photo">
-              <img alt="Profile Photo" src="../../../assets/img/me.jpg" />
+              <img alt="Profile Photo" [src]="currentUser.imageProfile" />
             </div>
             <b class=" caret d-none d-lg-block d-xl-block"> </b>
           </a>
