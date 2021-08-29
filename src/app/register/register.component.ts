@@ -14,14 +14,37 @@ export class RegisterComponent implements OnInit {
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
+  file: any;
+  userEmail: any;
+
   constructor(private authService: AuthService, private router: Router) {
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+   }
+
+   onFileSelected(event: any){
+    this.file = event.target.files[0];
+    console.log(this.file);
+  }
+
+  onUpload() {
+    console.log(this.file);
+      let formData = new FormData();
+      formData.append("pieceJustif", this.file);
+      this.authService.uploadImage(this.userEmail, formData).subscribe(data => {
+        console.log(data.body);
+      },
+        error => {
+          console.log(error);
+        });
+
+  }
 
   onSubmit() {
     console.log(this.form);
-
+    this.userEmail = this.form.mail;
     this.signupInfo = new SignUpInfo(
       this.form.firstName,
         this.form.lastName,
@@ -39,6 +62,7 @@ export class RegisterComponent implements OnInit {
         console.log(data);
         this.isSignedUp = true;
         this.isSignUpFailed = false;
+        this.onUpload();
         this.goToLoginPage();
       },
       error => {
@@ -48,6 +72,10 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
+
+
+
+
 
   goToLoginPage(){
     this.router.navigate(["/auth/login"]);

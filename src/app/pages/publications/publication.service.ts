@@ -14,7 +14,7 @@ export class PublicationService {
 
 
 
-  private baseURL = "http://localhost:8080/api/";
+  private baseURL = "http://localhost:8090/api/";
 
   constructor(private httpClient: HttpClient) { }
   getPublicationByUserId(id: number): Observable<any> {
@@ -71,7 +71,7 @@ export class PublicationService {
   }
 
   getCom(): Observable<Comments[]> {
-    return this.httpClient.get<Comments[]>(`${this.baseURL}comment/api/all`);
+    return this.httpClient.get<Comments[]>(`${this.baseURL}comment/all`);
   }
 
   getComById(id: number): Observable<Comments> {
@@ -88,7 +88,7 @@ export class PublicationService {
 
 
   getLike(): Observable<Liking[]> {
-    return this.httpClient.get<Liking[]>(`${this.baseURL}like/api/all`);
+    return this.httpClient.get<Liking[]>(`${this.baseURL}like/all`);
   }
 
   getLikeById(id: number): Observable<Liking> {

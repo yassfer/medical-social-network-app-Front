@@ -8,21 +8,21 @@ import { User } from 'src/app/entities/User';
   providedIn: 'root'
 })
 export class SponsoringService {
-  private baseUrl = 'http://localhost:8080/';
+  private baseUrl = 'http://localhost:8090/';
 
   constructor(private http: HttpClient) { }
   createEntrepriseWithPiece(id: number, file: FormData): Observable<any> {
-    return this.http.post<Entreprise>(`${this.baseUrl}Entreprises/addEntreprise/${id}`, file);
+    return this.http.post<Entreprise>(`${this.baseUrl}entreprise/addEntreprise/${id}`, file);
   }
 
   saveEntreprise(id: number, Entreprise: Object): Observable<Object> {
-    return this.http.put(`${this.baseUrl}Entreprises/save/${id}`, Entreprise);
+    return this.http.put(`${this.baseUrl}entreprise/save/${id}`, Entreprise);
   }
   getMyEntreprise(): Observable<any> {
-    return this.http.get<Entreprise>(`${this.baseUrl}Entreprises/getMyEntreprise`);
+    return this.http.get<Entreprise>(`${this.baseUrl}entreprise/getMyEntreprise`);
   }
   getEntrepriseList(): Observable<any> {
-    return this.http.get<Entreprise[]>(`${this.baseUrl}Entreprises/getAll`);
+    return this.http.get<Entreprise[]>(`${this.baseUrl}entreprise/getAll`);
   }
   getUserById(id: number): Observable<any> {
     return this.http.get<User>(`${this.baseUrl}api/users/${id}`);

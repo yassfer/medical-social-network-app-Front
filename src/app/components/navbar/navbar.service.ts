@@ -8,7 +8,7 @@ import { User } from 'src/app/entities/User';
 })
 export class NavbarService {
 
-  private baseUrl = 'http://localhost:8080/';
+  private baseUrl = 'http://localhost:8090/';
 
   constructor(private http: HttpClient) { }
 

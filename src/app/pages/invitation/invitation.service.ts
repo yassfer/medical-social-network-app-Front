@@ -9,8 +9,8 @@ import { User } from 'src/app/entities/User';
 })
 export class InvitationService {
 
-  private baseUrl = 'http://localhost:8080/invitations';
-  private baseUrlUsers = 'http://localhost:8080/api';
+  private baseUrl = 'http://localhost:8090/invitations';
+  private baseUrlUsers = 'http://localhost:8090/api';
 
   constructor(private http: HttpClient) { }
 
@@ -38,11 +38,14 @@ export class InvitationService {
     return this.http.get<User[]>(`${this.baseUrlUsers}/users/getMyFriends/${id}`)
   }
 
-  getBySender(id: number): Observable<any> {
-    return this.http.get<Invitation[]>(`${this.baseUrl}/getBySender/${id}`);
+  getAll(): Observable<any> {
+    return this.http.get<Invitation[]>(`${this.baseUrl}/getAll`);
   }
 
-  AcceptInvitationUser(ididSender: number, idReceiver: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/acceptUser/${ididSender}/${idReceiver}`);
+  AcceptInvitationUser(idSender: number, idReceiver: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/acceptUser/${idSender}/${idReceiver}`);
+  }
+  DeleteInvitationUser(idSender: number, idReceiver: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/deleteUser/${idSender}/${idReceiver}`)
   }
 }

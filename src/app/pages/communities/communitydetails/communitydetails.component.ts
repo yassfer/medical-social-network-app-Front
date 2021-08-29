@@ -17,8 +17,8 @@ export class CommunitydetailsComponent implements OnInit {
   nbrparticipants : number;
   idCurrentUser : number;
   testfollow : boolean;
-
- participants = new Set();
+  participants = new Set();
+  
   constructor(private router: Router,private communityService: CommunityServiceService, private route:ActivatedRoute,private tokenStorage: TokenStorageService) {
     this.idCurrentUser = Number(tokenStorage.getId()); }
 

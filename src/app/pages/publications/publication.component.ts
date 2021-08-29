@@ -141,6 +141,9 @@ export class PublicationComponent implements OnInit {
 
 reloadData() {
   this.publicationservice.getAllPublication().subscribe(data => {
+    this.publications = data;
+    console.log("this.publications");
+    console.log(this.publications);
     if (data.length === 0) {
       this.condition = true;
     } else {
@@ -151,7 +154,7 @@ reloadData() {
         for (let j = 0; j < this.publications[i].pieceJoints.length; j++) {
           if (this.publications[i].pieceJoints[j].contentType === "image/jpeg") {
             this.base64Data = this.publications[i].pieceJoints[j].data;
-            this.publications[i].pieceJoints[j].image= 'data:image/jpeg;base64,' + this.base64Data ;
+            this.publications[i].pieceJoints[j].image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64, ' + this.base64Data);
           }
           if (this.publications[i].pieceJoints[j].contentType === "video/mp4") {
             this.base64Data = this.publications[i].pieceJoints[j].data;

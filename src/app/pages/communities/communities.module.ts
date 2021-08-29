@@ -10,6 +10,7 @@ import { CreateCommunityImageComponent } from './create-community-image/create-c
 import { CommunityupdateComponent } from './communityupdate/communityupdate.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AllCommunitiesComponent } from './all-communities/all-communities.component';
+import { CommunityProfileComponent } from './community-profile/community-profile.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AllCommunitiesComponent } from './all-communities/all-communities.compo
     CreateCommunityImageComponent,
     CommunityupdateComponent,
     AllCommunitiesComponent,
+    CommunityProfileComponent,
   ],
   imports: [
     CommonModule,

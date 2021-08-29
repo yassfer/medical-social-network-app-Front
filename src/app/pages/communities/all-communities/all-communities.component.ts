@@ -38,6 +38,8 @@ objet :any;
 followed () {
   this.communityService.getFollowedCommunities(this.idCurrentUser).subscribe(data => {
     this.communityListFollowed = data;
+    console.log("communityListFollowed");
+    console.log(this.communityListFollowed);
     this.follow=true;
 
 
@@ -46,7 +48,8 @@ unfollowed(){
   this.follow=false;
   this.communityService.getUnFollowedCommunities(this.idCurrentUser).subscribe(data => {
     this.communityListUnFollowed = data;
-  console.log(data);})}
+    console.log(this.communityListFollowed);
+})}
 
 Tofollow(id :number){
   this.communityService.ToFollow(id,this.idCurrentUser).subscribe( data => {
@@ -56,6 +59,7 @@ Tofollow(id :number){
       });
       this.community.followed =true;
     window.location.reload();
+    this.router.navigate(['/community-profile', this.community.id]);
 }
 ToUnfollow(id :number){
   this.communityService.ToUnFollow(id,this.idCurrentUser).subscribe( data => {
@@ -69,21 +73,29 @@ ToUnfollow(id :number){
 communitydetails(id:number){
   this.router.navigate(['/communitydetails', id]);
 }
+communityProfile(id:number){
+  this.router.navigate(['/community-profile', id]);
+}
 checktype(id : number){
 
   this.community = new Community();
   this.communityService.getCommunityById(id).subscribe( data => {
     this.community = data;
-if (this.community.type == "Publique" ){
+if (this.community.type === "Publique" ){
 
- this.communitydetails(id) }
+ this.communityProfile(id) }
  else {
   for (const participant of Array.from(this.community.participants.values()))
 
-     {if (participant.id = this.idCurrentUser)
-      this.communitydetails(id);
-      else
-       alert("This community is private you should follow it");}
+     {if (participant.id === this.idCurrentUser){
+      this.communityProfile(id)
+     }
+
+      else{
+        alert("This community is private you should follow it");
+      }
+
+      }
 }})
 }
 }

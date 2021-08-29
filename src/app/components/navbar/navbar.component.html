@@ -72,7 +72,7 @@
                     <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
                                   <div class="row">
                                           <div class="img-square-wrapper col-3">
-                                            <img src="../assets/test.jpg" id="nom" class="rounded-circle chat-img" height="50px" width="50px" alt="Cinque Terre">
+                                            <img [src]="msg.senderUser.imageProfile" id="nom" class="rounded-circle chat-img" height="50px" width="50px" alt="Cinque Terre">
                                           </div>
                                           <div class="col-8">
                                               <h5 class="card-title">{{msg.senderUser.firstName}}&nbsp;{{msg.senderUser.lastName}}</h5>
@@ -106,7 +106,7 @@
                                     <div class="col-8">
                                         <h5 class="card-title">{{invitation.sender.firstName}}&nbsp;{{invitation.sender.lastName}}</h5>
                                         <div class="row justify-content-around">
-                                          <button type="button" class="btn btn-sm col-5" (click)="AcceptInvitation(isCurrentUser, invitation.id)">Accepter</button>
+                                          <button type="button" class="btn btn-sm col-5" (click)="AcceptInvitation(invitation.id)">Accepter</button>
                                           <button type="button" class="btn btn-sm col-5" (click)="deleteInvitation(invitation.id)">Refuser</button>
                                         </div>
                                         <small class="text-muted">{{invitation.since}}</small>

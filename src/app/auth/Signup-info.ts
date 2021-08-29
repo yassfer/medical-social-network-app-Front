@@ -1,3 +1,5 @@
+import { PieceJoint } from "../entities/PieceJoint";
+
 export class SignUpInfo {
 
   firstName : String;
@@ -11,7 +13,7 @@ export class SignUpInfo {
   profession:String;
   professionnalisme: boolean;
   role: string[];
-  recommander: string
+  recommander: string;
 
 
   constructor(firstName: string, lastName: string, mail: string, username:string, password: string,

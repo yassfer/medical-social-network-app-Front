@@ -55,9 +55,10 @@
           </div>
         </ng-template>
         <ng-template #third>
-          <div *ngIf="user.waitingList; else furth">
+          <div *ngIf="user.waiting; else furth">
             <div class="container-fluid">
               <button target="_blank" class="themeBtn" (click)="AcceptInvitationUser(user.id)"><i class="fas fa-check"></i>Accept</button>
+              <button target="_blank" class="themeBtn" (click)="RefuseInvitationUser(user.id)"><i class="fas fa-check"></i>Refuse</button>
             </div>
           </div>
         </ng-template>

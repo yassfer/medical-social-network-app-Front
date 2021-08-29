@@ -19,8 +19,7 @@ export class InvitationComponent implements OnInit {
   base64DataS: any;
   users: User[];
   myFriends: User[];
-  myWaiting: Invitation[];
-  mySenders: Invitation[];
+  allInvitations: Invitation[];
 
   constructor(private invitationService: InvitationService, private tokenStorage: TokenStorageService, private router: Router) {
     this.idCurrentUser = Number(tokenStorage.getId());
@@ -71,7 +70,13 @@ export class InvitationComponent implements OnInit {
       console.log(data);
     },
       error => console.log(error));
-    //window.location.reload();
+    window.location.reload();
+  }
+  RefuseInvitationUser(idSender: number) {
+    this.invitationService.DeleteInvitationUser(idSender, this.idCurrentUser).subscribe(data => {
+      console.log(data);
+    },
+      error => console.error(error));
   }
 
   getAllUsers() {
@@ -96,39 +101,29 @@ export class InvitationComponent implements OnInit {
       },
         error => console.log(error));
       //Third traitment
-      this.invitationService.getAllInvitations(this.idCurrentUser).subscribe(data => {
-        console.log("data=> "+data)
-        this.myWaiting = data;
-        console.log("wss:: "+this.myWaiting)
+      this.invitationService.getAll().subscribe(data => {
+        this.allInvitations = data;
+        console.log("all")
+        console.log(this.allInvitations);
         for (let i = 0; i < this.users.length; i++) {
-          for (let j = 0; j < this.myWaiting.length; j++) {
-            if (this.users[i].id === this.myWaiting[j].receiver.id) {
+          for (let j = 0; j < this.allInvitations.length; j++) {
+            if ((this.users[i].id === this.allInvitations[j].sender.id) && (this.idCurrentUser === this.allInvitations[j].receiver.id)) {
+              this.users[i].waiting = true;
+            }
+            if ((this.users[i].id === this.allInvitations[j].receiver.id) && (this.idCurrentUser === this.allInvitations[j].sender.id)) {
               this.users[i].invited = true;
-              console.log("invited:: " + this.users[i].invited);
             }
           }
-
         }
       },
         error => console.log(error));
-      //Forth traitment
-      this.invitationService.getBySender(this.idCurrentUser).subscribe(data => {
-        this.mySenders = data;
-        for (let i = 0; i < this.users.length; i++) {
-          for (let j = 0; j < this.mySenders.length; j++) {
-            if (this.users[i].id === this.mySenders[j].sender.id) {
-              this.users[i].waitingList = true;
-              console.log("waitingList:: " + this.users[i].waitingList);
-            }
-          }
 
-          this.base64Data = this.users[i].logo;
-          this.users[i].imageProfile = 'data:image/jpeg;base64,' + this.base64Data;
-        }
-      },
-        error => console.log(error));
+      for (let i = 0; i < this.users.length; i++) {
+        this.base64Data = this.users[i].logo;
+        this.users[i].imageProfile = 'data:image/jpeg;base64,' + this.base64Data;
+      }
+
     },
-
       error => console.log(error));
   }
 

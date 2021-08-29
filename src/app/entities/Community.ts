@@ -7,6 +7,7 @@ export class Community {
     public amid_comm : User;
     public piecejointe : any;
     public image? : File;
+    public imageProfile : any;
     public participants : Set<User>;
     public type : String;
     public description : String;

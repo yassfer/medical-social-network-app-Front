@@ -115,6 +115,7 @@ export class CreatePublicationChallengeComponent implements OnInit {
   onPublication() {
     this.challengeService.createPublicationChallenge(this.idC,this.idCurrentUser, this.Newpublication).subscribe(data => {
       this.publica = data;
+      console.log(this.publica);
       this.updatePieceJoint(this.publica.id, this.pieceJoints);
     });
 
@@ -124,4 +125,5 @@ export class CreatePublicationChallengeComponent implements OnInit {
     //window.location.reload();
 
   }
+
 }

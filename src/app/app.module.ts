@@ -31,6 +31,8 @@ import { MessagerieComponent } from './pages/messagerie/messagerie/messagerie.co
 import { PartenaireComponent } from './pages/partenaires/partenaire.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SponsoringComponent } from './pages/sponsoring/sponsoring.component';
+import { RoutinesBotComponent } from './pages/chat-bot/routines-bot/routines-bot.component';
+import { DietBotComponent } from './pages/chat-bot/diet-bot/diet-bot.component';
 
 @NgModule({
   imports: [
@@ -63,7 +65,9 @@ import { SponsoringComponent } from './pages/sponsoring/sponsoring.component';
     MessagerieComponent,
     PartenaireComponent,
     ProfileComponent,
-    SponsoringComponent
+    SponsoringComponent,
+    RoutinesBotComponent,
+    DietBotComponent
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

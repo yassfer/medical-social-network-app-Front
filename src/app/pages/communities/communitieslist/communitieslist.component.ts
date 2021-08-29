@@ -75,7 +75,8 @@ changeValue(type : String){
   this.community.type=type;
 }
   communitydetails(id:number){
-    this.router.navigate(['/communitydetails', id]);
+    //this.router.navigate(['/communitydetails', id]);
+    this.router.navigate(['/communityProfile', id]);
   }
   communityupdate(id : number){
     this.router.navigate(['/communityupdate', id]);

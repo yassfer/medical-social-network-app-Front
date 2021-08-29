@@ -22,4 +22,12 @@ export class ChatBotComponent implements OnInit {
   openWorkoutBot(){
     this.router.navigate(["/workoutBot"])
   }
+  openRoutinesBot(){
+    this.router.navigate(["/routinesBot"])
+
+  }
+  openDietBot(){
+    this.router.navigate(["/dietBot"])
+
+  }
 }

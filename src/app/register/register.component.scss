@@ -45,7 +45,7 @@ $white: #fff;
 .login{
   position: absolute;
   left: 40%;
-  bottom: -10%;
+  bottom: -30%;
 }
 
 
@@ -83,6 +83,14 @@ p{
   margin-top: 30px;
   padding: 7px 20px;
   width: 300px;
-  margin-left: -40px;
+  position: absolute;
+  left: 30%;
+  bottom: -10%;
 }
   /************/
+
+
+.fileUpload{
+  color: transparent !important;
+  width: 350px;
+}

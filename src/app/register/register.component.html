@@ -42,6 +42,13 @@
               </div>
             </small>
           </div>
+          <form class="md-form">
+            <div class="file-field">
+              <a class="btn-floating peach-gradient mt-0 float-left">
+                <input type="file" class="form-control fileUpload"  name="fileUpload" data-buttonText="Find file" (change)="onFileSelected($event)">
+              </a>
+            </div>
+          </form>
           </div>
           <div class="col">
           <div class="form-group mb-4">
@@ -76,7 +83,7 @@
           </div>
 
           </div>
-          <button class="btn btn-lg btn-block">Register</button>
+            <button class="btn btn-lg btn-block">Register</button>
           <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
             Signup failed!<br />{{errorMessage}}
           </div>

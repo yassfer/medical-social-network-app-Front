@@ -1,16 +1,16 @@
 <div class="content">
   <div class="profile">
-    <img [src]="user.imageProfile" id="nom" class="rounded-circle user-img offset-5" height="150px" width="150" alt="Cinque Terre">
+    <img [src]="community.imageProfile" id="nom" class="rounded-circle user-img offset-5" height="150px" width="150" alt="Cinque Terre">
     <div class="card card-info offset-1">
-      <h4 class="profile-name">{{user.firstName}}&nbsp; {{user.lastName}}</h4>
+      <h4 class="profile-name">{{community.nom}}</h4>
       <div class="row info card-body justify-content-around">
         <div class="col-3">
           <i class="tim-icons icon-single-02"></i>
-          <h5><span style="color: #47d3dd;">{{friends.length}}</span>&nbsp; followers</h5>
+          <h5><span style="color: #47d3dd;">{{nbrparticipants}}</span>&nbsp; followers</h5>
         </div>
         <div class="col-3">
           <i class="tim-icons icon-trophy"></i>
-          <h5><span style="color: #47d3dd;">{{user.score}}</span>&nbsp; score</h5>
+          <h5><span style="color: #47d3dd;">user.score</span>&nbsp; score</h5>
         </div>
         <div class="col-3">
           <i class="tim-icons icon-badge"></i>
@@ -18,36 +18,16 @@
         </div>
       </div>
       <!---->
-      <div *ngIf="user.myFriend; else second">
+      <div *ngIf="!community.followed; else second">
         <p class="dark-grey-text mt-4">
-          <button type="button" class="btn btn-md follow-button btn-block" [disabled]="true"><i class="fas fa-user-check"></i>You'r friends</button>
+          <button type="button" class="btn btn-md follow-button btn-block" (click)="ToUnfollow(community.id)"><i class="fas fa-user-check"></i>Unfollow</button>
         </p>
       </div>
       <ng-template #second>
-        <div *ngIf="user.waiting; else third">
-          <div class="container-fluid">
-            <p>
-              <button type="button" class="btn btn-md follow-button btn-block" (click)="AcceptInvitationUser(user.id)"><i class="fas fa-hourglass-half"></i>Accept invitation</button>
-            </p>
-            <p>
-              <button type="button" class="btn btn-md follow-button btn-block" (click)="RefuseInvitationUser(user.id)"><i class="fas fa-hourglass-half"></i>Refuse invitation</button>
-            </p>
-          </div>
-        </div>
+        <p class="dark-grey-text mt-4">
+          <button type="button" class="btn btn-md follow-button btn-block" (click)="Tofollow(community.id)"><i class="fas fa-user-check"></i>Follow</button>
+        </p>
       </ng-template>
-      <ng-template #third>
-        <div *ngIf="user.invited; else furth">
-          <div class="container-fluid">
-            <button type="button" class="btn btn-md follow-button btn-block" [disabled]="true"><i class="fas fa-check"></i>Invitation sent</button>
-          </div>
-        </div>
-      </ng-template>
-      <ng-template #furth>
-        <div class="container-fluid">
-          <button type="button" class="btn btn-md follow-button btn-block" (click)="EnvoiInvitationUser(user.id)">Follow</button>
-        </div>
-      </ng-template>
-      <!---->
 
     </div>
   </div>
@@ -55,71 +35,27 @@
     <div class="row justify-content-around">
       <div class="col-4 user-info card">
         <div class="about-user">
-          <p><span>Profession</span>&nbsp; {{user.profession}}</p>
-          <p><span>Date of birth</span>&nbsp; {{user.birthDate}}</p>
-          <p><span>Email</span>&nbsp; {{user.mail}}</p>
-          <p><span>Adresse</span>&nbsp; {{user.address}}</p>
+          <p><span>Domaine</span>&nbsp; {{community.domaine}}</p>
+          <p><span>About Us</span>&nbsp; {{community.description}}</p>
         </div>
         <hr class="hr-user">
-        <!--user friends-->
-        <div class="friends">
-          <h5>Friends</h5>
+        <!--followers-->
+        <div class="followers">
+          <h5>Followers</h5>
 
           <div class="row row-friends justify-content-center">
-            <div class="col-4" *ngFor="let friend of friends">
-              <a style="cursor: pointer;" (click)="goToProfile(friend.id)">
-                <img [src]="friend.imageProfile" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-                <h6>{{friend.firstName}}&nbsp; {{friend.lastName}}</h6>
-                <small id="friend">{{friend.profession}}</small>
+            <div class="col-4" *ngFor="let participant of participants">
+              <a style="cursor: pointer;" (click)="goToProfile(participant.id)">
+                <img [src]="participant.imageProfile" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+                <h6>{{participant.firstName}}&nbsp; {{participant.lastName}}</h6>
+                <small id="friend">{{participant.profession}}</small>
                 </a>
             </div>
           </div>
-
         </div>
 
         <!--end user friends-->
         <hr class="hr-user">
-
-        <!--user followed communities-->
-        <div class="communities">
-          <h5>Followed Communities</h5>
-          <div class="row row-communities justify-content-center">
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-          </div>
-
-
-          <div class="row row-communities justify-content-center">
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-          </div>
-
-        </div>
-        <!--end user followed communities-->
       </div>
 
 
@@ -128,13 +64,13 @@
       <!--User Publications-->
 
       <div class="col-6">
-          <div class="addpub">
+          <div class="addpub" *ngIf="!testfollow">
             <div class="card">
               <div class="card-body">
                   <div class=" card-category row">
-                    <img [src]="user.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
+                    <img [src]="community.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
                     <div class="col-10 mt-1">
-                      <h5>{{user.firstName}}&nbsp; {{user.lastName}}</h5>
+                      <h5>{{community.nom}}</h5>
                     </div>
                   </div>
                   <div class="md-form">
@@ -183,16 +119,15 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                   <div class=" card-category row">
-                    <img [src]="publication.user.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
+                    <img [src]="publication.community.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
                     <div class="col-10">
-                      <h5>{{publication.user.firstName}}&nbsp;{{publication.user.lastName}}&nbsp;&nbsp; <small>vous avez partagé une publication</small></h5>
-                      <h6 style="margin-top: -15px;">{{publication.user.profession}}</h6>
+                      <h5>{{publication.community.nom}}&nbsp;&nbsp; <small>vous avez partagé une publication</small></h5>
+                      <h6 style="margin-top: -15px;">{{publication.dateCreation}}</h6>
                     </div>
                   </div>
                   <h5 class="card-title mt-3">
                     {{publication.content}}
                   </h5>
-                  <h6>{{publication.dateCreation}}</h6>
                 </div>
                 <div class=" card-body">
                   <div class="row">
@@ -216,7 +151,7 @@
                   <div *ngIf="click==true; else elseBlock">
                     <div class=" card-header">
                       <h3 class=" card-title">
-                        <i class=" tim-icons icon-heart-2 text-warn-states" (click)="onLike(user.id, publication.id)"></i>
+                        <i class=" tim-icons icon-heart-2 text-warn-states" (click)="onLike(idCurrentUser, publication.id)"></i>
                         <small id="like" class="mr-4">{{ publication.NbrLike }}</small>
                         <i class=" tim-icons icon-chat-33 text-warn-states" (click)="commenting()"></i>
                         <small id="comment">{{publication.comments.length}}</small>
@@ -228,7 +163,7 @@
                   <ng-template #elseBlock>
                     <div class=" card-header">
                       <h3 class=" card-title">
-                        <i class=" tim-icons icon-heart-2 text-danger-states" (click)="onDislike(user.id, publication.id)"></i>
+                        <i class=" tim-icons icon-heart-2 text-danger-states" (click)="onDislike(idCurrentUser, publication.id)"></i>
                         <small id="like">{{ publication.NbrLike }}</small>
                         <i class=" tim-icons icon-chat-33 text-warn-states"></i>
                         <small id="comment">{{publication.comments.length}}</small>
@@ -270,7 +205,7 @@
                           [(ngModel)]="comment.content">
                         <div class="send">
                           <button type="button" class="btn btn-secondary btn-sm"
-                            (click)="onComment(user.id, publication.id)">Add</button>
+                            (click)="onComment(idCurrentUser, publication.id)">Add</button>
 
                         </div>
                       </div>
@@ -288,4 +223,5 @@
   <!--End User Publications-->
     </div>
 </div>
+
 

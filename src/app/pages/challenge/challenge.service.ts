@@ -11,7 +11,7 @@ import { PieceJoint } from 'src/app/entities/PieceJoint';
 })
 export class ChallengeService {
 
-  private baseUrl = 'http://localhost:8080/';
+  private baseUrl = 'http://localhost:8090/';
   constructor(private http: HttpClient) { }
 
   // Challenge Services
@@ -73,7 +73,7 @@ export class ChallengeService {
   }
 
   updatePieceJoint(pubId: number, pieceJoints: PieceJoint[]): Observable<any> {
-    return this.http.patch(`${this.baseUrl}pieceJoint/publicationChallenge/${pubId}`, pieceJoints, { responseType: 'text' });
+    return this.http.patch(`${this.baseUrl}api/pieceJoint/publicationChallenge/${pubId}`, pieceJoints, { responseType: 'text' });
   }
 
   deleteLike(id: number): Observable<Object> {

@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Fitbotty } from 'src/app/entities/Fitbotty';
 import { Intents } from 'src/app/entities/intents';
 import { ChatBotService } from '../chat-bot.service';
 
@@ -10,19 +11,24 @@ import { ChatBotService } from '../chat-bot.service';
   encapsulation: ViewEncapsulation.None
 })
 export class WorkoutBotComponent implements OnInit {
-  @ViewChild('message')message!: ElementRef;
-  @ViewChild('messageBox')messageBox!: ElementRef;
-  @ViewChild('chatBot')chatBot!: ElementRef;
-  @ViewChild('chatBotToggle')chatBotToggle!: ElementRef;
+  @ViewChild('message') message!: ElementRef;
+  @ViewChild('messageBox') messageBox!: ElementRef;
+  @ViewChild('messageVideo') messageVideo!: ElementRef;
+  @ViewChild('chatBot') chatBot!: ElementRef;
+  @ViewChild('chatBotToggle') chatBotToggle!: ElementRef;
 
   running = false;
   intents: Intents = new Intents();
   reponse: string;
   remarques: string;
   advices: string;
+  idV: number;
   selectedFile: File;
   problem: string;
   base64Data: any;
+  base64DataF: any;
+  fitbotty: Fitbotty;
+  vid: any;
 
   constructor(private chatBotService: ChatBotService, private domSanitizer: DomSanitizer) { }
 
@@ -97,31 +103,45 @@ export class WorkoutBotComponent implements OnInit {
       this.chatBotToggle.nativeElement.children[1].style.display = "none"
     }
   }
-
   public onFileChanged(event) {
     this.selectedFile = event.target.files[0];
     const uploadImageData = new FormData();
     uploadImageData.append('file', this.selectedFile);
     this.chatBotService
-    .getWorkouSecondResponse(this.problem, uploadImageData).subscribe(data => {
-      console.log(data);
-      this.intents = data;
-      this.remarques = this.intents.remarques;
-      this.advices =this.intents.advices;
-    },
-    error => console.log(error))
+      .getWorkouSecondResponse(this.problem, uploadImageData).subscribe(data => {
+        console.log(data);
+        this.intents = data;
+        this.remarques = this.intents.remarques;
+        this.advices = this.intents.advices;
+        this.idV = this.intents.id;
+      },
+        error => console.log(error))
     this.addResponseMsg("Please wait a few seconds 😀")
-    console.log(this.remarques)
-    console.log(this.advices)
-    setTimeout(()=>{
+
+    setTimeout(() => {
       this.addResponseMsg(this.remarques)
       this.addResponseMsg(this.advices)
-    },9000)
-    /*this.chatBotService
-    .getWorkoutVideo().subscribe(data => {
-    },
-    error => console.log(error))*/
+      this.chatBotService
+        .getWorkoutVideo(this.idV).subscribe(data => {
+          this.fitbotty = data;
+          this.base64DataF = this.fitbotty.video;
+          this.fitbotty.piece = this.domSanitizer.bypassSecurityTrustUrl('data:video/mp4;base64, ' + this.base64DataF);
+          this.vid = this.domSanitizer.bypassSecurityTrustUrl('data:video/mp4;base64, ' + this.base64DataF);
+          document.getElementById("pieceVideo").setAttribute("src",this.vid);
+
+          /*var div = document.createElement("div");
+          div.innerHTML =
+            "<h1> hiii </h1>" +
+            "<video width='100%' style='height: 300px!important' controls>"
+          "<source src="+this.vid+" type='video/mp4'>"
+          "</video>";
+          this.messageVideo.nativeElement.appendChild(div);
+          console.log(this.messageVideo.nativeElement);*/
+        },
+          error => console.log(error))
+    }, 15000)
+
 
     this.running = true;
   }
-}
+  }

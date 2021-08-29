@@ -162,6 +162,7 @@ reloadData(id: number) {
           if (this.publications[i].pieceJoints[j].contentType === "image/jpeg") {
             this.base64Data = this.publications[i].pieceJoints[j].data;
             this.publications[i].pieceJoints[j].image= 'data:image/jpeg;base64,' + this.base64Data ;
+            //this.publications[i].pieceJoints[j].image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64, ' + this.base64Data);
           }
           if (this.publications[i].pieceJoints[j].contentType === "video/mp4") {
             this.base64Data = this.publications[i].pieceJoints[j].data;

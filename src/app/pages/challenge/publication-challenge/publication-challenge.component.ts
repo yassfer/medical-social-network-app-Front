@@ -23,6 +23,7 @@ export class PublicationChallengeComponent implements OnInit {
   ApprouvedPublications: PublicationChallenge[];
   like;
   idC: number;
+  base64DataPp: any;
 
   constructor(private challengeService: ChallengeService, private route: ActivatedRoute,
     private router: Router, private domSanitizer: DomSanitizer, private tokenStorage: TokenStorageService) {
@@ -65,6 +66,8 @@ export class PublicationChallengeComponent implements OnInit {
           }
           this.ApprouvedPublications[i].NbrLike = this.ApprouvedPublications[i].likes.length;
           this.user = this.ApprouvedPublications[i].user;
+          this.base64DataPp = this.ApprouvedPublications[i].user.logo;
+          this.ApprouvedPublications[i].user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataPp;
         }
       }
     },

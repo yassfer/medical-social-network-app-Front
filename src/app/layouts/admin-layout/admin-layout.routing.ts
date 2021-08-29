@@ -8,6 +8,9 @@ import { TablesComponent } from "../../pages/tables/tables.component";
 import { TypographyComponent } from "../../pages/typography/typography.component";
 import { CheckMyChallengeComponent } from "src/app/pages/challenge/check-my-challenge/check-my-challenge.component";
 import { ChatBotComponent } from "src/app/pages/chat-bot/chat-bot.component";
+import { RoutinesBotComponent } from "src/app/pages/chat-bot/routines-bot/routines-bot.component";
+import { DietBotComponent } from "src/app/pages/chat-bot/diet-bot/diet-bot.component";
+
 import { PublicationChallengeComponent } from "src/app/pages/challenge/publication-challenge/publication-challenge.component";
 import { CreatePublicationChallengeComponent } from "src/app/pages/challenge/create-publication-challenge/create-publication-challenge.component";
 import { ApprouvePubChallengeComponent } from "src/app/pages/challenge/approuve-pub-challenge/approuve-pub-challenge.component";
@@ -27,6 +30,7 @@ import { PartenaireComponent } from "src/app/pages/partenaires/partenaire.compon
 import { ProfileComponent } from "src/app/pages/profile/profile.component";
 import { UserProfileComponent } from "src/app/pages/user-profile/user-profile.component";
 import { SponsoringComponent } from "src/app/pages/sponsoring/sponsoring.component";
+import { CommunityProfileComponent } from "src/app/pages/communities/community-profile/community-profile.component";
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -42,6 +46,9 @@ export const AdminLayoutRoutes: Routes = [
   { path: "chatbot", component: ChatBotComponent, canActivate: [AuthGuard] },
   { path: "healthBot", component: HealthBotComponent, canActivate: [AuthGuard] },
   { path: "workoutBot", component: WorkoutBotComponent, canActivate: [AuthGuard] },
+  { path: "routinesBot", component: RoutinesBotComponent, canActivate: [AuthGuard] },
+  { path: "dietBot", component: DietBotComponent, canActivate: [AuthGuard] },
+
   { path: "invitations", component: InvitationComponent},
   { path: "about-us", component: AboutUsComponent},
   { path: "donations", component: DonationsComponent, canActivate: [AuthGuard]},
@@ -51,6 +58,7 @@ export const AdminLayoutRoutes: Routes = [
   //Communities
   { path: "communities", component: CommunitieslistComponent, canActivate: [AuthGuard] },
   { path: 'communitydetails/:id', component: CommunitydetailsComponent, canActivate: [AuthGuard] },
+  { path: 'communityProfile/:id', component: CommunityProfileComponent, canActivate: [AuthGuard] },
   { path: "communityupdate/:id", component: CommunityupdateComponent, canActivate: [AuthGuard] },
   { path: 'CreateImage', component: CreateCommunityImageComponent, canActivate: [AuthGuard] },
   { path: 'allcommunities', component: AllCommunitiesComponent, canActivate: [AuthGuard] },

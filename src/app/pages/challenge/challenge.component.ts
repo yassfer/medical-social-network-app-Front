@@ -119,7 +119,7 @@ export class ChallengeComponent implements OnInit {
     });
   }
   onParticipateCondition(challenge: Challenge) {
-    if ((challenge.adminChallenge.id === this.currentUserId)) {
+    if ((challenge.adminChallenge.id !== this.currentUserId)) {
       alert("can't participate in your own challenge")
     }
     else {

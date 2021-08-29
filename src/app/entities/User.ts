@@ -15,7 +15,7 @@ export class User {
   score: number;
   connected: boolean;
   myFriend: boolean;
-  waitingList: boolean;
+  waiting: boolean;
   invited: boolean;
   nom: String;
   prenom: String;

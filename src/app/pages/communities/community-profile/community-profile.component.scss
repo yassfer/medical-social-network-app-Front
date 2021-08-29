@@ -1,0 +1,81 @@
+
+.content{
+  margin-top: 50px;
+}
+
+.user-img{
+  z-index: 2;
+}
+
+.follow-button{
+  margin-bottom: 20px;
+}
+
+.card-info{
+  z-index: 1;
+  width: 80%;
+}
+
+.row-friends{
+  margin-top: 50px;
+}
+
+.row-communities{
+  margin-top: 30px;
+}
+
+p{
+  font-size: 11px;
+}
+
+
+span{
+  color: darkgray;
+}
+
+.profile-name{
+  text-transform: uppercase;
+  justify-content: center;
+  text-align: center;
+}
+
+
+.user-info{
+  padding-top: 20px;
+  padding-left: 20px;
+  box-sizing: content-box;
+  height: 400px;
+}
+
+
+
+/*publications*/
+
+.btn-add{
+  width: 100px;
+  font-size: 11px;
+  font-weight: none;
+  background: linear-gradient(#0098f0, #20c997);
+  float: right;
+}
+
+
+.button-upload{
+  width: 60px;
+  height: 30px;
+  font-size: 11px;
+  margin: 10px 25px;
+  border-color: rgba(0, 0, 0, 0.041);
+}
+
+
+h6{
+  color: darkgrey;
+}
+
+.card{
+  padding: 10px 20px 0 20px;
+}
+
+
+

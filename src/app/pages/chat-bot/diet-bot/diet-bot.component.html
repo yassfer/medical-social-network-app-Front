@@ -1,0 +1,48 @@
+<div class=" content">
+
+  <div class="offset-1">
+      <div class="card offset-2" style="width: 30rem;">
+          <div class="card-body">
+              <div class="md-form">
+                  <div [hidden]="submitted" style="width: 400px;">
+                      <form>
+                          <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Name" id="name" required
+                                  [(ngModel)]="participant.name" name="name" [value]="currentName">
+                          </div>
+                          <div class="form-group">
+                              <input type="number" class="form-control" placeholder="Age" id="age" required
+                                  [(ngModel)]="participant.age" name="age">
+                          </div>
+                          <div class="form-group">
+                              <label for="name">Gender</label>
+                              <hr>
+                              <input type="radio" name="type" (click)="setGender('Female')" />Female
+                              <input type="radio" name="type" (click)="setGender('Male')" />Male
+                          </div>
+                          <div class="form-group">
+                              <input type="number" class="form-control" placeholder="Weight" id="weight" required
+                                  [(ngModel)]="participant.weight" name="weight">
+                          </div>
+                          <div class="form-group">
+                              <input type="number" class="form-control" placeholder="Weight Goal" id="weightGoal"
+                                  required [(ngModel)]="participant.weightGoal" name="weightGoal">
+                          </div>
+                          <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Height" id="height" required
+                                  [(ngModel)]="participant.height" name="height">
+                          </div>
+                          <div class="form-group">
+                              <input type="text area" class="form-control" placeholder="Activity level"
+                                  id="activityLevel" required [(ngModel)]="participant.activityLevel"
+                                  name="activityLevel">
+                          </div>
+
+
+                          <button type="button" class="btn btn-sm btn-add" (click)="checkDiet()">Check</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>

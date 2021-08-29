@@ -5,9 +5,6 @@
       <div class="col-7 offset-1" *ngFor="let publication of publications">
         <div class=" card card-chart">
           <div class="card-body text-secondary">
-            <button type="button" class="close" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
             <h5 class=" card-category">
               <img [src]="publication.user.imageProfile" id="nom" class="rounded-circle" height="30" width="30" alt="Cinque Terre">
               {{ publication.user.firstName }}&nbsp;{{ publication.user.lastName }}
@@ -33,7 +30,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row justify-content-around mt-4">
               <button (click)="approuvePublicationChallenge(publication.id, publication)" class="btn col-5">Approuve</button>
               <button (click)="deletePublicationChallenge(publication.id)" class="btn btn-info col-5">Delete</button>
             </div>

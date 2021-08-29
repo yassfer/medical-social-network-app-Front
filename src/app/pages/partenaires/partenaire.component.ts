@@ -48,22 +48,23 @@ export class PartenaireComponent implements OnInit {
       })
     }
 
-    checkExpireDate(partner){
 
-      /* partner.forEach(element => {
-     let day =this.DiffBetweenDates(element.startDate)
-     if (day>element.expire) {
-       console.log(" expired");
-       this.partService.deletePartner(element.id).subscribe(data => {
-         console.log("deleted");
-        },
-       error => console.log(error));
-     }else {
-       console.log("non expired")
-     }
-       });*/
-       this.getListPartnerDiscount(partner);
-     }
+    checkExpireDate(partner){
+      let nbjour;
+      let restant;
+     partner.forEach(element => {
+      nbjour=this.DiffBetweenDates(element.datecreation,element.expiration);
+      restant=nbjour-this.DiffBetweenDates(element.datecreation,new Date());
+    if (0>=restant) {
+      this.partService.deletePartner(element.id).subscribe(data => {
+       },
+      error => console.log(error));
+    }else {
+      console.log(restant+"non expired")
+    }
+      });
+      this.getListPartnerDiscount(partner);
+    }
 
      getListPartnerDiscount(list) {
 
@@ -72,7 +73,7 @@ export class PartenaireComponent implements OnInit {
       let scoreReduct;
       let nbjour;
       list.forEach(element => {
-        point=this.setDiscount(this.currentScore,element.product);
+        point=this.setDiscount(this.currentScore,element.product,element.reduction);
         scoreReduct=this.scoreToDiscount(point);
         scoreReduct=Math.trunc(scoreReduct) ;
         nbjour=this.DiffBetweenDates(element.datecreation,element.expiration);
@@ -126,7 +127,7 @@ export class PartenaireComponent implements OnInit {
           return score>50;
         }
 
-        setDiscount(score,product){
+        setDiscount(score,product,max){
           let reduction : number;
           let  x=0;
           if (this.checkScore(this.currentScore)) {
@@ -137,8 +138,8 @@ export class PartenaireComponent implements OnInit {
           else if (product=="Medical")
             {x=10;}
             reduction=score*x/100;
-            if (reduction>100) {
-              reduction=70;
+            if (reduction>max) {
+              reduction=max;
             }
           }
           else reduction=0;

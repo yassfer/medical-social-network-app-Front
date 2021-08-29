@@ -19,22 +19,25 @@ export class ApprouvePubChallengeComponent implements OnInit {
   idCurrentUser = 1;
   click = true;
   pub = true;
+  idC: number;
+  base64DataPp: any;
 
   constructor(private challengeService: ChallengeService, private route: ActivatedRoute,
     private router: Router, private domSanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    let idC;
     this.route.queryParams
     .subscribe(params => {
-      idC = params["idC"];
+      this.idC = params["idC"];
     }
   );
-    this.reloadData(Number(idC));
+    this.reloadData(Number(this.idC));
   }
 
   reloadData(id: number) {
     this.challengeService.getPublicationByChallengeId(id).subscribe(data => {
+      this.publications = data;
+      console.log(this.publications);
       if (data.length === 0) {
         this.condition = true;
       } else {
@@ -58,6 +61,8 @@ export class ApprouvePubChallengeComponent implements OnInit {
             }
             this.publications[i].NbrLike = this.publications[i].likes.length;
             this.user = this.publications[i].user;
+            this.base64DataPp = this.publications[i].user.logo;
+            this.publications[i].user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataPp;
           }
           }
       }

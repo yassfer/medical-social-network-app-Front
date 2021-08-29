@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   UserToTalk :User = new User();
   base64DataP:any;
   base64DataI: any;
+  base64: any;
 /**/
   myNotifs=[];
   numberMynotif:number;
@@ -304,8 +305,8 @@ deleteInvitation(invitationId: number){
 
 
 
-AcceptInvitation(id: number, invitationId: number){
-  this.invitationService.AcceptInvitation(id, invitationId).subscribe(data => {
+AcceptInvitation(invitationId: number){
+  this.invitationService.AcceptInvitation(this.idCurrentUser, invitationId).subscribe(data => {
   },
     error => console.log(error));
     window.location.reload();
@@ -330,18 +331,24 @@ getMsg(idCurrentUser: number) {
 
     if(this.messages.length<5){
       for(let i=0; i<this.messages.length; i++){
-        for(let j=0; j<this.messages.length; j++){
           this.getSender(this.messages[i].sender, this.messages[i]);
           this.lastFiveMsg.push(this.messages[i]);
-        }
       }
   } else {
     for(let i=0; i<5; i++){
-      for(let j=1; j<5; j++){
         this.getSender(this.messages[i].sender, this.messages[i]);
         this.lastFiveMsg.push(this.messages[i]);
-      }
+
     }
+
+    for(let i=0; i<this.lastFiveMsg.length; i++){
+      console.log("uuuu")
+      console.log(this.lastFiveMsg[i].senderUser.id)
+      console.log(this.lastFiveMsg[i].senderUser.logo)
+      this.base64DataP = this.lastFiveMsg[i].senderUser.logo;
+      this.lastFiveMsg[i].senderUser.imageProfile = 'data:image/jpeg;base64,'+ this.base64;
+
+  }
   }
 },
     error => console.log(error));

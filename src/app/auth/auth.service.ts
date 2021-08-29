@@ -21,9 +21,10 @@ export class AuthService {
   private authorities: string[];
   private currentUserId: number;
 
-  private loginUrl = 'http://localhost:8080/api/auth/signin';
-  private signupUrl = 'http://localhost:8080/api/auth/signup';
-  private userUrl = 'http://localhost:8080/api/users';
+  private loginUrl = 'http://localhost:8090/api/auth/signin';
+  private signupUrl = 'http://localhost:8090/api/auth/signup';
+  private userUrl = 'http://localhost:8090/api/users';
+  private url = 'http://localhost:8090/api/';
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {
     this.username = tokenStorage.getUsername();
@@ -75,5 +76,9 @@ export class AuthService {
       console.log("done!!")
     });
     this.tokenStorage.logout();
+}
+
+uploadImage(userEmail: String, file: FormData): Observable<any> {
+  return this.http.post(`${this.url}pieceJoint/upload/user/${userEmail}`, file, { observe: 'response' });
 }
 }

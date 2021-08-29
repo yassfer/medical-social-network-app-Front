@@ -7,7 +7,7 @@ import { Notification } from 'src/app/entities/Notification';
   providedIn: 'root'
 })
 export class NotificationService {
-  private url = 'http://localhost:8080/notification';
+  private url = 'http://localhost:8090/notification';
 
   constructor(private http: HttpClient) {   }
 

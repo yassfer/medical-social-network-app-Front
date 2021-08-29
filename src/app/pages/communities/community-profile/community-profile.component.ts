@@ -1,59 +1,65 @@
+import { identifierModuleUrl } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Comments } from 'src/app/entities/Comments';
+import { Community } from 'src/app/entities/Community';
 import { Invitation } from 'src/app/entities/invitation';
 import { Liking } from 'src/app/entities/liking';
 import { PieceJoint } from 'src/app/entities/PieceJoint';
-import { Publication } from 'src/app/entities/publication';
+import { PublicationCommunity } from 'src/app/entities/PublicationCommunity';
 import { User } from 'src/app/entities/User';
-import { InvitationService } from '../invitation/invitation.service';
-import { PublicationService } from '../publications/publication.service';
+import { InvitationService } from '../../invitation/invitation.service';
+import { CommunityServiceService } from '../community-service.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  selector: 'app-community-profile',
+  templateUrl: './community-profile.component.html',
+  styleUrls: ['./community-profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class CommunityProfileComponent implements OnInit {
 
   condition: boolean;
   base64Data: any;
   base64DataP: any;
   base64DataPp: any;
   base64DataC: any;
-  user: User;
+  community: Community;
   click = true;
   com = true;
   pieceJoints: PieceJoint[];
   liking: Liking = new Liking();
-  Newpublication: Publication = new Publication();
+  Newpublication: PublicationCommunity = new PublicationCommunity();
   comment: Comments = new Comments();
-  publica: Publication = new Publication();
-  publications: Publication[];
+  publica: PublicationCommunity = new PublicationCommunity();
+  publications: PublicationCommunity[];
   closeResult = '';
   file: any[];
   friends: User[];
-  idUser: number;
+  communityId: number;
   idCurrentUser: number;
+  nbrparticipants: number;
+  testfollow : boolean;
+  participants = new Set();
   ////
   myFriends: User[];
-  allInvitations: Invitation[];
+  myWaiting: Invitation[];
+  mySenders: Invitation[];
 
-  constructor(private publicationservice: PublicationService, private invitationService: InvitationService,
+  constructor(private communityService: CommunityServiceService, private invitationService: InvitationService,
     private router: Router, private domSanitizer: DomSanitizer, private modalService: NgbModal,
     private route: ActivatedRoute, private tokenStorage: TokenStorageService) {
       this.idCurrentUser = Number(this.tokenStorage.getId());
+      this.nbrparticipants = 0;
   }
 
 
   ngOnInit() {
-    this.idUser = this.route.snapshot.params['id'];
-    this.getUser(this.idUser);
-    this.getMyFriends();
-    this.reloadData(this.idUser);
+    this.communityId = this.route.snapshot.params['id'];
+    this.getCommunity(this.communityId);
+    this.reloadData(this.communityId);
   }
 
   goToProfile(id: number) {
@@ -82,55 +88,30 @@ export class ProfileComponent implements OnInit {
 
 
   /////end modal
-  getUser(idUser: number) {
-    this.publicationservice.getUserById(idUser).subscribe(data => {
-      this.user = data;
-      //First traitment
-      this.invitationService.getMyFriends(this.idCurrentUser).subscribe(data => {
-        this.myFriends = data;
-        console.log("MyF::")
-        console.log(this.myFriends)
-        for (let j = 0; j < this.myFriends.length; j++) {
-          if (this.myFriends[j].id === this.user.id) {
-            this.user.myFriend = true;
-          }
-        }
-      },
-        error => console.log(error));
-      //Second traitment
-      this.invitationService.getAll().subscribe(data => {
-        this.allInvitations = data;
-        console.log("all")
-        console.log(this.allInvitations);
-        for (let j = 0; j < this.allInvitations.length; j++) {
-          if ((this.user.id === this.allInvitations[j].sender.id) && (this.idCurrentUser === this.allInvitations[j].receiver.id)) {
-            this.user.waiting = true;
-          }
-          if ((this.user.id === this.allInvitations[j].receiver.id) && (this.idCurrentUser === this.allInvitations[j].sender.id)) {
-            this.user.invited = true;
-          }
-        }
 
-      },
-        error => console.log(error));
-
-
-      this.base64DataP = this.user.logo;
-      this.user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
+  getCommunity(id: number) {
+    this.communityService.getCommunityById(id).subscribe(data => {
+      this.community = data;
+      this.base64DataP = this.community.image;
+      this.community.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
+      this.community.participants.forEach(element => {
+        this.participants.add(element);
+      });
+      this.nbrparticipants=this.participants.size;
+      this.testfollow=this.community.followed;
     },
       error => console.log(error));
   }
 
   onDeletePub(id: number) {
-    this.publicationservice.deletePub(id).subscribe(data => {
+    this.communityService.deletePub(id).subscribe(data => {
       console.log(data);
     },
       error => console.log(error));
     window.location.reload();
   }
   onComment(idUser: number, idPub: number) {
-    console.log(this.comment)
-    this.publicationservice.createComment(idUser, idPub, this.comment).subscribe(data => {
+    this.communityService.createComment(idUser, idPub, this.comment).subscribe(data => {
       console.log(data);
     },
       error => console.log(error));
@@ -138,7 +119,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onDeleteCommment(id: number) {
-    this.publicationservice.deleteCom(id).subscribe(data => {
+    this.communityService.deleteCom(id).subscribe(data => {
       console.log(data);
     },
       error => console.log(error));
@@ -147,16 +128,16 @@ export class ProfileComponent implements OnInit {
 
   onLike(idUser: number, idPub: number) {
     this.click = !this.click;
-    this.publicationservice.createLike(idUser, idPub).subscribe(data => {
+    this.communityService.createLike(idUser, idPub).subscribe(data => {
       console.log(data);
     },
       error => console.log(error));
     window.location.reload();
   }
 
-  onDislike(idUser: number, idPub: number) {
+  onDislike(id: number) {
     this.click = !this.click;
-    this.publicationservice.deleteLike(idUser, idPub).subscribe(data => {
+    this.communityService.deleteLike(id).subscribe(data => {
       console.log(data);
     },
       error => console.log(error));
@@ -166,8 +147,9 @@ export class ProfileComponent implements OnInit {
     this.com = !this.com;
   }
 
-  getPublicationByUserId(idUser: number) {
-    this.publicationservice.getPublicationByUserId(idUser).subscribe(data => {
+
+  getPublicationByCommunityId(idCommunity: number) {
+    this.communityService.getPubByCommunityId(idCommunity).subscribe(data => {
 
       this.publications = data;
       console.log(this.publications);
@@ -176,7 +158,8 @@ export class ProfileComponent implements OnInit {
   }
 
   reloadData(idUser: number) {
-    this.publicationservice.getPublicationByUserId(idUser).subscribe(data => {
+    this.communityService.getPubByCommunityId(idUser).subscribe(data => {
+      this.publications = data;
       if (data.length === 0) {
         this.condition = true;
       } else {
@@ -198,10 +181,10 @@ export class ProfileComponent implements OnInit {
               this.publications[i].pieceJoints[j].image = this.domSanitizer.bypassSecurityTrustResourceUrl('data:application/pdf;base64, ' + this.base64Data);
             }
           }
-          this.base64DataPp = this.publications[i].user.logo;
-          this.publications[i].user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataPp;
+          this.base64DataPp = this.publications[i].community.image;
+          this.publications[i].community.imageProfile = 'data:image/jpeg;base64,' + this.base64DataPp;
           this.publications[i].NbrLike = this.publications[i].likes.length;
-          this.user = this.publications[i].user;
+          this.community = this.publications[i].community;
         }
         for (let m = 0; m < this.publications.length; m++) {
           for (let n = 0; n < this.publications[m].comments.length; n++) {
@@ -224,7 +207,7 @@ export class ProfileComponent implements OnInit {
       formData.append("pieceJoints", this.file[i], this.file[i].name);
     }
     //let f = formData.getAll('pieceJoints');
-    this.publicationservice.imagesUploadWithoutPubId(formData).subscribe(data => {
+    this.communityService.imagesUploadWithoutPubId(formData).subscribe(data => {
       console.log(data.body);
       this.pieceJoints = data.body;
     },
@@ -237,12 +220,12 @@ export class ProfileComponent implements OnInit {
 
   updatePieceJoint(pubId: number, pieceJoints: PieceJoint[]) {
     console.log(pieceJoints);
-    this.publicationservice.updatePieceJoint(pubId, pieceJoints).subscribe(data => {
+    this.communityService.updatePieceJoint(pubId, pieceJoints).subscribe(data => {
     });
   }
 
   onPublication() {
-    this.publicationservice.createPublication(this.idUser, this.Newpublication).subscribe(data => {
+    this.communityService.createPublication(this.idCurrentUser, this.communityId, this.Newpublication).subscribe(data => {
       this.publica = data;
       this.updatePieceJoint(this.publica.id, this.pieceJoints);
     });
@@ -253,53 +236,23 @@ export class ProfileComponent implements OnInit {
 
 
 
-  getMyFriends() {
-    this.publicationservice.getFriends(this.idUser).subscribe(data => {
-      this.friends = data;
-      for (let i = 0; i < this.friends.length; i++) {
-        this.base64DataP = this.friends[i].logo;
-        this.friends[i].imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
-      }
-    },
-      error => {
-        console.log(error);
-      });
-
-  }
-
-
-  onFollow(senderId: number, receiverId: number) {
-    this.invitationService.AddInvitation(senderId, receiverId).subscribe(data => {
-      console.log(data);
-    },
-      error => {
-        console.log(error);
-      });
-
-  }
-
-  AcceptInvitationUser(idSender: number) {
-    this.invitationService.AcceptInvitationUser(idSender, this.idCurrentUser).subscribe(data => {
-      console.log(data);
-    },
-      error => console.log(error));
-    window.location.reload();
-  }
-
-  EnvoiInvitationUser(idUser: number) {
-    this.invitationService.AddInvitation(this.idCurrentUser, idUser).subscribe(data => {
-      console.log(data);
-    },
-      error => console.log(error));
-    window.location.reload();
-  }
-
-  RefuseInvitationUser(idSender: number) {
-    this.invitationService.DeleteInvitationUser(idSender, this.idCurrentUser).subscribe(data => {
-      console.log(data);
-    },
-      error => console.error(error));
+  Tofollow(id :number){
+    this.communityService.ToFollow(id,this.idCurrentUser).subscribe( data => {
+      console.log(data)});
+      this.communityService.getCommunityById(id).subscribe( data => {
+        this.community = data;
+        });
+        this.community.followed =true;
       window.location.reload();
   }
-}
+  ToUnfollow(id :number){
+    this.communityService.ToUnFollow(id,this.idCurrentUser).subscribe( data => {
+      console.log(data)});
+      this.communityService.getCommunityById(id).subscribe( data => {
+        this.community = data;
+        });
+        this.community.followed =false;
+      window.location.reload();
+  }
 
+}
