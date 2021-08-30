@@ -1,0 +1,17 @@
+[
+    {"name": "lunch",
+     "contents": "Coconut Milk Protein Shake",
+     "ammount": "1 shake",
+     "calories": "360"
+    },
+    {"name": "lunch",
+     "contents": "Cheese slices",
+     "ammount": "1 serving",
+     "calories": "115.1"
+    },
+    {"name": "lunch",
+     "contents": "Spicy chicken celery sticks",
+     "ammount": "1 serving",
+     "calories": "356"
+    }
+  ]

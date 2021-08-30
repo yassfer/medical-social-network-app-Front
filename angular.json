@@ -36,8 +36,6 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_module/bootstrap-filestyle/src/bootstrap-filestyle.min.js"
             ]
           },
           "configurations": {

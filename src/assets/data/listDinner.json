@@ -1,0 +1,17 @@
+[
+    {"name": "dinner",
+     "contents": "Barbeque Chicken",
+     "ammount": "2 serving",
+     "calories": "688.8"
+    },
+    {"name": "dinner",
+     "contents": "Braised Endive",
+     "ammount": "2 serving",
+     "calories": "340.3"
+    },
+    {"name": "dinner",
+     "contents": "Easy Grilled Chicken",
+     "ammount": "2 serving",
+     "calories": "415.8"
+    }
+    ]

@@ -1,0 +1,52 @@
+ [
+    {"name": "breakfast",
+     "contents": "Ham and Egg Mushroom Cups",
+     "ammount": "3 cup",
+     "calories": "565.5"
+    },
+    {"name": "breakfast",
+     "contents": "Bacon",
+     "ammount" : "4 strips",
+     "calories": "200.2"
+    },
+    {"name": "breakfast",
+     "contents": "Fluffy omelet with cheese and spinach",
+     "ammount": "1 omelet",
+     "calories": "545.1"
+    },
+    {"name": "breakfast",
+     "contents": "Gordon Ramsay's Scrambled Eggs",
+     "ammount": "1 serving",
+     "calories": "444.9"
+    },
+    {"name": "breakfast",
+     "contents": "Onion and tomato Omelete",
+     "ammount": "1 Omelet",
+     "calories": "300"
+    },
+    {"name": "breakfast",
+     "contents": "Bacon",
+     "ammount": "4 strips",
+     "calories": "200.2"
+    },
+    {"name": "breakfast",
+     "contents": "Fried Irish Cabbage with bacon",
+     "ammount": "1 serving",
+     "calories": "356"
+    },
+    {"name": "breakfast",
+     "contents": "Basic Scrambled Eggs",
+     "ammount": "1 serving",
+     "calories": "273,1"
+    },
+    {"name": "breakfast",
+     "contents": "Cheese Egg White Omelet",
+     "ammount": "1 Omelet",
+     "calories": "294.9"
+    },
+    {"name": "breakfast",
+     "contents": "Basic Egg White Omelet",
+     "ammount": "1 omelet",
+     "calories": "228"
+    }
+]

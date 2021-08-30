@@ -1,15 +1,99 @@
-<div class=" content">
+<div class=" content" id="contenu">
+  <div *ngIf="rslt==true ; else pas">
 
+      <div class="container-fluid m-0 p-0" >
+          <h1 id="color" class="h4 text-center d-block font-weight-bold text-uppercase">Let's see !</h1>
+          <h3 class="h6 text-center d-block text-uppercase font-weight-bold">Some informations about you </h3>
+          <span class="bottom-line d-block mx-auto mt-3 mb-4"></span>
+          <div class="info">
+          <div class="row my-2 mx-auto" >
+              <div class="col-3  border-right border-dark">
+               <p class="color">BMI</p>
+              </div>
+              <div class="col-9 pl-4">
+               <p>{{myBmi}}</p>
+               </div>
+          </div>
+          <div class="row my-2 mx-auto">
+              <div class="col-3 border-right border-dark">
+                  <p class="color">BMR</p>
+              </div>
+              <div class="col-9 pl-4">
+                 <p> {{myBmr}}</p>
+              </div>
+          </div>
+          <div class="row my-2 mx-auto">
+              <div class="col-3  border-right border-dark">
+                  <p class="color">Status</p>
+              </div>
+              <div class="col-9 pl-4">
+                <p>{{myStatus}}</p>
+              </div>
+          </div>
+          <div class="row my-2 mx-auto">
+              <div class="col-3  border-right border-dark">
+                  <p class="color"> Your daily calories</p>
+              </div>
+              <div class="col-9 pl-4">
+           <p>    {{myDailyCalories}} Kcal</p>
+              </div>
+          </div>
+          <div class="row my-2 mx-auto">
+              <div class="col-3 border-right border-dark">
+                  <p class="color">Max Calories you should have</p>
+              </div>
+              <div class="col-9 pl-4">
+           <p>   {{myCaloriesChange}} kcal</p>
+              </div>
+          </div>
+      </div>
+      </div>
+      <div class="col-sm-12">
+          <!-- Draggable default card start -->
+          <div class="card">
+              <div class="card-header">
+                  <h3 class="h6 text-center d-block text-uppercase font-weight-bold">we recommand  a diet for you </h3>
+              </div>
+              <div class="card-block">
+                  <div class="row" id="sortable">
+                      <div class="col-md-4" style="">
+                          <div class="card-sub"> <img class="card-img-top" width="80px" height="180px"  src="../../../assets/img/breakfast.png" alt="Card image cap">
+                              <div class="card-block">
+                                  <h4 id="color" class="card-title">Breakfast</h4>
+                                  <p  class="card-text">{{myBreakfast}} </p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-4" style="">
+                          <div class="card-sub"> <img  class="card-img-top" width="100%" height="180px"  src="../../../assets/img/lunch.png" alt="Card image cap">
+                              <div class="card-block">
+                                  <h4  id="color" class="card-title">Lunch</h4>
+                                  <p class="card-text"> {{myLunch}} </p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-4" draggable="false" style="">
+                          <div class="card-sub"> <img class="card-img-top" width="120px" height="180px" src="../../../assets/img/diner.png" alt="Card image cap" draggable="false">
+                              <div class="card-block">
+                                  <h4  id="color" class="card-title">Dinner</h4>
+                                  <p  class="card-text">{{myDiner}} </p>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+          </div> <!-- Draggable default card start -->
+      </div>
+  </div>
+
+  <ng-template #pas>
   <div class="offset-1">
       <div class="card offset-2" style="width: 30rem;">
           <div class="card-body">
+            <h3 class="h6 text-center d-block text-uppercase font-weight-bold">Hello, tell me some physical informations about you ! </h3>
               <div class="md-form">
-                  <div [hidden]="submitted" style="width: 400px;">
                       <form>
-                          <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Name" id="name" required
-                                  [(ngModel)]="participant.name" name="name" [value]="currentName">
-                          </div>
                           <div class="form-group">
                               <input type="number" class="form-control" placeholder="Age" id="age" required
                                   [(ngModel)]="participant.age" name="age">
@@ -29,20 +113,26 @@
                                   required [(ngModel)]="participant.weightGoal" name="weightGoal">
                           </div>
                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Height" id="height" required
+                              <input type="number" class="form-control" placeholder="Height" id="height" required
                                   [(ngModel)]="participant.height" name="height">
                           </div>
                           <div class="form-group">
-                              <input type="text area" class="form-control" placeholder="Activity level"
+                              <input type="number" class="form-control" placeholder="Activity level"
                                   id="activityLevel" required [(ngModel)]="participant.activityLevel"
                                   name="activityLevel">
                           </div>
+                          <ng-template *ngIf="weightFail==true; then nothing;" >
+                          </ng-template>
+                           <ng-template  #nothing >
+                        <p id="off">you cannot lose more than 0.91 in a week. </p>
 
+                         </ng-template>
 
                           <button type="button" class="btn btn-sm btn-add" (click)="checkDiet()">Check</button>
                       </form>
-                  </div>
               </div>
           </div>
       </div>
   </div>
+</ng-template>
+</div>
