@@ -29,6 +29,7 @@ nbrparticipants : number;
 participants = new Set();
 map = new Map<number, Community>();
 objet :any;
+base64Data: any;
 
 
   ngOnInit(): void {
@@ -42,6 +43,12 @@ followed () {
     console.log(this.communityListFollowed);
     this.follow=true;
 
+    for (let i = 0; i < this.communityListFollowed.length; i++) {
+      this.base64Data = this.communityListFollowed[i].image;
+      console.log(this.communityListFollowed[i].image);
+      this.communityListFollowed[i].piecejointe = 'data:image/jpeg;base64,' + this.base64Data;
+    }
+
 
 })}
 unfollowed(){
@@ -49,6 +56,12 @@ unfollowed(){
   this.communityService.getUnFollowedCommunities(this.idCurrentUser).subscribe(data => {
     this.communityListUnFollowed = data;
     console.log(this.communityListFollowed);
+
+    for (let i = 0; i < this.communityListUnFollowed.length; i++) {
+      this.base64Data = this.communityListUnFollowed[i].image;
+      console.log(this.communityListUnFollowed[i].image);
+      this.communityListUnFollowed[i].piecejointe = 'data:image/jpeg;base64,' + this.base64Data;
+    }
 })}
 
 Tofollow(id :number){
@@ -74,7 +87,7 @@ communitydetails(id:number){
   this.router.navigate(['/communitydetails', id]);
 }
 communityProfile(id:number){
-  this.router.navigate(['/community-profile', id]);
+  this.router.navigate(['/communityProfile', id]);
 }
 checktype(id : number){
 
@@ -87,7 +100,9 @@ if (this.community.type === "Publique" ){
  else {
   for (const participant of Array.from(this.community.participants.values()))
 
-     {if (participant.id === this.idCurrentUser){
+     {
+      console.log(participant);
+      if (participant.id === this.idCurrentUser){
       this.communityProfile(id)
      }
 

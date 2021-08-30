@@ -65,8 +65,6 @@ export const AdminLayoutRoutes: Routes = [
   //messagerie
   { path: 'messagerie', component: MessagerieComponent, canActivate: [AuthGuard] },
 
-  //messagerie
-  { path: 'messagerie', component: MessagerieComponent, canActivate: [AuthGuard] },
   //
   { path: "profile/:id", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "user-profile", component: UserProfileComponent, canActivate: [AuthGuard] }

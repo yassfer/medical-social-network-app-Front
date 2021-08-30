@@ -14,4 +14,5 @@ export class PublicationChallenge {
   approuve: boolean;
   challenge: Challenge;
   images: any;
+  time: any;
 }

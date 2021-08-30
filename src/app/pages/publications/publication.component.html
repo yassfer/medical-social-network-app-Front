@@ -56,14 +56,14 @@
           <div class=" card-category row">
             <img [src]="publication.user.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
             <div class="col-10">
-              <h5>{{publication.user.firstName}}&nbsp;{{publication.user.lastName}}&nbsp;&nbsp;</h5>
+              <h5>{{publication.user.firstName}}&nbsp;{{publication.user.lastName}}&nbsp;&nbsp;<i *ngIf="publication.user.verified" class="fas fa-check-circle"></i></h5>
               <h6 style="margin-top: -15px;">{{publication.user.profession}}</h6>
             </div>
           </div>
           <h5 class="card-title mt-3">
             {{publication.content}}
           </h5>
-          <h6>{{publication.dateCreation}}</h6>
+          <h6>{{publication.dateCreation}}&nbsp;{{publication.time | date:'h:mm a z'}}</h6>
         </div>
         <div class=" card-body">
           <div class="row">
@@ -122,7 +122,7 @@
                 <div class="row">
                   <img [src]="comment.user.imageProfile" id="nom" class="rounded-circle col-4" height="40" alt="Cinque Terre">
                   <div class="col-8">
-                    <h5>{{comment.user.firstName}}&nbsp;{{comment.user.lastName}}</h5>
+                    <h5>{{comment.user.firstName}}&nbsp;{{comment.user.lastName}}&nbsp;&nbsp;<i *ngIf="comment.user.verified" class="fas fa-check-circle"></i></h5>
                     <h6 style="margin-top: -15px;">{{comment.user.profession}}</h6>
                   </div>
                 </div>

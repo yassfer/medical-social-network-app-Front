@@ -4,11 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Comments } from 'src/app/entities/Comments';
+import { Community } from 'src/app/entities/Community';
 import { Invitation } from 'src/app/entities/invitation';
 import { Liking } from 'src/app/entities/liking';
 import { PieceJoint } from 'src/app/entities/PieceJoint';
 import { Publication } from 'src/app/entities/publication';
 import { User } from 'src/app/entities/User';
+import { CommunityServiceService } from '../communities/community-service.service';
 import { InvitationService } from '../invitation/invitation.service';
 import { PublicationService } from '../publications/publication.service';
 
@@ -38,13 +40,14 @@ export class ProfileComponent implements OnInit {
   friends: User[];
   idUser: number;
   idCurrentUser: number;
+  followedCommunities: Community[];
   ////
   myFriends: User[];
   allInvitations: Invitation[];
 
   constructor(private publicationservice: PublicationService, private invitationService: InvitationService,
     private router: Router, private domSanitizer: DomSanitizer, private modalService: NgbModal,
-    private route: ActivatedRoute, private tokenStorage: TokenStorageService) {
+    private route: ActivatedRoute, private tokenStorage: TokenStorageService,private communityservice: CommunityServiceService) {
       this.idCurrentUser = Number(this.tokenStorage.getId());
   }
 
@@ -53,6 +56,7 @@ export class ProfileComponent implements OnInit {
     this.idUser = this.route.snapshot.params['id'];
     this.getUser(this.idUser);
     this.getMyFriends();
+    this.getfollowedCommunities(this.idCurrentUser);
     this.reloadData(this.idUser);
   }
 
@@ -276,6 +280,13 @@ export class ProfileComponent implements OnInit {
         console.log(error);
       });
 
+  }
+
+  getfollowedCommunities(id : number){
+    this.communityservice.getFollowedCommunities(id).subscribe( data => {
+      this.followedCommunities=data;
+      console.log(this.followedCommunities);
+    })
   }
 
   AcceptInvitationUser(idSender: number) {

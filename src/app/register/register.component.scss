@@ -89,6 +89,13 @@ p{
 }
   /************/
 
+  input{
+    border: solid 1px darkcyan;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative;
+  }
+
 
 .fileUpload{
   color: transparent !important;

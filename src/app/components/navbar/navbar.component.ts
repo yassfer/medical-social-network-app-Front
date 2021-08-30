@@ -321,6 +321,8 @@ AcceptInvitation(invitationId: number){
 getSender(id: number, message: Message) {
   this.navbarService.getUserById(id).subscribe(data => {
     message.senderUser = data;
+    this.base64 = message.senderUser.logo;
+    message.senderUser.imageProfile = 'data:image/jpeg;base64,'+ this.base64;
   },
     error => console.log(error));
 }
@@ -340,16 +342,8 @@ getMsg(idCurrentUser: number) {
         this.lastFiveMsg.push(this.messages[i]);
 
     }
-
-    for(let i=0; i<this.lastFiveMsg.length; i++){
-      console.log("uuuu")
-      console.log(this.lastFiveMsg[i].senderUser.id)
-      console.log(this.lastFiveMsg[i].senderUser.logo)
-      this.base64DataP = this.lastFiveMsg[i].senderUser.logo;
-      this.lastFiveMsg[i].senderUser.imageProfile = 'data:image/jpeg;base64,'+ this.base64;
-
   }
-  }
+
 },
     error => console.log(error));
 }

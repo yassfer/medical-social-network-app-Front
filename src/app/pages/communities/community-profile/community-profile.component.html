@@ -3,19 +3,8 @@
     <img [src]="community.imageProfile" id="nom" class="rounded-circle user-img offset-5" height="150px" width="150" alt="Cinque Terre">
     <div class="card card-info offset-1">
       <h4 class="profile-name">{{community.nom}}</h4>
-      <div class="row info card-body justify-content-around">
-        <div class="col-3">
-          <i class="tim-icons icon-single-02"></i>
-          <h5><span style="color: #47d3dd;">{{nbrparticipants}}</span>&nbsp; followers</h5>
-        </div>
-        <div class="col-3">
-          <i class="tim-icons icon-trophy"></i>
-          <h5><span style="color: #47d3dd;">user.score</span>&nbsp; score</h5>
-        </div>
-        <div class="col-3">
-          <i class="tim-icons icon-badge"></i>
-          <h5><span style="color: #47d3dd;">20</span>&nbsp; badge</h5>
-        </div>
+      <div class="row info card-body justify-content-center">
+        <div>{{community.description}}</div>
       </div>
       <!---->
       <div *ngIf="!community.followed; else second">
@@ -68,9 +57,9 @@
             <div class="card">
               <div class="card-body">
                   <div class=" card-category row">
-                    <img [src]="community.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
+                    <img [src]="user.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
                     <div class="col-10 mt-1">
-                      <h5>{{community.nom}}</h5>
+                      <h5>{{user.firstName}}&nbsp;{{user.lastName}}&nbsp;&nbsp;<i *ngIf="user.verified" class="fas fa-check-circle"></i></h5>
                     </div>
                   </div>
                   <div class="md-form">
@@ -122,7 +111,7 @@
                     <img [src]="publication.community.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
                     <div class="col-10">
                       <h5>{{publication.community.nom}}&nbsp;&nbsp; <small>vous avez partagé une publication</small></h5>
-                      <h6 style="margin-top: -15px;">{{publication.dateCreation}}</h6>
+                      <h6 style="margin-top: -15px;">{{publication.dateCreation}}&nbsp;{{publication.time | date:'h:mm a z'}}</h6>
                     </div>
                   </div>
                   <h5 class="card-title mt-3">
@@ -184,7 +173,7 @@
                         <div class="row">
                           <img [src]="comment.user.imageProfile" id="nom" class="rounded-circle col-4" height="40" alt="Cinque Terre" [routerLink]="['/profile', comment.user.id]">
                           <div class="col-8">
-                            <h5>{{comment.user.firstName}}&nbsp;{{comment.user.lastName}}</h5>
+                            <h5>{{comment.user.firstName}}&nbsp;{{comment.user.lastName}}&nbsp;&nbsp;<i *ngIf="comment.user.verified" class="fas fa-check-circle"></i></h5>
                             <h6 style="margin-top: -15px;">{{comment.user.profession}}</h6>
                           </div>
                         </div>

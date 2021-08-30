@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <app-sponsoring></app-sponsoring>
-<div class="row" id="listpub" >
-    <div class="col-md-4" id="cardd" *ngFor ="let partner of PartnerlistDiscount">
+<div class="row justify-content-around" id="listpub" >
+    <div class="col-4 card" id="cardd" *ngFor ="let partner of PartnerlistDiscount">
         <div class="pricing-card p-3 text-center py-5 mt-2">
             <div class="images">
               <img src="data:image/png;base64,{{partner.image}}">

@@ -38,6 +38,7 @@ export class PublicationComponent implements OnInit {
   base64DataP: any;
   base64DataPp: any;
   base64DataC: any;
+
   constructor(private publicationservice: PublicationService,private invitationService: InvitationService,
     private router: Router, private domSanitizer: DomSanitizer, private modalService: NgbModal,
     private route: ActivatedRoute, private tokenStorage: TokenStorageService) {
@@ -142,7 +143,6 @@ export class PublicationComponent implements OnInit {
 reloadData() {
   this.publicationservice.getAllPublication().subscribe(data => {
     this.publications = data;
-    console.log("this.publications");
     console.log(this.publications);
     if (data.length === 0) {
       this.condition = true;
@@ -151,6 +151,7 @@ reloadData() {
       this.publications = data;
 
       for (let i = 0; i < this.publications.length; i++) {
+        console.log(this.publications[i].time)
         for (let j = 0; j < this.publications[i].pieceJoints.length; j++) {
           if (this.publications[i].pieceJoints[j].contentType === "image/jpeg") {
             this.base64Data = this.publications[i].pieceJoints[j].data;
@@ -218,7 +219,7 @@ reloadData() {
       this.updatePieceJoint(this.publica.id, this.pieceJoints);
     });
 
-    //window.location.reload();
+    window.location.reload();
 
   }
 

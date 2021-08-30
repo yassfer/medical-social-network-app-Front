@@ -54,7 +54,8 @@ export class RegisterComponent implements OnInit {
         this.form.birthDate,
         this.form.address,
         this.form.profession,
-        this.form.recommander
+        this.form.recommander,
+        this.form.type
       );
 
     this.authService.signUp(this.signupInfo).subscribe(

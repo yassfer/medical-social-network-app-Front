@@ -13,4 +13,5 @@ export class Publication {
     comments :Comments[] ;
     user: User;
     images: any;
+    time: any;
 }

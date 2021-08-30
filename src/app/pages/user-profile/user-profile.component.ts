@@ -226,7 +226,7 @@ reloadData(id: number) {
       this.updatePieceJoint(this.publica.id, this.pieceJoints);
     });
 
-    //window.location.reload();
+    window.location.reload();
 
   }
 
@@ -260,10 +260,7 @@ reloadData(id: number) {
 
   getfollowedCommunities(id : number){
     this.communityservice.getFollowedCommunities(id).subscribe( data => {
-      console.log("***********");
-      console.log(data);
       this.followedCommunities=data;
-      console.log("***********");
       console.log(this.followedCommunities);
     })
   }

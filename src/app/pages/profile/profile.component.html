@@ -2,7 +2,7 @@
   <div class="profile">
     <img [src]="user.imageProfile" id="nom" class="rounded-circle user-img offset-5" height="150px" width="150" alt="Cinque Terre">
     <div class="card card-info offset-1">
-      <h4 class="profile-name">{{user.firstName}}&nbsp; {{user.lastName}}</h4>
+      <h4 class="profile-name">{{user.firstName}}&nbsp; {{user.lastName}} &nbsp;&nbsp;<i *ngIf="user.verified" class="fas fa-check-circle"></i></h4>
       <div class="row info card-body justify-content-around">
         <div class="col-3">
           <i class="tim-icons icon-single-02"></i>
@@ -14,7 +14,7 @@
         </div>
         <div class="col-3">
           <i class="tim-icons icon-badge"></i>
-          <h5><span style="color: #47d3dd;">20</span>&nbsp; badge</h5>
+          <h5><span style="color: #47d3dd;">{{user.profession}}</span>&nbsp;</h5>
         </div>
       </div>
       <!---->
@@ -84,37 +84,9 @@
         <div class="communities">
           <h5>Followed Communities</h5>
           <div class="row row-communities justify-content-center">
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-          </div>
-
-
-          <div class="row row-communities justify-content-center">
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
-            </div>
-
-            <div class="col-3">
-              <img src="../assets/test.jpg" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
-              <h6>Diabete</h6>
+            <div class="col-4"  *ngFor="let community of followedCommunities">
+              <img src="data:image/jpeg;base64,{{community.image}}" id="nom" class="rounded-circle" height="45px"  width="40px" alt="Cinque Terre">
+              <h6>{{community.nom}}</h6>
             </div>
           </div>
 
@@ -185,14 +157,14 @@
                   <div class=" card-category row">
                     <img [src]="publication.user.imageProfile" id="nom" class="rounded-circle col-2" height="45" alt="Cinque Terre">
                     <div class="col-10">
-                      <h5>{{publication.user.firstName}}&nbsp;{{publication.user.lastName}}&nbsp;&nbsp; <small>vous avez partagé une publication</small></h5>
+                      <h5>{{publication.user.firstName}}&nbsp;{{publication.user.lastName}}&nbsp;&nbsp;<i *ngIf="publication.user.verified" class="fas fa-check-circle"></i>&nbsp;&nbsp; <small>vous avez partagé une publication</small></h5>
                       <h6 style="margin-top: -15px;">{{publication.user.profession}}</h6>
                     </div>
                   </div>
                   <h5 class="card-title mt-3">
                     {{publication.content}}
                   </h5>
-                  <h6>{{publication.dateCreation}}</h6>
+                  <h6>{{publication.dateCreation}}&nbsp;{{publication.time | date:'h:mm a z'}}</h6>
                 </div>
                 <div class=" card-body">
                   <div class="row">
@@ -249,7 +221,7 @@
                         <div class="row">
                           <img [src]="comment.user.imageProfile" id="nom" class="rounded-circle col-4" height="40" alt="Cinque Terre" [routerLink]="['/profile', comment.user.id]">
                           <div class="col-8">
-                            <h5>{{comment.user.firstName}}&nbsp;{{comment.user.lastName}}</h5>
+                            <h5>{{comment.user.firstName}}&nbsp;{{comment.user.lastName}}&nbsp;&nbsp;<i *ngIf="comment.user.verified" class="fas fa-check-circle"></i></h5>
                             <h6 style="margin-top: -15px;">{{comment.user.profession}}</h6>
                           </div>
                         </div>

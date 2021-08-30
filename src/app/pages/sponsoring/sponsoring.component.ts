@@ -76,8 +76,11 @@ export class SponsoringComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.reloadData();
+
     this.getUser(this.idCurrentUser);
+    console.log(this.currentUser.type);
+    this.reloadData();
+
   }
 /*
   public onFileChanged(event) {
@@ -117,11 +120,9 @@ export class SponsoringComponent implements OnInit {
     this.Entreprise.datecreation= new Date();
     this.sponsoringservice
       .saveEntreprise(this.idEntrepriseR, this.Entreprise).subscribe(data => {
-        console.log(data);
       },
         error => console.log(error));
-    //window.location.reload();
-    console.log(this.Entreprise);
+    window.location.reload();
   }
 
   reloadData() {

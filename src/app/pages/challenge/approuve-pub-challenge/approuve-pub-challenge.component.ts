@@ -87,7 +87,7 @@ export class ApprouvePubChallengeComponent implements OnInit {
      });*/
     },
       error => console.log(error));
-      window.location.reload();
+      this.router.navigate(['/challenge'])
   }
 
 }

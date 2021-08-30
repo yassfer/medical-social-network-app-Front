@@ -26,6 +26,7 @@ export class CommunityProfileComponent implements OnInit {
   base64DataP: any;
   base64DataPp: any;
   base64DataC: any;
+  base64DataU: any;
   community: Community;
   click = true;
   com = true;
@@ -38,6 +39,7 @@ export class CommunityProfileComponent implements OnInit {
   closeResult = '';
   file: any[];
   friends: User[];
+  user: User;
   communityId: number;
   idCurrentUser: number;
   nbrparticipants: number;
@@ -59,7 +61,17 @@ export class CommunityProfileComponent implements OnInit {
   ngOnInit() {
     this.communityId = this.route.snapshot.params['id'];
     this.getCommunity(this.communityId);
+    this.getUser(this.idCurrentUser);
     this.reloadData(this.communityId);
+  }
+
+  getUser(idCurrentUser: number) {
+    this.communityService.getUserById(idCurrentUser).subscribe(data => {
+      this.user = data;
+      this.base64DataU = this.user.logo;
+      this.user.imageProfile = 'data:image/jpeg;base64,' + this.base64DataU;
+    },
+      error => console.log(error));
   }
 
   goToProfile(id: number) {
@@ -95,6 +107,8 @@ export class CommunityProfileComponent implements OnInit {
       this.base64DataP = this.community.image;
       this.community.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
       this.community.participants.forEach(element => {
+        this.base64DataP = element.logo;
+        element.imageProfile = 'data:image/jpeg;base64,' + this.base64DataP;
         this.participants.add(element);
       });
       this.nbrparticipants=this.participants.size;
@@ -157,8 +171,8 @@ export class CommunityProfileComponent implements OnInit {
       error => console.log(error));
   }
 
-  reloadData(idUser: number) {
-    this.communityService.getPubByCommunityId(idUser).subscribe(data => {
+  reloadData(idCommunity: number) {
+    this.communityService.getPubByCommunityId(idCommunity).subscribe(data => {
       this.publications = data;
       if (data.length === 0) {
         this.condition = true;
@@ -185,6 +199,7 @@ export class CommunityProfileComponent implements OnInit {
           this.publications[i].community.imageProfile = 'data:image/jpeg;base64,' + this.base64DataPp;
           this.publications[i].NbrLike = this.publications[i].likes.length;
           this.community = this.publications[i].community;
+
         }
         for (let m = 0; m < this.publications.length; m++) {
           for (let n = 0; n < this.publications[m].comments.length; n++) {
@@ -230,7 +245,7 @@ export class CommunityProfileComponent implements OnInit {
       this.updatePieceJoint(this.publica.id, this.pieceJoints);
     });
 
-    window.location.reload();
+    //window.location.reload();
 
   }
 

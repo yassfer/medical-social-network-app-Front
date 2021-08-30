@@ -17,11 +17,11 @@
             </div>
             <div class="form-group mb-4">
               <input type="text" class="form-control" placeholder="Last name" name="lastName"
-                [(ngModel)]="form.lastName" #lastName="ngModel" required />
+                [(ngModel)]="form.lastName" #lastName="ngModel" />
               <small>
-                <div *ngIf="f.submitted && lastName.invalid">
+                <!--<div *ngIf="f.submitted && lastName.invalid">
                   <div *ngIf="lastName.errors.required">Last Name is required</div>
-                </div>
+                </div>-->
               </small>
             </div>
           <div class="form-group mb-4">
@@ -80,6 +80,13 @@
           <div class="form-group mb-4">
             <input type="text" class="form-control" placeholder="recommender" name="recommander"
               [(ngModel)]="form.recommander" #recommander="ngModel" />
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" value="" [(ngModel)]="form.type" #type="ngModel"  id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Etes vous une Entreprise ?
+            </label>
           </div>
 
           </div>

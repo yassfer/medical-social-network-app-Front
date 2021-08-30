@@ -37,6 +37,8 @@ export class CommunitieslistComponent implements OnInit {
     private tokenStorage: TokenStorageService) {
       this.idCurrentUser = Number(tokenStorage.getId()); }
 
+
+
   /*deleteEmployee(id: number){
     this.employeeService.deleteEmployee(id).subscribe( data => {
       console.log(data);
@@ -149,31 +151,39 @@ if (this.CommunityItem.type == "Publique" ){
       error => console.log(error));
   }
   load() {
-
     this.communityservice.getCommunityByAdmin(this.idCurrentUser).subscribe(data => {
       this.communityList = data;
+      console.log("communityList");
       console.log(this.communityList);
 
       if (this.communityList.length === 0) {
         this.condition = true;
       } else {
         this.condition = false;
-      /*for (let i = 0; i < this.communityList.length; i++) {
-
-
-        this.base64Data = this.communityList[i].Image;
-        console.log(this.communityList[i].Image);
+      for (let i = 0; i < this.communityList.length; i++) {
+        this.base64Data = this.communityList[i].image;
+        console.log(this.communityList[i].image);
         this.communityList[i].piecejointe = 'data:image/jpeg;base64,' + this.base64Data;
-      }*/}}
+      }
+    }
+
+  },
+  error => {
+    console.log("errr")
+    console.log(error);
+
+  }
+
     );
   }
 
+
+
+
   ngOnInit(): void {
-    this.getUser(this.idCurrentUser);
-    this.load();
-  }
-
-
+        this.getUser(this.idCurrentUser);
+        this.load();
+      }
 
 
   }

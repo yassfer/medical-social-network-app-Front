@@ -1,12 +1,12 @@
 <div class="content">
-    <div class=" row justify-content-center ">
+    <div class=" row justify-content-around ">
       <div *ngIf="condition; else elseBlock">Nothing to show !!!</div>
       <ng-template #elseBlock>
         <div class="addpub offset-4">
 
           <!--testttt-->
 
-            <div class=" card card-chart" *ngFor="let publication of ApprouvedPublications" style="width: 34.5rem;">
+            <div class=" card card-chart" *ngFor="let publication of ApprouvedPublications" style="width: 33.5rem;">
 
               <div class="card-body text-secondary">
                 <button type="button" class="close" aria-label="Close" (click)="onDeletePub(publication.id)">
@@ -22,7 +22,7 @@
                 <h5 class="card-title mt-3">
                   {{publication.content}}
                 </h5>
-                <h6>{{publication.dateCreation}}</h6>
+                <h6>{{publication.dateCreation}}&nbsp;{{publication.time | date:'h:mm a z'}}</h6>
               </div>
               <div class=" card-body">
                 <div class="row">
@@ -48,7 +48,7 @@
                 <div *ngIf="click==true; else elseBlock">
                   <div class=" card-header">
                     <h3 class=" card-title">
-                      <i class=" tim-icons icon-heart-2 text-warn-states" (click)="onLike(currentUser.id, publication.id)"></i>
+                      <i class=" tim-icons icon-heart-2 text-warn-states" (click)="onLike(idCurrentUser, publication.id)"></i>
                       <small id="like" class="mr-4">{{ publication.NbrLike }}</small>
                     </h3>
                   </div>
@@ -58,7 +58,7 @@
                 <ng-template #elseBlock>
                   <div class=" card-header">
                     <h3 class=" card-title">
-                      <i class=" tim-icons icon-heart-2 text-danger-states" (click)="onDislike(currentUser.id, publication.id)"></i>
+                      <i class=" tim-icons icon-heart-2 text-danger-states" (click)="onDislike(idCurrentUser, publication.id)"></i>
                       <small id="like">{{ publication.NbrLike }}</small>
                     </h3>
                   </div>

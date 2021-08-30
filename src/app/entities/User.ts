@@ -19,4 +19,6 @@ export class User {
   invited: boolean;
   nom: String;
   prenom: String;
+  verified: boolean;
+  type: boolean = false;
 }

@@ -16,7 +16,7 @@
 
 <div class="container mt-5">
   <div id ="quote">
-  <div class="card" >
+  <div class="card card-quote">
     <h3>No one has ever become poor by giving</h3>
       <a href="http://commerce.coinbase.com/charges/ZHAY3AV5?fbclid=IwAR3pmm0OhoNhJzOHej1RMtsQRWNumChhm1rPN3cX6VSVy7biz3VHpIz0Yk0">
         <img id="img" src="../../../assets/img/donate_icon_s.png" width="100px" height="100px">
@@ -26,9 +26,9 @@
     </div>
   </div>
 </div>
-  <div class="row" id="listpub" >
-      <div class="col-md-5" id="cardd" *ngFor ="let partner of organisations">
-          <div class="pricing-card p-3 text-center py-5 mt-2">
+  <div class="row justify-content-around" id="listpub" >
+      <div class="col-5" *ngFor ="let partner of organisations">
+          <div class="card p-3 text-center mt-2">
               <div class="images"><img src="{{partner.image}}" height="140" width="200"></div>
              <span class="d-block" ><a id="link"  href="{{partner.url}}">{{partner.nom}}</a></span>
 

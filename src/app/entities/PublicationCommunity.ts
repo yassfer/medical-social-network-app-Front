@@ -16,4 +16,5 @@ export class PublicationCommunity {
   approuve: boolean;
   community: Community;
   images: any;
+  time: any;
 }

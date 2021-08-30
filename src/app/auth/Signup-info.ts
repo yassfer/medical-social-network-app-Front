@@ -14,10 +14,11 @@ export class SignUpInfo {
   professionnalisme: boolean;
   role: string[];
   recommander: string;
+  type: boolean;
 
 
   constructor(firstName: string, lastName: string, mail: string, username:string, password: string,
-      birthDate: Date, address: string, profession: string, recommander: string) {
+      birthDate: Date, address: string, profession: string, recommander: string, type: boolean) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.mail = mail;
@@ -30,5 +31,6 @@ export class SignUpInfo {
       this.recommander = recommander;
       this.professionnalisme = false;
       this.role = ['USER'];
+      this.type = type;
   }
 }
